@@ -1,0 +1,332 @@
+.content-color {
+    background-color: #eeeeee;
+    min-width: 1366px;
+    margin-top: 50px;
+}
+
+.content {
+    width: 93%;
+    max-width: 1270.37px;
+    margin: 0 auto;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+.content .left {
+    float: left;
+    width: 25%;
+    min-width: 320px;
+}
+.content .left-1 {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    height: 170px;
+}
+.content .left-1 .left-1-backimg {
+    height: 120px;
+}
+.content .left-1 .left-1-backimg img {
+    height: 120px;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+}
+.left-1-backimg-change {
+    position: relative;
+    top: -25px;
+    right: -295px;
+}
+.left-1-userleft {
+    float: left;
+}
+.content .left-1 .left-1-userImg {
+    position: relative;
+    left: 15px;
+    bottom: 28px;
+    background-color: white;
+    width: 76px;
+    height: 76px;
+    border-radius: 4px;
+}
+.left-1-userImg img {
+    width: 70px;
+    height: 70px;
+    border-radius: 4px;
+    margin: 3px;
+}
+.left-1-userImg-change {
+    position: relative;
+    top: -25px;
+    right: -52px;
+}
+.content .left-1 .left-1-name {
+    float: left;
+    margin-left: 30px;
+}
+.content .left-1 .left-1-name li {
+    list-style: none;
+    margin-top: 2px;
+    font-size: 16px;
+    color: #444;
+}
+.content .left-1 .left-1-name li:last-child {
+    font-size: 12px;
+    color: #71767a;
+}
+
+.left .left-2ttt {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin-top: 26px;
+}
+.left .left-2ttt .left-2ttt-ul li {
+    height: 42px;
+    line-height: 42px;
+    border-bottom: 1px solid #eee;
+    padding-left: 15px;
+    color: #525558;
+}
+.left .left-2ttt .left-2ttt-ul li span {
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    float: right;
+    position: relative;
+    top: 8px;
+    right: 40px;
+    font-size: 12px;
+    color: #fff;
+    background: #f60;
+    border-radius: 2px;
+    padding: 2px 5px;
+
+}
+.left .left-2ttt .left-2ttt-ul li:hover {
+    color: #fff;
+    background: #0099e5;
+}
+.left .left-2ttt .left-2ttt-ul li:hover {
+
+}
+.left .left-2ttt .left-2ttt-ul li:first-child {
+    color: #0099e5;
+    padding-left: -20px;
+    border-radius: 4px 4px 0 0;
+}
+.left .left-2ttt .left-2ttt-ul li:last-child {
+    border-bottom: none;
+    border-radius: 0 0 4px 4px;
+}
+.left .left-2ttt .left-2ttt-ul li arr {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    -webkit-transform: rotate(45deg) translate(0,-50%);
+    -moz-transform: rotate(45deg) translate(0,-50%);
+    transform: rotate(45deg) translate(0,-50%);
+    position: relative;
+    top: -50%;
+    right: -270px;
+}
+
+
+.content .right {
+    float: left;
+    width: 48%;
+    margin-left: 4%;
+}
+.right .setting-main {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.setting-main-head {
+    padding: 1px 0 10px 10px;
+}
+.setting-main-head h2 {
+    font-size: 18px;
+    color: #444;
+    margin-top: 10px;
+}
+.setting-main-head h3 {
+    font-size: 14px;
+    color: #b9c1c7;
+    margin-top: 5px;
+}
+
+.setting-main-content {
+
+}
+.setting-main-content table {
+    margin: 0 auto;
+}
+.setting-main-content table tr td{
+    padding-top: 30px;
+}
+.setting-main-content table tr td:first-child {
+    text-align: right;
+    color: #6d6c6d;
+    padding-right: 50px;
+}
+.setting-mian-input {
+    display: block;
+    width: 240px;
+    border: 1px solid #dce0e3;
+    border-radius: 3px;
+    padding: 0 5px;
+    height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.setting-main-sex-name {
+    padding-right: 30px;
+    color: #6d6c6d;
+}
+.setting-main .save-change {
+    float: right;
+    margin-top: 25px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.setting-main .save-change a{
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: none;
+    font-size: 12px;
+    padding: 3px 10px 4px;
+    margin-right: 30px;
+    color: #fff;
+    background-color: #34bf49;
+}
+.setting-main .save-change a:hover
+{
+    background-color: #41cb56;
+}
+
+.setting-main-item {
+    margin-top: 20px;
+}
+.setting-main-item .label{
+    width: 140px;
+    float: left;
+    padding-top: 5px;
+    text-align: right;
+    font-size: 13px;
+    line-height: 18px;
+    color: #6d6c6d;
+}
+.setting-main-item .control{
+    margin-left: 160px;
+}
+.setting-main-item .control aside{
+    font-size: 12px;
+    color: #b9c1c7;
+    padding: 4px 38px 0 1px;
+}
+.setting-main-item .control aside span{
+    color: #0099e5;
+}
+.setting-main-item .control .line{
+    color: #f60;
+    display: inline-block;
+    line-height: 24px;
+}
+.setting-main-item .control .remail{
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 2px;
+    box-shadow: none;
+    padding: 2px 6px;
+    margin-left: 5px;
+}
+.setting-main-item .control .btn{
+    color: #fff;
+    background-color: #34bf49;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    -webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    border-radius: 4px;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.setting-main-item .control li{
+    list-style-type: disc;
+    margin-left: 10px;
+    padding-left: 3px;
+    margin-top: 3px;
+}
+.setting-main-content .line {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 40px;
+}
+.setting-main-item .desc {
+    padding-left: 30px;
+    float: left;
+}
+.setting-main-item .com_checkbox {
+    float: right;
+    margin: 2px 30px 0 0;
+}
+.setting-main-item .com_checkbox .hidden{
+    display: none;
+}
+.setting-main-item .com_checkbox .cbx{
+    outline: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+}
+.setting-main-item .com_checkbox .cbx:checked ~ label{
+    background: #34bf49;
+}
+.setting-main-item .com_checkbox .cbx:checked ~ label after{
+    left: 16px;
+}
+.setting-main-item .com_checkbox .lbl{
+    width: 35px;
+    height: 20px;
+    background: #ccc;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+    display: block;
+    border-radius: 100px;
+}
+.setting-main-item .com_checkbox .lbl after{
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+    display: block;
+    border-radius: 100px;
+}
+
+
+.right-footer {
+    margin-top: 20px;
+}
+
+
+.setting-hr {
+    margin-bottom: 0;
+    margin-top: 50px;
+}
