@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -9,21 +10,31 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    // 定义表名
+    protected $table = 'user';
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public $timestamps = false;
+
+    protected $fillable = ['name', 'email', 'password'];
+
+
+    public function getPasswordByEmail($email) {
+
+    }
+
+    public static function addUser(Request $request) {
+        $input['email'] = $request->input('email');
+        $input['password'] = $request->input('password');
+        $input['name'] = explode('@', $input['email'])[0]
+                    . implode('', explode('.', explode('@', $input['email'])[1]));
+        User::create($input);
+    }
+
+    public static function findUserByEmail($email)
+    {
+        $where = [
+            'email' => $email
+        ];
+        User::where($where)->get();
+    }
 }

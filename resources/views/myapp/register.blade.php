@@ -19,7 +19,7 @@
         #BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"],a[href*="@"][href*=".exe"],a[href*="/?/"][href*=".exe"],.adpushwin{display:none !important;}
 
         .form-group img {
-            width: 40%;
+            width: 38%;
             height: 32px;
             float: right;
             margin-top: 1px;
@@ -29,25 +29,27 @@
 </head>
 
 <body class="gray-bg">
-<div style="margin-bottom: -50px">
-    <h1 class="logo-name"><center>T+M</center></h1>
-</div>
+
 <div class="middle-box text-center loginscreen   animated fadeInDown">
     <div>
+        <div>
+            <h1 class="logo-name">T+</h1>
+        </div>
         <h3>欢迎注册 TalkingMore</h3>
         <p>创建一个新账户</p>
-        <form class="m-t" role="form" action="http://www.zi-han.net/theme/hplus/login.html">
+        <form class="m-t" role="form" action="/register" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="请输入邮箱" required="">
+                <input type="text" name="email" class="form-control" placeholder="请输入邮箱" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="请输入密码" required="">
+                <input type="password" name="password" class="form-control" placeholder="请输入密码" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="请再次输入密码" required="">
+                <input type="password" name="repassword" class="form-control" placeholder="请再次输入密码" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="请输入验证码" style="width: 60%;display: inline;">
+                <input type="password" name="yzm" class="form-control" placeholder="请输入验证码" style="width: 60%;display: inline;float: left">
                 <img src="{{ URL::asset('/image/user') }}">
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>

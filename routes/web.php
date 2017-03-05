@@ -11,38 +11,11 @@
 |
 */
 
+use App\Model\User;
+
 Route::get('/', function () {
-    return view('myapp.article_detail');
+    $a = 'ff';
+    return view('myapp.register');
 });
 
-Route::get('/login', function () {
-    return view('myapp.login');
-});
-
-Route::get('/regiest', function () {
-    return view('myapp.regiest');
-});
-
-Route::get('/article', function () {
-    return view('myapp.article');
-});
-
-Route::get('/home', function () {
-    return view('myapp.home');
-});
-
-Route::get('/index', function () {
-    return view('myapp.index');
-});
-
-Route::get('/setting', function () {
-    return view('myapp.setting');
-});
-
-Route::get('/login', function () {
-    return view('myapp.login');
-});
-
-Route::get('/regeister', function () {
-    return view('myapp.regeister');
-});
+Route::post('/register', 'Auth\RegisterController@registerUser');
