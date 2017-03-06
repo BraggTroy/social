@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H+ 后台主题UI框架 - 登录</title>
+    <title>登录</title>
 
     <link rel="shortcut icon" href="http://www.zi-han.net/theme/hplus/favicon.ico">
     <link href="{{ URL::asset('/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
@@ -29,22 +29,35 @@
     <div>
         <div>
 
-            <h1 class="logo-name">H+</h1>
+            <h1 class="logo-name">T+</h1>
 
         </div>
-        <h3>欢迎使用 H+</h3>
 
-        <form class="m-t" role="form" action="http://www.zi-han.net/theme/hplus/index.html">
+        {{--错误信息显示--}}
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
+                <h3 style="color:red;">{{ $error }}</h3>
+            @endforeach
+        @else
+                <h3>欢迎使用 TalkingMore</h3>
+        @endif
+
+        <form class="m-t" role="form" action="/login" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="用户名" required="">
+                <input type="email" name="email" class="form-control" placeholder="邮箱" value="{{ old('name') }}" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="密码" required="">
+                <input type="password" name="password" class="form-control" placeholder="密码" required>
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
 
 
-            <p class="text-muted text-center"> <a href="http://www.zi-han.net/theme/hplus/login.html#"><small>忘记密码了？</small></a> | <a href="http://www.zi-han.net/theme/hplus/register.html">注册一个新账号</a>
+            <p class="text-muted text-center">
+                <a href="http://www.zi-han.net/theme/hplus/login.html#">
+                    <small>忘记密码了？</small>
+                </a> |
+                <a href="http://www.zi-han.net/theme/hplus/register.html">注册一个新账号</a>
             </p>
 
         </form>

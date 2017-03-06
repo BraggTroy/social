@@ -11,11 +11,14 @@
 |
 */
 
-use App\Model\User;
-
 Route::get('/', function () {
     $a = 'ff';
     return view('myapp.register');
 });
 
 Route::post('/register', 'Auth\RegisterController@registerUser');
+Route::post('/login', 'Auth\LoginController@login');
+
+Route::get('/login', function(){
+    return view('myapp.login');
+});

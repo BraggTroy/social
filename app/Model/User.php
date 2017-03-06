@@ -35,6 +35,6 @@ class User extends Authenticatable
         $where = [
             'email' => $email
         ];
-        User::where($where)->get();
+        return User::where($where)->first();
     }
 }

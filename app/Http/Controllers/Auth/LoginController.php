@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -40,9 +42,13 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        $user = User::findUserByEmail($request->input('email'));
+        if ($user) {
+            if ($user['password'] == trim($request->input('password'))) {
+                return 'ok';
+            }
+            return Redirect::back()->withInput()->withErrors('密码错误');
+        }
+        return Redirect::back()->withInput()->withErrors('用户不存在');
     }
 }
