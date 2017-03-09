@@ -14,8 +14,9 @@
 
 
 .left {
-    width: 17%;
+    width: 7%;
     float: left;
+    margin-right: 1%;
 }
 .left-kind {
     background-color: white;
@@ -46,9 +47,9 @@
 
 
 .middle {
-    width: 54%;
+    width: 63%;
     margin-left: 1%;
-    margin-right: 2%;
+    margin-right: 1%;
     float: left;
 }
 
@@ -330,7 +331,7 @@
 
 .right {
     width: 25%;
-    float: left;
+    float: right;
 }
 
 .friend-rec {

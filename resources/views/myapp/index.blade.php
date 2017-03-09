@@ -14,21 +14,21 @@
             <div class="left">
                 <div class="left-kind">
                     <ul>
-                        <li><a href=""><i class="icon-lemon"></i>&nbsp;&nbsp;好友动态</a></li>
-                        <li><a href=""><i class="icon-pencil"></i>&nbsp;&nbsp;书写心情</a></li>
-                        <li><a href=""><i class="icon-heart-empty"></i>&nbsp;&nbsp;特别关心</a></li>
-                        <li><a href=""><i class="icon-heart-empty"></i>&nbsp;&nbsp;我收藏的</a></li>
+                        {{--<li><a href=""><i class="icon-lemon"></i>&nbsp;&nbsp;好友动态</a></li>--}}
+                        {{--<li><a href=""><i class="icon-pencil"></i>&nbsp;&nbsp;书写心情</a></li>--}}
+                        {{--<li><a href=""><i class="icon-heart-empty"></i>&nbsp;&nbsp;特别关心</a></li>--}}
+                        {{--<li><a href=""><i class="icon-heart-empty"></i>&nbsp;&nbsp;我收藏的</a></li>--}}
                     </ul>
                 </div>
             </div>
 
             <div class="middle">
-                <div class="write-article">
-                    <div class="before-click" >
-                        <a class="before-show" href="javascript:void(0)">说点什么吧</a>
-                        <a class="upload-image-icon" href=""><i class="icon-camera-retro" style="font-size: 40px"></i></a>
-                    </div>
-                    <div class="after-click" style="display: none">
+                <div class="write-article" style="display: none">
+                    {{--<div class="before-click" >--}}
+                        {{--<a class="before-show" href="javascript:void(0)">说点什么吧</a>--}}
+                        {{--<a class="upload-image-icon" href=""><i class="icon-camera-retro" style="font-size: 40px"></i></a>--}}
+                    {{--</div>--}}
+                    <div class="after-click">
                         <textarea class="article-input"></textarea>
                         <div class="in-textarea">
                             <span>@</span>
