@@ -27,6 +27,13 @@ body {
     z-index: 999;
 }
 
+#head * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .head-content {
     height: 50px;
     width: 93%;
@@ -151,6 +158,11 @@ body {
     letter-spacing: 1px;
     outline: 0;
     text-decoration: none;
+}
+
+.head-me .nav_select.menu a:hover {
+    color: #fff;
+    background: #0099e5;
 }
 
 .head-me .menu2 {

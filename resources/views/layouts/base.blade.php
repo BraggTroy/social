@@ -35,7 +35,7 @@
             <div class="head-me">
                 <ul>
                     <li id="menu1">
-                        <strong onclick="console.log('dd')">
+                        <strong>
                             <img src="{{ URL::asset('/image/user') }}">&nbsp;
                             你很溜
                         </strong>
@@ -47,7 +47,7 @@
                     </li>
                     <li id="menu2">
                         <strong><i class="icon-bell"></i>&nbsp;&nbsp;通知</strong>
-                        <div class="menu menu2">
+                        <div class="menu menu2" style="display: none">
                             <div class="arrow"></div>
                             <div class="nav_notify_tab">
                                 <div class="item on">
@@ -76,7 +76,7 @@
                         <strong ><i class="icon-pencil"></i>&nbsp;&nbsp;撰写</strong>
                         <div class="menu menu3" style="display: none">
                             <div class="arrow"></div>
-                            <a href=""><i class="icon-news"></i>文章</a>
+                            <a href="javascript:showWriteArticle()"><i class="icon-news"></i>文章</a>
                             <a href=""><i class="icon-cc-code icon_fs_18"></i>最佳实践</a>
                         </div>
                     </li>
@@ -90,20 +90,7 @@
     <script src="{{ URL::asset('/js/jquery/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
-    <script>
-        var menuClick = function(id) {
-            var element = $('#' + id);
-            var menu = $('.' + id);
-            var left = element.offset().left;
-            var widthElement = element.width();
-            var widthMenu = menu.width();
-            menu.css('left', (left - widthMenu / 2 + widthElement / 2)+'px');
-        };
-
-        menuClick('menu2');
-        menuClick('menu3');
-
-    </script>
+    <script src="{{ URL::asset('/js/head.js') }}"></script>
     @yield('js')
 </body>
 </html>

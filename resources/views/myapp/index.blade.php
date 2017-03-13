@@ -5,7 +5,8 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/fileinput/css/fileinput.css') }}">
 @endsection
 
 @section('content')
@@ -23,7 +24,7 @@
             </div>
 
             <div class="middle">
-                <div class="write-article" style="display: none">
+                <div class="write-article" >
                     {{--<div class="before-click" >--}}
                         {{--<a class="before-show" href="javascript:void(0)">说点什么吧</a>--}}
                         {{--<a class="upload-image-icon" href=""><i class="icon-camera-retro" style="font-size: 40px"></i></a>--}}
@@ -38,24 +39,23 @@
                         <div class="article-input-action">
                             <div class="after-action0">
                                 <span>添加：</span>
-                                <a href=""><i class="icon-picture"></i>&nbsp;照片</a>
+                                <span onclick="elemShow('after-image-show')"><i class="icon-picture"></i>&nbsp;照片</span>
                                 <a href=""><i class=""></i></a>
                             </div>
-                            <div class="after-image-show">
+                            <div class="after-image-show" style="display: none">
 
                             </div>
                             <div class="after-footer">
-                                <div class="dropdown after-drop">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <div class="after-drop">
+                                    <button class="btn btn-default">
                                         仅自己可见
                                         <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu after-menu" aria-labelledby="dropdownMenu1">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
+                                    <ul class="after-menu" style="display: none">
+                                        <li><span>Action</span></li>
+                                        <li><span>Another action</span></li>
+                                        <li><span>Something else here</></li>
+                                        <li><span>Separated link</span></li>
                                     </ul>
                                 </div>
                                 <a href="" class="submit after-ok"><i class="icon-ok"></i>&nbsp;发布</a>
@@ -158,4 +158,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="{{ URL::asset('/js/index.js') }}"></script>
+    <script src="{{ URL::asset('/fileinput/js/fileinput.js') }}"></script>
 @endsection
