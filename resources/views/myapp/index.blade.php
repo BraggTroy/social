@@ -23,6 +23,24 @@
                 </div>
             </div>
 
+            {{--上传图片--}}
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width: 960px;height: 620px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">选择图片上传</h4>
+                        </div>
+                        <div class="modal-body ttt-modal-body">
+                            <input id="ttt_input" class="file" name="file" type="file" multiple >
+                        </div>
+                        <div class="modal-footer" id="up-modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">完成</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="middle">
                 <div class="write-article" >
                     {{--<div class="before-click" >--}}
@@ -39,7 +57,7 @@
                         <div class="article-input-action">
                             <div class="after-action0">
                                 <span>添加：</span>
-                                <span onclick="elemShow('after-image-show')"><i class="icon-picture"></i>&nbsp;照片</span>
+                                <span data-toggle="modal" data-target="#myModal"><i class="icon-picture"></i>&nbsp;照片</span>
                                 <a href=""><i class=""></i></a>
                             </div>
                             <div class="after-image-show" style="display: none">
@@ -161,6 +179,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ URL::asset('/js/index.js') }}"></script>
     <script src="{{ URL::asset('/fileinput/js/fileinput.js') }}"></script>
+    <script src="{{ URL::asset('/fileinput/js/locales/zh.js') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=1') }}"></script>
 @endsection
