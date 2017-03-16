@@ -22,5 +22,5 @@ Route::get('/login', function(){
     return view('myapp.login');
 });
 
-Route::post('/image/upload', 'Upload\imageUpload@upload');
+Route::post('/upload', 'Upload\imageUpload@upload');
 
