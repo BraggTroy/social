@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q12') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fileinput/css/fileinput.css') }}">
 @endsection
 
@@ -41,6 +41,8 @@
                 </div>
             </div>
 
+            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+
             <div class="middle">
                 <div class="write-article" >
                     {{--<div class="before-click" >--}}
@@ -48,10 +50,10 @@
                         {{--<a class="upload-image-icon" href=""><i class="icon-camera-retro" style="font-size: 40px"></i></a>--}}
                     {{--</div>--}}
                     <div class="after-click">
-                        <textarea class="article-input"></textarea>
+                        <textarea class="article-input" oninput="wordNum(this.value)"></textarea>
                         <div class="in-textarea">
                             <span>@</span>
-                            <span><t>0</t> / 240</span>
+                            <span><t class="text_num">0</t> / 240</span>
                         </div>
 
                         <div class="article-input-action">
@@ -66,18 +68,17 @@
                             <div class="after-footer">
                                 <div class="after-drop">
                                     <button class="btn btn-default">
-                                        仅自己可见
+                                        <span class="btn-name" value="0">仅自己可见&nbsp;</span>
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="after-menu" style="display: none">
-                                        <li><span>Action</span></li>
-                                        <li><span>Another action</span></li>
-                                        <li><span>Something else here</></li>
-                                        <li><span>Separated link</span></li>
+                                        <li><span onclick="choiceShow(this)" value="0">仅自己可见</span></li>
+                                        <li><span onclick="choiceShow(this)" value="1">好友可见</span></li>
+                                        <li><span onclick="choiceShow(this)" value="2">所有人可见</span></li>
                                     </ul>
                                 </div>
-                                <a href="" class="submit after-ok"><i class="icon-ok"></i>&nbsp;发布</a>
-                                <a href="" class="submit after-cancel"><i class="icon-remove"></i>&nbsp;取消</a>
+                                <span class="submit after-ok" onclick="submitWrite()"><i class="icon-ok"></i>&nbsp;发布</span>
+                                <span class="submit after-cancel"><i class="icon-remove"></i>&nbsp;取消</span>
                             </div>
                         </div>
                     </div>
@@ -181,6 +182,6 @@
 @section('js')
     <script src="{{ URL::asset('/fileinput/js/fileinput.js') }}"></script>
     <script src="{{ URL::asset('/fileinput/js/locales/zh.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=4') }}"></script>
     <script src="{{ URL::asset('/js/upload.js') }}"></script>
 @endsection

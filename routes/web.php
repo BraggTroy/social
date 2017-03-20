@@ -25,7 +25,14 @@ Route::get('/login', function(){
 Route::post('/upload', 'Upload\imageUpload@upload');
 
 
-Route::get('/index', ['middleware' => 'myauth', function () {
-    return view('myapp.index');
-}]);
+Route::group(['middleware' => 'myauth'], function () {
+    Route::get('/index', function(){
+        return view('myapp.index');
+    });
+});
+
+//上传
+Route::group(['middleware' => 'myauth'], function () {
+    Route::post('/submit/write', 'Action\IndexController@submitWrite');
+});
 

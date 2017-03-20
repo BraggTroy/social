@@ -47,9 +47,9 @@
 
 
 .middle {
-    width: 63%;
-    margin-left: 1%;
-    margin-right: 1%;
+    width: 60%;
+    margin-left: 2%;
+    margin-right: 3%;
     float: left;
 }
 
@@ -123,6 +123,7 @@
     resize: none;
     padding: 10px 10px 10px 10px;
     border-radius: 4px 4px 0 0;
+    font-size: 15px;
 }
 .article-input-action {
     background-color: #f5f5f5;
@@ -354,18 +355,17 @@
     text-align: center;
     border-radius: 4px;
     border: 1px solid #dedede;
-}
-.submit:hover {
-    text-decoration: none;
-    background-color: #34bf49;
-    color: #fff;
+
 }
 .after-cancel {
     margin-right: 30px;
     background-color: #fff;
+    cursor: pointer;
 }
 .after-cancel:hover {
     background-color: red;
+    cursor: pointer;
+    color: #fff;
 }
 
 
