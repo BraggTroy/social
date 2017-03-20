@@ -26,8 +26,8 @@
             $message = '未知错误';
             switch($code)
             {
-                case 444:
-                    $message = '';
+                case 4041:
+                    $message = '文件上传失败';
                     break;
             }
             return $message;

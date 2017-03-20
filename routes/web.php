@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('myapp.index');
+Route::get('/', function(){
+   return Redirect::to('/index');
 });
 
 Route::post('/register', 'Auth\RegisterController@registerUser');
@@ -23,4 +23,9 @@ Route::get('/login', function(){
 });
 
 Route::post('/upload', 'Upload\imageUpload@upload');
+
+
+Route::get('/index', ['middleware' => 'myauth', function () {
+    return view('myapp.index');
+}]);
 

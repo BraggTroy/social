@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
@@ -45,7 +46,8 @@ class LoginController extends Controller
         $user = User::findUserByEmail($request->input('email'));
         if ($user) {
             if ($user['password'] == trim($request->input('password'))) {
-                return 'ok';
+                \Session::put('user',$request->input('email'));
+                return Redirect::to('/index');
             }
             return Redirect::back()->withInput()->withErrors('密码错误');
         }

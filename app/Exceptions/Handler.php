@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Http\Controllers\Exception\ErrorHandle;
+use App\Http\Controllers\Exception\TMException;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -44,6 +46,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof TMException) {
+            $message      = $exception->getMessage();
+            $code     = $exception->getCode();
+
+            return $request->ajax() || $request->wantsJson() ?
+                ErrorHandle::show_ajax($message, $code) :
+                ErrorHandle::show_page($message, $code);
+        }
         return parent::render($request, $exception);
     }
 

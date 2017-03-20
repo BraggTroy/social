@@ -1,7 +1,28 @@
+
+
 //上传图片
 var suc = sc = new Array();
 var num = 0;
 
+$("#ttt_input").fileinput({
+    showRemove : false,
+    language : 'zh',
+    allowedPreviewTypes : [ 'image' ],
+    allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+    maxFileSize : 10240,
+    previewFileType:'any',
+    previewFileIcon : '',
+    uploadUrl : "/upload",
+    browseClass: "btn btn-primary",
+    showCaption: false,
+    enctype: 'multipart/form-data',
+    type: 'post',
+    'fileActionSettings' : {
+        // showZoom: false,
+        showUpload: false
+    },
+    uploadExtraData: { '_token':'{{csrf_token()}}' }
+});
 // 选择图片预览时
 $('#ttt_input').on('fileloaded', function(event, file, previewId, index, reader) {
     // 上传图片的总量
@@ -23,7 +44,7 @@ $('#ttt_input').on('fileuploaded', function(event, data, previewId, index) {
         var j=0;
         for (var m in suc){
             if (suc[m]) {
-                ima[j] = "<img src='/Public/upload/" + suc[m] + "' width='256px' class='file-preview-image' />";
+                ima[j] = "<img src='/image/upload/" + suc[m] + "' width='256px' class='file-preview-image' />";
                 dele[j] = {
                     url: '/Home/Upload/delete',
                     showZoom: false,
@@ -48,7 +69,7 @@ $('#ttt_input').on('fileuploaded', function(event, data, previewId, index) {
         $('#ttt-ui-button-c6').toggle();
         var t = '';
         for (var i=0;i<sc.length;i++){
-            t += "<img src='/Public/upload/"+sc[i]+"' width='163px'/>";
+            t += "<img src='/image/upload/"+sc[i]+"' width='163px'/>";
         }
         $('#showImage div').html(t);
     }
@@ -59,7 +80,7 @@ $('#ttt_input').on('filedeleted', function(event, key) {
     var t = '';
     for (var i=0;i<sc.length;i++){
         if (sc[i] != 2) {
-            t += "<img src='/Public/upload/" + sc[i] + "' width='163px'/>";
+            t += "<img src='/image/upload/" + sc[i] + "' width='163px'/>";
         }
     }
     $('#showImage div').html(t);
@@ -68,3 +89,4 @@ $('#ttt_input').on('filedeleted', function(event, key) {
         $('.ttt-modal-body').html('<div class="ttt-modal-text">请刷新页面重新上传</div>');
     }
 });
+

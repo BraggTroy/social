@@ -2,6 +2,7 @@
     namespace App\Http\Controllers\Upload;
 
     use App\Http\Controllers\Controller;
+    use App\Http\Controllers\Exception\TMException;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Storage;
 
@@ -33,9 +34,13 @@
                     $bool = $this->disk->put($filename, file_get_contents($realPath));
 
                     if ($bool === true) {
-
+                        $data = [];
+                        $data['code'] = 1;
+                        $data['filename'] = $filename;
+                        return json_encode($data);
+                    }else {
+                        throw new TMException('4041');
                     }
-
                 }
             }
         }

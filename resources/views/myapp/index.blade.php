@@ -183,27 +183,4 @@
     <script src="{{ URL::asset('/fileinput/js/locales/zh.js') }}"></script>
     <script src="{{ URL::asset('/js/index.js') }}"></script>
     <script src="{{ URL::asset('/js/upload.js') }}"></script>
-
-    <script>
-        $("#ttt_input").fileinput({
-            showRemove : false,
-            language : 'zh',
-            allowedPreviewTypes : [ 'image' ],
-            allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
-            maxFileSize : 10240,
-            previewFileType:'any',
-            previewFileIcon : '',
-            uploadUrl : "/upload",
-            browseClass: "btn btn-primary",
-            showCaption: false,
-            enctype: 'multipart/form-data',
-            type: 'post',
-            'fileActionSettings' : {
-                // showZoom: false,
-                showUpload: false
-            },
-            uploadExtraData: { '_token':'{{csrf_token()}}' }
-        });
-    </script>
 @endsection
-
