@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q12') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q1e2') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fileinput/css/fileinput.css') }}">
 @endsection
 
@@ -44,7 +44,7 @@
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
             <div class="middle">
-                <div class="write-article" >
+                <div class="write-article" style="display: none;">
                     {{--<div class="before-click" >--}}
                         {{--<a class="before-show" href="javascript:void(0)">说点什么吧</a>--}}
                         {{--<a class="upload-image-icon" href=""><i class="icon-camera-retro" style="font-size: 40px"></i></a>--}}
@@ -98,7 +98,15 @@
                             一：记一次工作中实现移动端手写签名。1：Signature Pad 是一款Jquery签名插件。2：移动端亲自测试书写良好。3：本文涉及Signature Pad的详解甚少，实际运用的朋友请自行百度参考使用文档或点击下方github地址。          一个简单的在线demo：http://szimek.github.io/signature_pad/  精      美
                         </span>
                         <div class="article-content-image">
+                            {{--一张图片--}}
+                            <img src="{{ URL::asset('/image/image.jpg') }}" >
+                            {{--二张图片--}}
+                            {{--三张图片--}}
+                            {{--四张图片--}}
+                            {{--四张以上--}}
+
                             <img src="{{ URL::asset('/image/image.jpg') }}" width="250" height="250">
+                            {{--<img src="{{ URL::asset('/image/image.jpg') }}" width="250" height="250">--}}
                         </div>
                     </div>
 
@@ -183,5 +191,5 @@
     <script src="{{ URL::asset('/fileinput/js/fileinput.js') }}"></script>
     <script src="{{ URL::asset('/fileinput/js/locales/zh.js') }}"></script>
     <script src="{{ URL::asset('/js/index.js?v=4') }}"></script>
-    <script src="{{ URL::asset('/js/upload.js') }}"></script>
+    <script src="{{ URL::asset('/js/upload.js?v=121') }}"></script>
 @endsection

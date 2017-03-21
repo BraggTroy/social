@@ -29,6 +29,9 @@
                 case 4041:
                     $message = '文件上传失败';
                     break;
+                case 4042:
+                    $message = '发表文章失败';
+                    break;
             }
             return $message;
         }

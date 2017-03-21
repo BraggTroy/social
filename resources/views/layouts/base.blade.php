@@ -90,7 +90,7 @@
     <script src="{{ URL::asset('/js/jquery/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
-    <script src="{{ URL::asset('/js/head.js') }}"></script>
+    <script src="{{ URL::asset('/js/head.js?v=54') }}"></script>
     @yield('js')
 </body>
 </html>

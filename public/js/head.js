@@ -10,12 +10,12 @@ var menuClick = function(id) {
 };
 
 var menuId = null;
-$('.head-me').children('ul').children('li').click(function() {
-    var menu = $('.'+this.id);
-    if (menuId == this.id && menu.css('display') == 'block') {
+$('.head-me').children('ul').children('li').children('strong').click(function() {
+    var menu = $('.'+$(this).parent().attr('id'));
+    if (menuId == $(this).parent().attr('id') && menu.css('display') == 'block') {
         menu.css('display', 'none');
         return;
     }
-    menuId = this.id;
+    menuId = $(this).parent().attr('id');
     menuClick(menuId);
 });

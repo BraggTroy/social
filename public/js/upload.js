@@ -21,15 +21,23 @@ $("#ttt_input").fileinput({
         // showZoom: false,
         showUpload: false
     },
-    uploadExtraData: { '_token':'{{csrf_token()}}' }
+    uploadExtraData: { '_token':$('#token').val() }
 });
 // 选择图片预览时
 $('#ttt_input').on('fileloaded', function(event, file, previewId, index, reader) {
     // 上传图片的总量
-    num = parseInt(previewId.split('-').pop())+1;
+    // num = parseInt(previewId.split('-').pop())+1;
+    num++;
+    console.log(num);
+});
+$('#ttt_input').on('fileclear', function(event) {
+    console.log("fileclear");
+});
+$('#ttt_input').on('filereset', function(event) {
+    console.log("filereset");
 });
 // 隐藏清空input
-$('.fileinput-remove').hide();
+// $('.fileinput-remove').hide();
 // 上传成功后
 $('#ttt_input').on('fileuploaded', function(event, data, previewId, index) {
     // 图片上传成功后,将图片名保存到数组
@@ -38,9 +46,9 @@ $('#ttt_input').on('fileuploaded', function(event, data, previewId, index) {
     }
     if(suc.length>0 && (parseInt(previewId.split('-').pop())+1) == num){
         // 存放图像html代码
-        var ima = new Array();
+        var ima = null;
         // 删除
-        var dele = new Array();
+        var dele = null;
         var j=0;
         for (var m in suc){
             if (suc[m]) {
@@ -59,7 +67,7 @@ $('#ttt_input').on('fileuploaded', function(event, data, previewId, index) {
         // 刷新视图
         $('#ttt_input').fileinput('refresh',{
             initialPreview : ima,
-            initialPreviewConfig:dele,
+            initialPreviewConfig:dele
         }).fileinput('enable');
         $('.btn-file').hide();
         // 隐藏清空input
@@ -76,6 +84,7 @@ $('#ttt_input').on('fileuploaded', function(event, data, previewId, index) {
 });
 $('#ttt_input').on('filedeleted', function(event, key) {
     num--;
+    console.log(num);
     sc[key] = 2;
     var t = '';
     for (var i=0;i<sc.length;i++){

@@ -23,6 +23,6 @@
             $input['zf'] = 0;
             $input['see'] = $request->input('see');
 
-            Write::create($input);
+            return Write::create($input);
         }
     }
