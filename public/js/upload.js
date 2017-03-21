@@ -27,38 +27,34 @@ $("#ttt_input").fileinput({
 $('#ttt_input').on('fileloaded', function(event, file, previewId, index, reader) {
     // 上传图片的总量
     // num = parseInt(previewId.split('-').pop())+1;
-    num++;
-    console.log(num);
-});
-$('#ttt_input').on('fileclear', function(event) {
-    console.log("fileclear");
-});
-$('#ttt_input').on('filereset', function(event) {
-    console.log("filereset");
+    // num++;
+    // console.log(num);
 });
 // 隐藏清空input
-// $('.fileinput-remove').hide();
+$('.fileinput-remove').hide();
 // 上传成功后
 $('#ttt_input').on('fileuploaded', function(event, data, previewId, index) {
     // 图片上传成功后,将图片名保存到数组
+    num++;
+    console.log(num);
     if (data.response['code'] == 1) {
-        sc[sc.length] = suc[suc.length] = data.response['content']['file']['savename'];
+        sc[sc.length] = suc[suc.length] = data.response['filename'];
     }
-    if(suc.length>0 && (parseInt(previewId.split('-').pop())+1) == num){
+    if(suc.length>0){
         // 存放图像html代码
-        var ima = null;
+        var ima = [];
         // 删除
-        var dele = null;
+        var dele = [];
         var j=0;
         for (var m in suc){
             if (suc[m]) {
                 ima[j] = "<img src='/image/upload/" + suc[m] + "' width='256px' class='file-preview-image' />";
                 dele[j] = {
-                    url: '/Home/Upload/delete',
+                    url: '/upload/delete',
                     showZoom: false,
                     caption: '上传成功',
                     key: m,
-                    extra: {name: suc[m]}
+                    extra: {name: suc[m],'_token':$('#token').val()}
                 };
             }
             j++;

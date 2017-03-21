@@ -191,5 +191,5 @@
     <script src="{{ URL::asset('/fileinput/js/fileinput.js') }}"></script>
     <script src="{{ URL::asset('/fileinput/js/locales/zh.js') }}"></script>
     <script src="{{ URL::asset('/js/index.js?v=4') }}"></script>
-    <script src="{{ URL::asset('/js/upload.js?v=121') }}"></script>
+    <script src="{{ URL::asset('/js/upload.js?v=14421') }}"></script>
 @endsection

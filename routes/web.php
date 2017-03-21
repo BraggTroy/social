@@ -23,6 +23,7 @@ Route::get('/login', function(){
 });
 
 Route::post('/upload', 'Upload\imageUpload@upload');
+Route::post('/upload/delete', 'Upload\imageUpload@delete');
 
 
 Route::group(['middleware' => 'myauth'], function () {

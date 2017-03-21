@@ -27,7 +27,13 @@
             switch($code)
             {
                 case 4041:
+                    $message = '文件保存失败';
+                    break;
+                case 40411:
                     $message = '文件上传失败';
+                    break;
+                case 40412:
+                    $message = '文件删除失败';
                     break;
                 case 4042:
                     $message = '发表文章失败';
