@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q1e2') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q1e42r') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fileinput/css/fileinput.css') }}">
 @endsection
 
@@ -62,8 +62,9 @@
                                 <span data-toggle="modal" data-target="#myModal"><i class="icon-picture"></i>&nbsp;照片</span>
                                 <a href=""><i class=""></i></a>
                             </div>
-                            <div class="after-image-show" style="display: none">
-
+                            <div class="after-image-show" id="showImage" style="display: none">
+                                <div>
+                                </div>
                             </div>
                             <div class="after-footer">
                                 <div class="after-drop">
@@ -99,14 +100,14 @@
                         </span>
                         <div class="article-content-image">
                             {{--一张图片--}}
-                            <img src="{{ URL::asset('/image/image.jpg') }}" >
+                            <img src="{{ URL::asset('/image/image.jpg') }}">
                             {{--二张图片--}}
+                            <img src="{{ URL::asset('/image/image.jpg') }}" width="340" height="340">
+                            <img src="{{ URL::asset('/image/image.jpg') }}" width="340" height="340">
                             {{--三张图片--}}
-                            {{--四张图片--}}
-                            {{--四张以上--}}
-
-                            <img src="{{ URL::asset('/image/image.jpg') }}" width="250" height="250">
-                            {{--<img src="{{ URL::asset('/image/image.jpg') }}" width="250" height="250">--}}
+                            <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
+                            <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
+                            <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
                         </div>
                     </div>
 
@@ -190,6 +191,6 @@
 @section('js')
     <script src="{{ URL::asset('/fileinput/js/fileinput.js') }}"></script>
     <script src="{{ URL::asset('/fileinput/js/locales/zh.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js?v=4') }}"></script>
-    <script src="{{ URL::asset('/js/upload.js?v=14421') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=444rew') }}"></script>
+    <script src="{{ URL::asset('/js/upload.js?v=1234') }}"></script>
 @endsection

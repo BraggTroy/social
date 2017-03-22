@@ -44,7 +44,7 @@ var choiceShow = function(elem) {
 var wordNum = function(elem){
     $('.text_num').html(elem.length);
     if (elem.length > 240) {
-        commonMsg('小主，超出字数限制啦，快删掉点', 5);
+        commonMsg('超出字数限制啦，快删掉点', 5);
         $('.middle .write-article .after-ok')
             .css('backgroundColor', '#eee')
             .css('color', '#999')
@@ -67,21 +67,30 @@ var wordNum = function(elem){
 var submitWrite = function(){
     var len = $('.middle .write-article .article-input').val().length;
     if(len > 0 && len <= 240){
+        var img = '';
+        $('#showImage div img').each(function(){
+            img += this.src.split('/').pop() + '/';
+        });
         $.ajax({
             type: 'POST',
             url: '/submit/write',
             data: {
                 'content': $('.middle .write-article .article-input').val(),
                 'see': $('.middle .after-footer .btn .btn-name').attr('value'),
-                '_token' : $('#token').val()
+                '_token' : $('#token').val(),
+                'image' : img
             },
             success: function(date) {
                 commonMsg('发表成功', 6);
                 $('.middle .write-article').css('display', 'none');
+                location.replace(location.href);
             },
             error: function(data) {
                 commonMsg('哎呀，发表失败啦', 5);
                 $('.middle .write-article').css('display', 'none');
+                $('.middle .write-article .article-input').val('');
+                $('#showImage div').html('');
+                $('#showImage div').hide();
             }
         });
     }

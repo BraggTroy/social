@@ -15,14 +15,13 @@
         // 白名单字段
         protected $fillable = ['userId', 'content', 'time', 'zf', 'see'];
 
-        public static function saveWrite(Request $request)
+        public static function saveWrite(Array $arr)
         {
             $input['userId'] = session('user');
             $input['time'] = time();
-            $input['content'] = $request->input('content');
+            $input['content'] = $arr['content'];
             $input['zf'] = 0;
-            $input['see'] = $request->input('see');
-
+            $input['see'] = $arr['see'];
             return Write::create($input);
         }
     }

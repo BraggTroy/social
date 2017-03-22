@@ -36,14 +36,17 @@
                     $bool = $this->disk->put($filename, file_get_contents($realPath));
 
                     if ($bool === true) {
+
                         $data = [];
                         $data['code'] = 1;
                         $data['filename'] = $filename;
                         return json_encode($data);
+                    }else {
+                        throw new TMException('4041');
                     }
-                    throw new TMException('4041');
+                }else {
+                    throw new TMException('40411');
                 }
-                throw new TMException('40411');
             }
         }
 
@@ -53,8 +56,9 @@
             $bool = $this->disk->delete($name);
             if ($bool === true) {
                 echo 1;
+            }else {
+                throw new TMException('40412');
             }
-//            throw new TMException('40412');
         }
 
     }
