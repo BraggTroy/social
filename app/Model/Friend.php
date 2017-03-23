@@ -1,7 +1,9 @@
 <?php
     namespace App\Model;
 
-    class Friend
+    use Illuminate\Database\Eloquent\Model;
+
+    class Friend extends Model
     {
         // 定义表名
         protected $table = 'friend';
@@ -11,9 +13,9 @@
         // 白名单字段
         protected $fillable = [];
 
-        public function getFriendsByUserId($user_id)
+        public static function getFriendsByUserId($user_id)
         {
-            $where = ['userId' => $user_id];
+            $where = ['userFromId' => $user_id];
             return Friend::where($where)->get();
         }
     }

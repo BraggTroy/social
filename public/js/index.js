@@ -67,10 +67,7 @@ var wordNum = function(elem){
 var submitWrite = function(){
     var len = $('.middle .write-article .article-input').val().length;
     if(len > 0 && len <= 240){
-        var img = '';
-        $('#showImage div img').each(function(){
-            img += this.src.split('/').pop() + '/';
-        });
+        var img = image.join('/');
         $.ajax({
             type: 'POST',
             url: '/submit/write',
@@ -96,13 +93,33 @@ var submitWrite = function(){
     }
 };
 
-
-
 //layer弹出框
 var commonMsg = function(str, i) {
     layui.use(['layer'], function(){
         var layer = layui.layer;
         layer.msg(str, {time: 2000, icon:i});
+    });
+};
+
+//图片缩放
+var resize = function(elem, limit){
+    elem.each(function(){
+        var e = this;
+        var image = new Image();
+        image.src = this.src;
+        image.onload = function(){
+            if (this.width >= this.height) {
+                if(this.width > limit) {
+                    $(e).attr('width',limit);
+                    $(e).attr('height',limit / this.width * this.height);
+                }
+            }else {
+                if(this.height > limit) {
+                    $(e).attr('height',limit);
+                    $(e).attr('width',limit / this.height * this.width);
+                }
+            }
+        };
     });
 };
 

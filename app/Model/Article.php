@@ -1,82 +1,78 @@
 <?php
     namespace App\Model;
 
-
     use Illuminate\Database\Eloquent\Model;
 
-    class Write extends Model
+    class Article extends Model
     {
-        // 定义表名
-        protected $table = 'write';
-
-        public $timestamps = false;
+        protected $table = 'article';
+        protected $timestamps = false;
 
         // 白名单字段
-        protected $fillable = ['userId', 'content', 'time', 'zf', 'see', 'hasImg'];
+        protected $fillable = ['userId', 'content', 'time', 'see', 'hasImg'];
 
-        public static function saveWrite(Array $arr, $hasImg=0)
+        public static function saveArticle(Array $arr, $hasImg=0)
         {
             $input['userId'] = session('user');
             $input['time'] = time();
             $input['content'] = $arr['content'];
-            $input['zf'] = 0;
             $input['see'] = $arr['see'];
             $input['hasImg'] = $hasImg;
             return Write::create($input);
         }
 
-        public function getShowWriteByUserId($userId)
+        public function getShowArticleByUserId($userId)
         {
-            $write = [];
+            $article = [];
             $myFriend = Friend::getFriendsByUserId($userId);
             if ($myFriend) {
                 $friendId = [];
                 foreach ($myFriend as $friend) {
                     $friendId[] = $friend['userToId'];
                 }
-                $friendWrites = $this->getWritesFriendCanSee($friendId);
+                $friendWrites = $this->getArticlesFriendCanSee($friendId);
                 foreach ($friendWrites as &$v) {
                     if ($v['hasImg']) {
-                        $v['image'] = ImageWrite::getImgByWriteId($v['id']);
+                        $v['image'] = ImageArticle::getImgByWriteId($v['id']);
                     }
-                    $write[] = $v;
+                    $article[] = $v;
                 }
             }
-            $allSeeWrite =  $this->getWritesAllCanSee();
+            $allSeeWrite =  $this->getArticlesAllCanSee();
             if ($allSeeWrite) {
                 foreach ($allSeeWrite as &$v) {
                     if ($v['hasImg']) {
-                        $v['image'] = ImageWrite::getImgByWriteId($v['id']);
+                        $v['image'] = ImageArticle::getImgByWriteId($v['id']);
                     }
-                    $write[] = $v;
+                    $article[] = $v;
                 }
             }
-            return $write;
+            return $article;
         }
 
-        public function getWritesFriendCanSee(Array $userIds)
+        public function getArticlesFriendCanSee(Array $userIds)
         {
             $where = [
                 ['userID', 'in', $userIds],
                 ['see', '=', '1']
             ];
-            return Write::where($where)->get();
+            return Article::where($where)->get();
         }
 
-        public function getWritesAllCanSee()
+        public function getArticlesAllCanSee()
         {
             $where = [
                 'see' => 2
             ];
-            return Write::where($where)->get();
+            return Article::where($where)->get();
         }
 
-        public function getWritesOwnSee($userId)
+        public function getArticlesOwnSee($userId)
         {
             $where = [
                 'userId' => $userId,
-                'see' => 2
+                'see' => 0
             ];
-            return Write::where($where)->get();
+            return Article::where($where)->get();
         }
     }

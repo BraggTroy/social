@@ -15,14 +15,17 @@ Route::get('/', function(){
    return Redirect::to('/index');
 });
 
-Route::post('/register', 'Auth\RegisterController@registerUser');
-Route::post('/login', 'Auth\LoginController@login');
-
+//登录注册
 Route::get('/login', function(){
     return view('myapp.login');
 });
+Route::get('/register', function(){
+    return view('myapp.register');
+});
+Route::post('/register', 'Auth\RegisterController@registerUser');
+Route::post('/login', 'Auth\LoginController@login');
 
-
+// 验证是否登录
 Route::group(['middleware' => 'myauth'], function () {
     Route::get('/index', function(){
         return view('myapp.index');
@@ -35,6 +38,8 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::post('/submit/write', 'Action\IndexController@submitWrite');
     //图片上传
     Route::post('/upload', 'Upload\imageUpload@upload');
-    Route::post('/upload/delete', 'Upload\imageUpload@delete');
+    Route::delete('/upload/delete', 'Upload\imageUpload@delete');
 });
+
+Route::get('/q', 'Action\IndexController@index');
 

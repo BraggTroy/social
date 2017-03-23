@@ -5,11 +5,13 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q1e42r') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/fileinput/css/fileinput.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q1r') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/fineuploader/fine-uploader-gallery.css') }}">
 @endsection
 
 @section('content')
+    @include('template.uploader')
+
     <div id="content-color">
         <div id="content">
             <div class="left">
@@ -32,7 +34,8 @@
                             <h4 class="modal-title" id="myModalLabel">选择图片上传</h4>
                         </div>
                         <div class="modal-body ttt-modal-body">
-                            <input id="ttt_input" class="file" name="file" type="file" multiple >
+                            {{--初始化上传控件--}}
+                            <div id="fine-uploader-s3"></div>
                         </div>
                         <div class="modal-footer" id="up-modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">完成</button>
@@ -45,10 +48,6 @@
 
             <div class="middle">
                 <div class="write-article" style="display: none;">
-                    {{--<div class="before-click" >--}}
-                        {{--<a class="before-show" href="javascript:void(0)">说点什么吧</a>--}}
-                        {{--<a class="upload-image-icon" href=""><i class="icon-camera-retro" style="font-size: 40px"></i></a>--}}
-                    {{--</div>--}}
                     <div class="after-click">
                         <textarea class="article-input" oninput="wordNum(this.value)"></textarea>
                         <div class="in-textarea">
@@ -59,7 +58,7 @@
                         <div class="article-input-action">
                             <div class="after-action0">
                                 <span>添加：</span>
-                                <span data-toggle="modal" data-target="#myModal"><i class="icon-picture"></i>&nbsp;照片</span>
+                                <span id="managePic" data-toggle="modal" data-target="#myModal"><i class="icon-picture"></i>&nbsp;照片</span>
                                 <a href=""><i class=""></i></a>
                             </div>
                             <div class="after-image-show" id="showImage" style="display: none">
@@ -100,14 +99,11 @@
                         </span>
                         <div class="article-content-image">
                             {{--一张图片--}}
-                            <img src="{{ URL::asset('/image/image.jpg') }}">
                             {{--二张图片--}}
-                            <img src="{{ URL::asset('/image/image.jpg') }}" width="340" height="340">
                             <img src="{{ URL::asset('/image/image.jpg') }}" width="340" height="340">
                             {{--三张图片--}}
                             <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
-                            <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
-                            <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
+
                         </div>
                     </div>
 
@@ -189,8 +185,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ URL::asset('/fileinput/js/fileinput.js') }}"></script>
-    <script src="{{ URL::asset('/fileinput/js/locales/zh.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js?v=444rew') }}"></script>
-    <script src="{{ URL::asset('/js/upload.js?v=1234') }}"></script>
+    <script src="{{ URL::asset('/fineuploader/jquery.fine-uploader.js') }}"></script>
+    <script src="{{ URL::asset('/js/uploader.js') }}"></script>
+    <script src="{{ URL::asset('/js/index.js') }}"></script>
 @endsection

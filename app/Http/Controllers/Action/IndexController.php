@@ -4,7 +4,7 @@
     use App\Http\Controllers\Controller;
     use App\Http\Controllers\Exception\ErrorHandle;
     use App\Http\Controllers\Exception\TMException;
-    use App\Model\Image;
+    use App\Model\ImageWrite;
     use App\Model\Write;
     use Illuminate\Http\Request;
     use League\Flysystem\Exception;
@@ -13,15 +13,17 @@
     {
         public function index()
         {
-
+            $write = new Write();
+            $write->getShowWriteByUserId(session('user'));
         }
 
         public function submitWrite(Request $request)
         {
             try {
-                $write = Write::saveWrite($request->except('image'));
+                $hasImg = isset($request->input('image')['image']) ? 1 : 0;
+                $write = Write::saveWrite($request->except('image'), $hasImg);
                 if ($write) {
-                    Image::saveImage($write['id'], $request->only('image'));
+                    ImageWrite::saveImage($write['id'], $request->only('image'), $hasImg);
                     return json_encode(['code'=>'200']);
                 }else {
                     throw new TMException('4042');

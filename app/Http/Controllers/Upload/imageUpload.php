@@ -19,8 +19,8 @@
 
         public function upload(Request $request)
         {
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
+            if ($request->hasFile('qqfile')) {
+                $file = $request->file('qqfile');
 
                 // 文件是否上传成功
                 if ($file->isValid()) {
@@ -38,8 +38,8 @@
                     if ($bool === true) {
 
                         $data = [];
-                        $data['code'] = 1;
-                        $data['filename'] = $filename;
+                        $data['success'] = 1;
+                        $data['newUuid'] = $filename;
                         return json_encode($data);
                     }else {
                         throw new TMException('4041');
@@ -52,7 +52,7 @@
 
         public function delete(Request $request)
         {
-            $name = $request->input('name');
+            $name = $request->input('qquuid');
             $bool = $this->disk->delete($name);
             if ($bool === true) {
                 echo 1;
