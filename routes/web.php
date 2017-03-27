@@ -41,5 +41,11 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::delete('/upload/delete', 'Upload\imageUpload@delete');
 });
 
-Route::get('/q', 'Action\IndexController@index');
+Route::get('/q', function(){return view('myapp.photo');});
+Route::get('/w', function(){return view('myapp.friend');});
+Route::get('/a', function(){return view('layouts.base');});
+Route::get('/z', function(){return view('myapp.article');});
+Route::get('/x', function(){return view('myapp.article_detail');});
+Route::get('/c', function(){return view('myapp.home');});
+Route::get('/v', function(){return view('myapp.setting');});
 

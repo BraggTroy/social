@@ -93,6 +93,12 @@ var submitWrite = function(){
     }
 };
 
+
+var showComment = function(elem){
+    $('.comment-input-detial').show();
+    $(elem).hide();
+};
+
 //layer弹出框
 var commonMsg = function(str, i) {
     layui.use(['layer'], function(){
@@ -123,5 +129,15 @@ var resize = function(elem, limit){
     });
 };
 
+
+
+
+$('.comment-item').mouseenter(function(){
+    //鼠标移入
+    $('.res').css('display','block');
+}).mouseleave(function(){
+    //鼠标移出
+    $('.res').css('display','none');
+});
 
 

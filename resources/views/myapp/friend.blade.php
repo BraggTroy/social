@@ -8,7 +8,7 @@
     <link href="{{ URL::asset('/css/photo/font-awesome.min93e3.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('/css/photo/animate.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('/css/photo/style.min862f.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ URL::asset('/css/photo/photo.css?v=43') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/friend.css') }}">
 @endsection
 
 @section('content')
@@ -28,7 +28,7 @@
                                     <div class="hr-line-dashed"></div>
                                     <button class="btn btn-primary btn-block">上传文件</button>
                                     <div class="hr-line-dashed"></div>
-                                    <h5>文件夹</h5>
+                                    <h5>好友分组</h5>
                                     <ul class="folder-list" style="padding: 0">
                                         <li><a href="file_manager.html"><i class="fa fa-folder"></i> 文件</a>
                                         </li>
@@ -41,25 +41,6 @@
                                         <li><a href="file_manager.html"><i class="fa fa-folder"></i> 电影</a>
                                         </li>
                                         <li><a href="file_manager.html"><i class="fa fa-folder"></i> 书籍</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="tag-title">标签</h5>
-                                    <ul class="tag-list" style="padding: 0">
-                                        <li><a href="file_manager.html">爱人</a>
-                                        </li>
-                                        <li><a href="file_manager.html">工作</a>
-                                        </li>
-                                        <li><a href="file_manager.html">家庭</a>
-                                        </li>
-                                        <li><a href="file_manager.html">孩子</a>
-                                        </li>
-                                        <li><a href="file_manager.html">假期</a>
-                                        </li>
-                                        <li><a href="file_manager.html">音乐</a>
-                                        </li>
-                                        <li><a href="file_manager.html">照片</a>
-                                        </li>
-                                        <li><a href="file_manager.html">电影</a>
                                         </li>
                                     </ul>
                                     <div class="clearfix"></div>
@@ -148,7 +129,11 @@
 @section('js')
     <script src="{{ URL::asset('/js/photo/content.min.js') }}?v=1.0.0"></script>
     <script>
-        $(document).ready(function(){$(".file-box").each(function(){animationHover(this,"pulse")})});
+        $(document).ready(function() {
+            $(".file-box").each(function(){
+                animationHover(this,"pulse")
+            });
+        });
     </script>
     <script type="text/javascript" src="{{ URL::asset('/js/photo/stats.js') }}" charset="UTF-8"></script>
 @endsection

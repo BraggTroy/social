@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="{{ URL::asset('/layui/css/layui.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fontawesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/head.css') }}">
+    <link href="{{ URL::asset('/css/photo/font-awesome.min93e3.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/layim/layim/layim.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('/css/head.css?v=4') }}">
     @yield('css')
 </head>
 <body>
@@ -60,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="nav_notify_list_out">
-                                <div class="loading">
+                                <div class="load">
                                     <img src="{{URL::asset('/image/loading_google.gif')}}">
                                 </div>
                                 <div class="nav_notify_list follow" >
@@ -90,6 +92,7 @@
     <script src="{{ URL::asset('/js/jquery/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
+    <script src="{{ URL::asset('/layim/layim/layim.js') }}"></script>
     <script src="{{ URL::asset('/js/head.js?v=54') }}"></script>
     @yield('js')
 </body>

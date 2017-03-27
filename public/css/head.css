@@ -204,11 +204,11 @@ body {
     margin-bottom: 5px;
 }
 
-.head-me .menu2 .loading {
+.head-me .menu2 .load {
     margin-top: 10px;
     overflow: hidden;
 }
-.head-me .menu2 .loading img {
+.head-me .menu2 .load img {
     margin-left: 130px;
     height: 30px;
 }

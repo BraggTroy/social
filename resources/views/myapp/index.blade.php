@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q1r') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q1f') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fineuploader/fine-uploader-gallery.css') }}">
 @endsection
 
@@ -46,7 +46,7 @@
 
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
-            <div class="middle">
+            <div class="middle" >
                 <div class="write-article" style="display: none;">
                     <div class="after-click">
                         <textarea class="article-input" oninput="wordNum(this.value)"></textarea>
@@ -100,7 +100,7 @@
                         <div class="article-content-image">
                             {{--一张图片--}}
                             {{--二张图片--}}
-                            <img src="{{ URL::asset('/image/image.jpg') }}" width="340" height="340">
+                            {{--<img src="{{ URL::asset('/image/image.jpg') }}" width="340" height="340">--}}
                             {{--三张图片--}}
                             <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
 
@@ -126,14 +126,15 @@
                                 <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
                                 <div class="comment-content">
                                     <ul>
-                                        <li>2016-11-11 15:50</li>
+                                        <li>2016-11-11 15:50<span class="res">回复</span></li>
                                         <li>今天下雪了记一次工作中实现移动端手写签名。1：Signature Pad 是一款Jquery签名插件。2：移动端亲自测试书写良好。3：本文涉及Signature Pad的详</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="comment-input">
-                            <span type="text" class="input-show">写下你的评论 ...</span>
+                            <img src="{{ URL::asset('/image/user') }}">
+                            <span type="text" class="input-show" onclick="showComment(this)">写下你的评论 ...</span>
                             <div class="comment-input-detial" style="display: none">
                                 <textarea class="write"></textarea>
                                 <div class="f-bottom">
@@ -141,6 +142,33 @@
                                     <span href="">@</span>
                                     <a href="" class="submit"><i class="glyphicon glyphicon-send"></i>&nbsp;发布</a>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-all">
+                    <div class="content-list">
+                        <div class="rz-item">
+                            <div class="rz-head">
+                                <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
+                                <div class="rz-head-name">
+                                    <li>刘鸡蛋</li>
+                                    <li>发布了日志： &nbsp;<a href="" class="rz-tz">从入门到放弃</a> ·&nbsp;&nbsp;2016-05-05</li>
+                                </div>
+                            </div>
+                            <div class="rz-content">
+                        <span>
+                            一：记一次工作中实现移动端手写签名。1：Signature Pad 是一款Jquery签名插件。2：移动端亲自测试书写良好。3：本文涉及Signature Pad的详解甚少，实际运用的朋友请自行百度参考使用文档或点击下方github地址。          一个简单的在线demo：http://szimek.github.io/signature_pad/  精      美
+                        </span>
+                            </div>
+                            <div class="rz-footer">
+                                <ul>
+                                    <li>推荐 23</li>
+                                    <li>阅读 243</li>
+                                    <li>收藏 6</li>
+                                    <li><a href=""><i class="icon-bookmark-empty"></i>&nbsp; 立即阅读</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -187,5 +215,5 @@
 @section('js')
     <script src="{{ URL::asset('/fineuploader/jquery.fine-uploader.js') }}"></script>
     <script src="{{ URL::asset('/js/uploader.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=3') }}"></script>
 @endsection
