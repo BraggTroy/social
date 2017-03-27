@@ -44,8 +44,6 @@
                 </div>
             </div>
 
-            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-
             <div class="middle" >
                 <div class="write-article" style="display: none;">
                     <div class="after-click">

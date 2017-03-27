@@ -86,13 +86,14 @@
             </div>
         </div>
     </div>
-
+    <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
     @yield('content')
 
     <script src="{{ URL::asset('/js/jquery/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
-    <script src="{{ URL::asset('/layim/layim/layim.js') }}"></script>
+    <script src="{{ URL::asset('/layim/layim/layer.min.js?v=4') }}"></script>
+    <script src="{{ URL::asset('/layim/layim/layim.js?v=45') }}"></script>
     <script src="{{ URL::asset('/js/head.js?v=54') }}"></script>
     @yield('js')
 </body>

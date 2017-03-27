@@ -49,3 +49,31 @@ Route::get('/x', function(){return view('myapp.article_detail');});
 Route::get('/c', function(){return view('myapp.home');});
 Route::get('/v', function(){return view('myapp.setting');});
 
+Route::post('/j4', function(){
+    $data = [];
+    $data['status'] = 1;
+    $data['msg'] = '';
+
+    $item = $item1 = $item2 = [];
+    $item[0] = ['id'=>100001, 'name'=>'www', 'face'=>'/image/user'];
+    $item[1] = ['id'=>100002, 'name'=>'111', 'face'=>'/image/user'];
+    $item[2] = ['id'=>100003, 'name'=>'222', 'face'=>'/image/user'];
+    $item[3] = ['id'=>100004, 'name'=>'333', 'face'=>'/image/user'];
+
+    $item1[0] = ['id'=>100005, 'name'=>'www', 'face'=>'/image/user'];
+    $item1[1] = ['id'=>100006, 'name'=>'111', 'face'=>'/image/user'];
+    $item1[2] = ['id'=>100007, 'name'=>'222', 'face'=>'/image/user'];
+    $item1[3] = ['id'=>100008, 'name'=>'333', 'face'=>'/image/user'];
+
+    $item2[0] = ['id'=>100009, 'name'=>'www', 'face'=>'/image/user'];
+    $item2[1] = ['id'=>100011, 'name'=>'111', 'face'=>'/image/user'];
+    $item2[2] = ['id'=>100021, 'name'=>'222', 'face'=>'/image/user'];
+    $item2[3] = ['id'=>100031, 'name'=>'333', 'face'=>'/image/user'];
+
+    $data['data'][0] = ['name'=>'a', 'nums'=>36, 'id'=>123, 'item'=> $item];
+    $data['data'][1] = ['name'=>'b', 'nums'=>16, 'id'=>1234, 'item'=> $item1];
+    $data['data'][2] = ['name'=>'c', 'nums'=>26, 'id'=>1235, 'item'=> $item2];
+
+    return json_encode($data);
+});
+

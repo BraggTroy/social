@@ -15,15 +15,15 @@ var config = {
     aniTime: 200,
     right: -232,
     api: {
-        friend: 'js/plugins/layer/layim/data/friend.json', //好友列表接口
-        group: 'js/plugins/layer/layim/data/group.json', //群组列表接口
-        chatlog: 'js/plugins/layer/layim/data/chatlog.json', //聊天记录接口
-        groups: 'js/plugins/layer/layim/data/groups.json', //群组成员接口
+        friend: '/j4', //好友列表接口
+        group: '/j4', //群组列表接口
+        chatlog: '/j4', //聊天记录接口
+        groups: '/j4', //群组成员接口
         sendurl: '' //发送消息接口
     },
     user: { //当前用户信息
         name: '游客',
-        face: 'img/a1.jpg'
+        face: '/image/user'
     },
 
     //自动回复内置文案，也可动态读取数据库配置
@@ -51,7 +51,7 @@ var config = {
             type: 'POST',
             url: url,
             data: data,
-            dataType: 'json',
+            // dataType: 'json',
             success: callback,
             error: error
         });
@@ -550,7 +550,8 @@ xxim.getDates = function(index){
     var api = [config.api.friend, config.api.group, config.api.chatlog],
         node = xxim.node, myf = node.list.eq(index);
     myf.addClass('loading');
-    config.json(api[index], {}, function(datas){
+    config.json(api[index], {'_token': $('#token').val()}, function(datas){
+        datas = eval('('+datas+')');
         if(datas.status === 1){
             var i = 0, myflen = datas.data.length, str = '', item;
             if(myflen > 1){
