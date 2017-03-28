@@ -38,6 +38,9 @@
                 case 4042:
                     $message = '发表文章失败';
                     break;
+                case 5001:
+                    $message = '注册失败，请稍后重试';
+                    break;
             }
             return $message;
         }

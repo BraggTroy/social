@@ -37,7 +37,7 @@
         </div>
         <h3>欢迎注册 TalkingMore</h3>
         <p>创建一个新账户</p>
-        <form class="m-t" role="form" action="/register" method="post">
+        {{--<form class="m-t" role="form" action="/register" method="post">--}}
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
                 <input type="text" name="email" class="form-control" placeholder="请输入邮箱" required="">
@@ -52,16 +52,35 @@
                 <input type="password" name="yzm" class="form-control" placeholder="请输入验证码" style="width: 60%;display: inline;float: left">
                 <img src="{{ URL::asset('/image/user') }}">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
+            <button class="btn btn-primary block full-width m-b">注 册</button>
 
             <p class="text-muted text-center"><small>已经有账户了？</small><a href="http://www.zi-han.net/theme/hplus/login.html">点此登录</a>
             </p>
 
-        </form>
+        {{--</form>--}}
     </div>
 </div>
 <script src="{{ URL::asset('/js/jquery/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ URL::asset('/bootstrap/js/bootstrap.js') }}"></script>
+<script>
+    var register = function() {
+        $.ajax({
+            type: 'POST',
+            url: '',
+            data: {
 
+            },
+            beforeSend: function() {
+
+            },
+            success: function(){
+
+            },
+            complete: function(){
+
+            }
+        });
+    }
+</script>
 </body>
 </html>

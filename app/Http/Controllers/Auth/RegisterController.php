@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Http\Controllers\Exception\TMException;
+use App\Model\User;
+use App\Model\UserImage;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -42,11 +44,12 @@ class RegisterController extends Controller
 
     public function registerUser(Request $request)
     {
-        // 验证注册数据
-        $this->validate($request, [
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6|confirmed',
-        ]);
-        \App\Model\User::addUser($request);
+//        if ($user = User::addUser($request)) {
+//            if (UserImage::registerUser($user['id'])) {
+
+//            }
+ //       }else {
+            throw new TMException('5001');
+ //       }
     }
 }

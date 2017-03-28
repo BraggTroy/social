@@ -37,4 +37,14 @@ class User extends Authenticatable
         ];
         return User::where($where)->first();
     }
+
+    public function image()
+    {
+        return $this->hasOne('App\Model\UserImage', 'userId', 'id');
+    }
+
+    public static function getUserById($user_id)
+    {
+        return User::where('id', $user_id)->first();
+    }
 }

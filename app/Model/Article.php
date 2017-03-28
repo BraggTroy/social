@@ -6,7 +6,7 @@
     class Article extends Model
     {
         protected $table = 'article';
-        protected $timestamps = false;
+        public $timestamps = false;
 
         // 白名单字段
         protected $fillable = ['userId', 'content', 'time', 'see', 'hasImg'];
@@ -52,11 +52,7 @@
 
         public function getArticlesFriendCanSee(Array $userIds)
         {
-            $where = [
-                ['userID', 'in', $userIds],
-                ['see', '=', '1']
-            ];
-            return Article::where($where)->get();
+            return Article::whereIn('userID', $userIds)->where('see', '1')->get();
         }
 
         public function getArticlesAllCanSee()
@@ -74,5 +70,25 @@
                 'see' => 0
             ];
             return Article::where($where)->get();
+        }
+
+        public static function getArticlesByIds($article_ids)
+        {
+            return Article::whereIn('id', $article_ids)->get();
+        }
+
+        public function image()
+        {
+            return $this->hasMany('App\Model\ImageArticle', 'articleId', 'id');
+        }
+
+        public function user()
+        {
+            return $this->belongsTo('App\Model\User', 'userId', 'id');
+        }
+
+        public function comment()
+        {
+            return $this->hasMany('App\Model\CommentArticle', 'articleId', 'id');
         }
     }

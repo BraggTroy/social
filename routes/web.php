@@ -77,3 +77,5 @@ Route::post('/j4', function(){
     return json_encode($data);
 });
 
+Route::get('/ddd', 'Action\IndexController@index');
+

@@ -56,19 +56,12 @@
 
         public function getWritesFriendCanSee(Array $userIds)
         {
-            $where = [
-                ['userID', 'in', $userIds],
-                ['see', '=', '1']
-            ];
-            return Write::where($where)->get();
+            return Write::whereIn('userID', $userIds)->where('see', '1')->get();
         }
 
         public function getWritesAllCanSee()
         {
-            $where = [
-                'see' => 2
-            ];
-            return Write::where($where)->get();
+            return Write::where('see', 2)->get();
         }
 
         public function getWritesOwnSee($userId)
@@ -78,5 +71,25 @@
                 'see' => 2
             ];
             return Write::where($where)->get();
+        }
+
+        public static function getWritesByIds($write_ids)
+        {
+            return Write::whereIn('id', $write_ids)->get();
+        }
+
+        public function image()
+        {
+            return $this->hasMany('App\Model\ImageWrite', 'writeId', 'id');
+        }
+
+        public function user()
+        {
+            return $this->belongsTo('App\Model\User', 'userId', 'id');
+        }
+
+        public function comment()
+        {
+            return $this->hasMany('App\Model\CommentWrite', 'writeId', 'id');
         }
     }

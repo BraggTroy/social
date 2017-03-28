@@ -5,32 +5,51 @@
     use App\Http\Controllers\Exception\ErrorHandle;
     use App\Http\Controllers\Exception\TMException;
     use App\Model\Article;
+    use App\Model\ArticleWrite_Time;
     use App\Model\ImageWrite;
+    use App\Model\User;
     use App\Model\Write;
+    use Illuminate\Contracts\View\View;
     use Illuminate\Http\Request;
     use League\Flysystem\Exception;
 
     class IndexController extends Controller
     {
-        public function index()
+        /**
+         * @param int $offset 偏移量
+         * @param int $size 查询条数
+         * @return View
+         */
+        public function index($offset = 0, $size = 10)
         {
-            $w = new Write();
-            $write = $w->getShowWriteByUserId(session('user'));
-            $a = new Article();
-            $article = $a->getShowArticleByUserId(session('user'));
+            $a_w = new ArticleWrite_Time();
+            $message = $a_w->getMessageByUserId(session('user'), $offset, $size);
+
+            $articleId = [];
+            $writeId = [];
+            foreach ($message as $v) {
+                if ($v['articleId'] == 0) {
+                    $writeId[] = $v['writeId'];
+                }else {
+                    $articleId[] = $v['articleId'];
+                }
+            }
+
+            $writes = Write::getWritesByIds($writeId);
+            $articles = Article::getArticlesByIds($articleId);
 
             $total = [];
-            foreach ($write as $wv) {
-                $total[] = $wv;
+            foreach ($writes as $v) {
+                $total[] = $v;
             }
-            foreach ($article as $av) {
-                $total[] = $av;
+            foreach ($articles as $v) {
+                $total[] = $v;
             }
-
             //自定义排序
-            usort($total, 'sortByTime');
+            usort($total, array('App\Http\Controllers\Action\IndexController', 'sortByTime'));
 
-            return view('myapp.index')->with('data', $total);
+            $user = User::getUserById(session('user'));
+            return view('myapp.index', ['data' => $total, 'me' => $user]);
         }
 
         public function submitWrite(Request $request)
@@ -50,7 +69,7 @@
         }
 
         // 自定义排序
-        private function sortByTime($a, $b)
+        protected function sortByTime($a, $b)
         {
             if ($a['time'] > $b['time']) {
                 return 1;
