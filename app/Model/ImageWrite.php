@@ -15,7 +15,7 @@
         {
             if ($hasImg) {
                 $arr = explode('/', $array['image']);
-                array_pop($arr);
+                count($arr) > 1 ? array_pop($arr) : false;
                 $data = [];
                 foreach ($arr as $k => $v) {
                     $data[$k]['writeId'] = $writeId;

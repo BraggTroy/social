@@ -30,4 +30,15 @@
                 ->orderBy('time', 'desc')->get();
             return $a;
         }
+
+        public static function saveAWT($articleId, $writeId, $time, $see)
+        {
+            $awt = new ArticleWrite_Time();
+            $awt['articleId'] = $articleId;
+            $awt['writeId'] = $writeId;
+            $awt['userId'] = session('user');
+            $awt['time'] = $time;
+            $awt['see'] = (int)$see;
+            $awt->save();
+        }
     }

@@ -101,16 +101,16 @@
                                 <div class="article-content-image">
                                     {{--一张图片--}}
                                     @if (count($v->image) == 1)
-                                        <img src="{{ URL::asset('/image/' . $v->image[0]['name']) }}" width="500" height="500">
+                                        <img src="{{ URL::asset('/image/upload/' . $v->image[0]['name']) }}" width="500" height="500">
                                     {{--二张图片--}}
                                     @elseif (count($v->image) == 2)
                                         @foreach($v->image as $image)
-                                            <img src="{{ URL::asset('/image/' . $image['name']) }}" width="340" height="340">
+                                            <img src="{{ URL::asset('/image/upload/' . $image['name']) }}" width="340" height="340">
                                         @endforeach
                                     {{--三张图片--}}
                                     @elseif (count($v->image) > 2)
                                         @foreach($v->image as $image)
-                                            <img src="{{ URL::asset('/image/' . $image['name']) }}" width="225" height="226">
+                                            <img src="{{ URL::asset('/image/upload/' . $image['name']) }}" width="225" height="226">
                                         @endforeach
                                     @endif
                                 </div>
@@ -311,5 +311,5 @@
 @section('js')
     <script src="{{ URL::asset('/fineuploader/jquery.fine-uploader.js') }}"></script>
     <script src="{{ URL::asset('/js/uploader.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js?v=3') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=391') }}"></script>
 @endsection

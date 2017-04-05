@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function(){
-   return Redirect::to('/index');
-});
+Route::get('/', 'Action\IndexController@index');
 
 //登录注册
 Route::get('/login', function(){

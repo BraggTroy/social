@@ -95,7 +95,8 @@ var submitWrite = function(){
 
 
 var showComment = function(elem){
-    $('.comment-input-detial').show();
+    $(elem).siblings('div').show();
+    // $('.comment-input-detial').show();
     $(elem).hide();
 };
 

@@ -55,10 +55,11 @@
         public function submitWrite(Request $request)
         {
             try {
-                $hasImg = isset($request->input('image')['image']) ? 1 : 0;
+                $hasImg = is_null($request->input('image')) ? 0 : 1;
                 $write = Write::saveWrite($request->except('image'), $hasImg);
                 if ($write) {
                     ImageWrite::saveImage($write['id'], $request->only('image'), $hasImg);
+                    ArticleWrite_Time::saveAWT(0, $write['id'], $write['time'], $write['see']);
                     return json_encode(['code'=>'200']);
                 }else {
                     throw new TMException('4042');
