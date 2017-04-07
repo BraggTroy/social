@@ -93,6 +93,46 @@ var submitWrite = function(){
     }
 };
 
+var submitComment = function(id, name, image) {
+    var content = $('.write' + id).val();
+    console.log(image);
+    $.ajax({
+        type: "POST",
+        url: "/comment/write",
+        data: {
+            'content': content,
+            'id' : id,
+            '_token' : $('#token').val()
+        },
+        beforeSend: function() {
+            load();
+        },
+        success: function(data){
+            commonMsg('发表成功', 6);
+            data = eval("("+data+")");
+            var h = '<div class="comment-item">'+
+                '<a href=""><img src="/image/upload/'+image+'"></a>'+
+                '<div class="comment-content">'+
+                '<ul>'+
+                "<li>"+
+                data['time']+
+                "<span class='res res"+data['id']+"'>回复</span></li>"+
+                "<li>"+content+"</li></ul></div></div>";
+            $('.comment'+id).append(h);
+        },
+        error: function(){
+            commonMsg('哎呀，发表失败啦', 5);
+        },
+        complete: function() {
+            $('.comment-input-detial'+id).hide();
+            $('.input-show'+id).show();
+            $('.write' + id).val('');
+            //关闭加载层
+            layer.closeAll('loading');
+        }
+    });
+};
+
 
 var showComment = function(elem){
     $(elem).siblings('div').show();
@@ -107,6 +147,14 @@ var commonMsg = function(str, i) {
         layer.msg(str, {time: 2000, icon:i});
     });
 };
+
+var load = function() {
+    layui.use(['layer'], function(){
+        var layer = layui.layer;
+        layer.load(0, {shade: false});
+    });
+};
+
 
 //图片缩放
 var resize = function(elem, limit){

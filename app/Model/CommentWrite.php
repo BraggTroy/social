@@ -14,4 +14,16 @@
         {
             return $this->belongsTo('App\Model\User', 'userId', 'id');
         }
+
+        public static function saveComment($id, $content, $time, $parent = 0)
+        {
+            $data = new CommentWrite();
+            $data->userId = session('user');
+            $data->comment = $content;
+            $data->parent = $parent;
+            $data->time = $time;
+            $data->writeId = $id;
+            $data->save();
+            return $data['id'];
+        }
     }

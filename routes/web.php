@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Action\IndexController@index');
+
 
 //登录注册
 Route::get('/login', function(){
@@ -25,9 +25,9 @@ Route::post('/login', 'Auth\LoginController@login');
 
 // 验证是否登录
 Route::group(['middleware' => 'myauth'], function () {
-    Route::get('/index', function(){
-        return view('myapp.index');
-    });
+    Route::get('/index', 'Action\IndexController@index');
+    Route::get('/', 'Action\IndexController@index');
+    Route::post('/comment/write', 'Action\IndexController@submitWriteComment');
 });
 
 //上传

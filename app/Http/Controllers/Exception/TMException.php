@@ -41,6 +41,9 @@
                 case 5001:
                     $message = '注册失败，请稍后重试';
                     break;
+                case 5002:
+                    $message = '发表评论失败';
+                    break;
             }
             return $message;
         }

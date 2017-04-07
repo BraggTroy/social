@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=q311f34') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=43') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fineuploader/fine-uploader-gallery.css') }}">
 @endsection
 
@@ -99,15 +99,15 @@
                            {{ $v['content'] }}
                         </span>
                                 <div class="article-content-image">
-                                    {{--一张图片--}}
+                                    一张图片
                                     @if (count($v->image) == 1)
                                         <img src="{{ URL::asset('/image/upload/' . $v->image[0]['name']) }}" width="500" height="500">
-                                    {{--二张图片--}}
+                                    二张图片
                                     @elseif (count($v->image) == 2)
                                         @foreach($v->image as $image)
                                             <img src="{{ URL::asset('/image/upload/' . $image['name']) }}" width="340" height="340">
                                         @endforeach
-                                    {{--三张图片--}}
+                                    三张图片
                                     @elseif (count($v->image) > 2)
                                         @foreach($v->image as $image)
                                             <img src="{{ URL::asset('/image/upload/' . $image['name']) }}" width="225" height="226">
@@ -131,21 +131,21 @@
                                     <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
                                     <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
                                 </div>
-                                <div class="comment">
+                                <div class="comment comment{{$v['id']}}">
                                     @foreach($v->comment as $comment)
                                         @if($comment['parent'] == 0)
                                             <div class="comment-item">
-                                                <a href=""><img src="{{ URL::asset('/image/' . $comment->user->image['name']) }}"></a>
+                                                <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
                                                 <div class="comment-content">
                                                     <ul>
-                                                        <li>{{ $comment->user['name'] }}&nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res">回复</span></li>
-                                                        <li>{{ $comment['content'] }}</li>
+                                                        <li>{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}">回复</span></li>
+                                                        <li>{{ $comment['comment'] }}</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         @else
                                             <div class="comment-item" style="padding-left: 50px;">
-                                                <a href=""><img src="{{ URL::asset('/image/' . $comment->user->image['name']) }}"></a>
+                                                <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
                                                 <div class="comment-content">
                                                     <ul>
                                                         <li>{{ $comment->user['name'] }}&nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res">回复</span></li>
@@ -166,14 +166,14 @@
                                         </div>
                                 </div>
                                 <div class="comment-input">
-                                    <img src="{{ URL::asset('/image/' . $me->image['name']) }}">
-                                    <span type="text" class="input-show" onclick="showComment(this)">写下你的评论 ...</span>
-                                    <div class="comment-input-detial" style="display: none">
-                                        <textarea class="write"></textarea>
+                                    <img src="{{ URL::asset('/image/upload/' . $me->image['name']) }}">
+                                    <span type="text" class="input-show input-show{{$v['id']}}" onclick="showComment(this)">写下你的评论 ...</span>
+                                    <div class="comment-input-detial comment-input-detial{{$v['id']}}" style="display: none">
+                                        <textarea class="write write{{$v['id']}}"></textarea>
                                         <div class="f-bottom">
                                             <span href=""><i class=""></i></span>
                                             <span href="">@</span>
-                                            <a href="" class="submit"><i class="glyphicon glyphicon-send"></i>&nbsp;发布</a>
+                                            <a href="javascript:submitComment('{{ $v['id'] }}', '{{$me['name']}}', '{{$me->image['name']}}')" class="submit" ><i class="glyphicon glyphicon-send"></i>&nbsp;发布</a>
                                         </div>
                                     </div>
                                 </div>
