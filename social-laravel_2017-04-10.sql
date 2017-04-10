@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 192.168.200.200 (MySQL 5.7.9)
+# Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: social-laravel
-# Generation Time: 2017-04-05 09:31:45 +0000
+# Generation Time: 2017-04-10 09:53:55 +0000
 # ************************************************************
 
 
@@ -42,19 +42,7 @@ INSERT INTO `a_w_time` (`id`, `articleId`, `writeId`, `userId`, `time`, `see`)
 VALUES
 	(1,0,1,5,1,2),
 	(2,1,0,5,2,2),
-	(3,0,2,5,3,2),
-	(4,0,3,5,1491314612,0),
-	(5,0,15,5,1491315645,0),
-	(6,0,16,5,1491315754,0),
-	(7,0,17,5,1491315850,0),
-	(8,0,18,5,1491315895,0),
-	(9,0,19,5,1491316100,0),
-	(10,0,20,5,1491316123,0),
-	(11,0,21,5,1491316275,0),
-	(12,0,22,5,1491316399,0),
-	(13,0,24,5,1491316522,0),
-	(14,0,25,5,1491316536,0),
-	(15,0,26,5,1491316575,0);
+	(3,0,2,5,3,2);
 
 /*!40000 ALTER TABLE `a_w_time` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -142,6 +130,16 @@ CREATE TABLE `comment_write` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `comment_write` WRITE;
+/*!40000 ALTER TABLE `comment_write` DISABLE KEYS */;
+
+INSERT INTO `comment_write` (`id`, `writeId`, `comment`, `time`, `userId`, `parent`)
+VALUES
+	(1,1,'123',1491575209,5,0),
+	(2,1,'456',1491575214,5,0);
+
+/*!40000 ALTER TABLE `comment_write` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table friend
@@ -228,8 +226,7 @@ LOCK TABLES `image-write` WRITE;
 
 INSERT INTO `image-write` (`id`, `writeId`, `time`, `name`)
 VALUES
-	(1,1,1,'image1'),
-	(2,26,1491316575,'2017-04-04-14-28-08-58e3ad78905aa.png');
+	(1,1,1,'user');
 
 /*!40000 ALTER TABLE `image-write` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -308,21 +305,7 @@ LOCK TABLES `write` WRITE;
 INSERT INTO `write` (`id`, `userId`, `content`, `time`, `zf`, `see`, `hasImg`)
 VALUES
 	(1,5,'1',1,'0',2,0),
-	(2,5,'3',3,'0',2,0),
-	(3,5,'4月4好的测试',1491314612,'0',0,0),
-	(15,5,'fasd',1491315645,'0',0,0),
-	(16,5,'999',1491315754,'0',0,0),
-	(17,5,'呵呵呵呵',1491315850,'0',0,0),
-	(18,5,'刚刚刚刚刚',1491315895,'0',0,0),
-	(19,5,'沙发上',1491316100,'0',0,0),
-	(20,5,'沙发上',1491316123,'0',0,0),
-	(21,5,'沙发上hhh',1491316275,'0',0,0),
-	(22,5,'沙发上hhh',1491316399,'0',0,1),
-	(23,5,'沙发上hhh',1491316430,'0',0,1),
-	(24,5,'沙发上hhh',1491316522,'0',0,1),
-	(25,5,'沙发上hhh',1491316536,'0',0,1),
-	(26,5,'沙发上hhh',1491316575,'0',0,1),
-	(27,5,'沙发上hhh',1491316598,'0',0,1);
+	(2,5,'3',3,'0',2,0);
 
 /*!40000 ALTER TABLE `write` ENABLE KEYS */;
 UNLOCK TABLES;
