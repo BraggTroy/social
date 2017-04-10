@@ -87,7 +87,7 @@
                     @if (isset($v['zf']))
                         <div class="article">
                             <div class="article-head">
-                                <a href=""><img src="{{ URL::asset('/image'.$v->user->image['name']) }}"></a>
+                                <a href=""><img src="{{ URL::asset('/image/'.$v->user->image['name']) }}"></a>
                                 <div class="article-head-name">
                                     <li>{{ $v->user['name'] }}</li>
                                     <li>{{ date('Y-m-d H:i:s', $v['time']) }}</li>
@@ -99,15 +99,15 @@
                            {{ $v['content'] }}
                         </span>
                                 <div class="article-content-image">
-                                    一张图片
+                                    {{--一张图片--}}
                                     @if (count($v->image) == 1)
                                         <img src="{{ URL::asset('/image/upload/' . $v->image[0]['name']) }}" width="500" height="500">
-                                    二张图片
+                                    {{--二张图片--}}
                                     @elseif (count($v->image) == 2)
                                         @foreach($v->image as $image)
                                             <img src="{{ URL::asset('/image/upload/' . $image['name']) }}" width="340" height="340">
                                         @endforeach
-                                    三张图片
+                                    {{--三张图片--}}
                                     @elseif (count($v->image) > 2)
                                         @foreach($v->image as $image)
                                             <img src="{{ URL::asset('/image/upload/' . $image['name']) }}" width="225" height="226">
@@ -138,7 +138,7 @@
                                                 <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
                                                 <div class="comment-content">
                                                     <ul>
-                                                        <li>{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}">回复</span></li>
+                                                        <li>{{ $comment->user['name'] }} &nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}')">回复</span></li>
                                                         <li>{{ $comment['comment'] }}</li>
                                                     </ul>
                                                 </div>
@@ -148,7 +148,7 @@
                                                 <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
                                                 <div class="comment-content">
                                                     <ul>
-                                                        <li>{{ $comment->user['name'] }}&nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res">回复</span></li>
+                                                        <li>{{ $comment->user['name'] }} 回复 {{ $comment->reuser['name'] }}{{ $comment->user['name'] }}&nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}')">回复</span></li>
                                                         <li>{{ $comment['content'] }}</li>
                                                     </ul>
                                                 </div>
@@ -165,7 +165,7 @@
                                             </div>
                                         </div>
                                 </div>
-                                <div class="comment-input">
+                                <div class="comment-input comment-input{{$v['id']}}">
                                     <img src="{{ URL::asset('/image/upload/' . $me->image['name']) }}">
                                     <span type="text" class="input-show input-show{{$v['id']}}" onclick="showComment(this)">写下你的评论 ...</span>
                                     <div class="comment-input-detial comment-input-detial{{$v['id']}}" style="display: none">
@@ -311,5 +311,5 @@
 @section('js')
     <script src="{{ URL::asset('/fineuploader/jquery.fine-uploader.js') }}"></script>
     <script src="{{ URL::asset('/js/uploader.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js?v=391') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=39m1') }}"></script>
 @endsection

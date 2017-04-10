@@ -27,7 +27,7 @@ var showWriteArticle = function() {
 };
 
 var elemShow = function(_class) {
-    var elem = $('.' + _class);
+    var elem = $("." + _class);
     if(elem.css('display') == 'block') {
         elem.css('display', 'none');
     }else {
@@ -114,7 +114,7 @@ var submitComment = function(id, name, image) {
                 '<a href=""><img src="/image/upload/'+image+'"></a>'+
                 '<div class="comment-content">'+
                 '<ul>'+
-                "<li>"+
+                "<li>"+ name + ' 回复 ' +
                 data['time']+
                 "<span class='res res"+data['id']+"'>回复</span></li>"+
                 "<li>"+content+"</li></ul></div></div>";
@@ -183,10 +183,14 @@ var resize = function(elem, limit){
 
 $('.comment-item').mouseenter(function(){
     //鼠标移入
-    $('.res').css('display','block');
+    $(this).find('.res').css('display','block');
 }).mouseleave(function(){
     //鼠标移出
-    $('.res').css('display','none');
+    $(this).find('.res').css('display','none');
 });
 
+
+var reComment = function(wid, cid){
+    console.log(wid, cid);
+};
 

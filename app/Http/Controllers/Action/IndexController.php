@@ -40,7 +40,7 @@
             $articles = Article::getArticlesByIds($articleId);
 
             $total = [];
-            foreach ($writes as $v) {
+            foreach ($writes as &$v) {
                 $total[] = $v;
             }
             foreach ($articles as $v) {
