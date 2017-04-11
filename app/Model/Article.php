@@ -9,15 +9,18 @@
         public $timestamps = false;
 
         // 白名单字段
-        protected $fillable = ['userId', 'content', 'time', 'see', 'hasImg'];
+        protected $fillable = ['userId', 'content', 'time', 'title', 'see', 'canpl', 'yc', 'wz'];
 
-        public static function saveArticle(Array $arr, $hasImg=0)
+        public static function saveArticle(Array $arr)
         {
             $input['userId'] = session('user');
             $input['time'] = time();
             $input['content'] = $arr['content'];
             $input['see'] = $arr['see'];
-            $input['hasImg'] = $hasImg;
+            $input['canpl'] = $arr['canpl'];
+            $input['yc'] = $arr['yc'];
+            $input['wz'] = $arr['wz'];
+            $input['title'] = $arr['title'];
             return Write::create($input);
         }
 

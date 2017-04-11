@@ -4,7 +4,8 @@ $('#fine-uploader-s3').fineUploader({
     request: {
         endpoint: "/upload",
         params: {
-            '_token': $('#token').val()
+            '_token': $('#token').val(),
+            'type' : 'write'
         }
     },
     cors: {

@@ -12,24 +12,18 @@
         // 白名单字段
         protected $fillable = ['articleId', 'time', 'name'];
 
-        public static function saveImage($articleId, $array, $hasImg=1)
+        public static function saveImage($articleId, $array)
         {
-            if ($hasImg) {
-                $arr = explode('/', $array['image']);
-                array_pop($arr);
-                $data = [];
-                foreach ($arr as $k => $v) {
-                    $data[$k]['articleId'] = $articleId;
-                    $data[$k]['name'] = $v;
-                    $data[$k]['time'] = time();
-                }
-                DB::table('image-write')->insert($data);
-            }
+            $input = [];
+            $input['name'] = $array['name'];
+            $input['time'] = time();
+            $input['articleId'] = $articleId;
+            return ImageArticle::create($input);
         }
 
-        public static function getImgByWriteId($writeId)
+        public static function getImgByWriteId($articleId)
         {
-            $where = ['articleId' => $writeId];
+            $where = ['articleId' => $articleId];
             return ImageWrite::where($where)->get();
         }
     }

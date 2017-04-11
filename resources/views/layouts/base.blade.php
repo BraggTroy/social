@@ -79,7 +79,7 @@
                         <div class="menu menu3" style="display: none">
                             <div class="arrow"></div>
                             <a href="javascript:showWriteArticle()"><i class="icon-news"></i>文章</a>
-                            <a href=""><i class="icon-cc-code icon_fs_18"></i>最佳实践</a>
+                            <a href="/article"><i class="icon-cc-code icon_fs_18"></i>最佳实践</a>
                         </div>
                     </li>
                 </ul>

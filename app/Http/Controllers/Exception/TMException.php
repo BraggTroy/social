@@ -44,6 +44,9 @@
                 case 5002:
                     $message = '发表评论失败';
                     break;
+                case 5003:
+                    $message = '发表文章失败';
+                    break;
             }
             return $message;
         }

@@ -30,6 +30,8 @@
                     $ext = $file->getClientOriginalExtension();     // 扩展名
                     $realPath = $file->getRealPath();   //临时文件的绝对路径
 
+                    $type = $request->input('type');
+
                     // 上传文件
                     $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
                     // 使用我们新建的uploads本地存储空间（目录）
@@ -37,9 +39,16 @@
 
                     if ($bool === true) {
 
+                        if ($type == 'article') {
+
+                        }else {
+
+                        }
+
                         $data = [];
                         $data['success'] = 1;
                         $data['newUuid'] = $filename;
+                        $data['file_path'] = '/image/upload/'.$filename;
                         return json_encode($data);
                     }else {
                         throw new TMException('4041');
