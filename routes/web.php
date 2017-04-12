@@ -30,7 +30,7 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::post('/comment/write', 'Action\IndexController@submitWriteComment');
 });
 
-//上传
+
 Route::group(['middleware' => 'myauth'], function () {
     //发表说说
     Route::post('/submit/write', 'Action\IndexController@submitWrite');
@@ -41,6 +41,7 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::delete('/upload/delete', 'Upload\imageUpload@delete');
 
     Route::get('/article', function(){return view('myapp.article');});
+    Route::get('/show/{id}', 'Action\ArticleController@showArticle');
 });
 
 Route::get('/q', function(){return view('myapp.photo');});

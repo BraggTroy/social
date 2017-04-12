@@ -14,14 +14,14 @@
         public static function saveArticle(Array $arr)
         {
             $input['userId'] = session('user');
-            $input['time'] = time();
+            $input['time'] = $arr['time'];
             $input['content'] = $arr['content'];
             $input['see'] = $arr['see'];
             $input['canpl'] = $arr['canpl'];
             $input['yc'] = $arr['yc'];
             $input['wz'] = $arr['wz'];
             $input['title'] = $arr['title'];
-            return Write::create($input);
+            return Article::create($input);
         }
 
         public function getShowArticleByUserId($userId)
@@ -78,6 +78,11 @@
         public static function getArticlesByIds($article_ids)
         {
             return Article::whereIn('id', $article_ids)->get();
+        }
+
+        public static function getArticleById($article_id)
+        {
+            return Article::where('id', $article_id)->first();
         }
 
         public function image()

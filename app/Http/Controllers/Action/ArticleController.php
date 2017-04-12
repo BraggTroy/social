@@ -4,6 +4,8 @@
     use App\Http\Controllers\Controller;
     use App\Http\Controllers\Exception\TMException;
     use App\Model\Article;
+    use App\Model\ArticleWrite_Time;
+    use App\Model\User;
     use Illuminate\Http\Request;
 
     class ArticleController extends Controller
@@ -12,14 +14,23 @@
         {
             $data = [];
             $data['title'] = $request->input('title');
-            $data['$content'] = $request->input('content');
+            $data['content'] = $request->input('content');
             $data['yc'] = $request->input('yc');
-            $data['pl'] = $request->input('pl');
+            $data['canpl'] = $request->input('pl');
             $data['see'] = $request->input('see');
+            $data['time'] = time();
             $data['wz'] = $request->input('wz');
-            if (!Article::saveArticle($data)){
+            if (!$art = Article::saveArticle($data)){
                 throw new TMException('5003');
+            }else {
+                ArticleWrite_Time::saveAWT($art['id'], 0, $art['time'], $art['see']);
             }
         }
 
+        public function showArticle($id)
+        {
+            $article = Article::getArticleById($id);
+            $user = User::getUserById(session('user'));
+            return view('myapp.article_detail',['article' => $article, 'user' => $user]);
+        }
     }

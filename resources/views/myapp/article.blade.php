@@ -50,9 +50,9 @@
                         </div>
                         <div class="right-action-item">
                             <p>可查看的人</p>
-                            <input type="radio" name="see" class="see" checked value="0"><span>所有人</span>
+                            <input type="radio" name="see" class="see" checked value="2"><span>所有人</span>
                             <input type="radio" name="see" class="see" value="1" ><span>好友</span>
-                            <input type="radio" name="see" class="see" value="2" ><span>自己</span>
+                            <input type="radio" name="see" class="see" value="0" ><span>自己</span>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                     icon: num
                 }, function(){
                     if (num == 1) {
-                        window.location.href = 'social.cn'
+                        window.location.href = 'http://social.cn'
                     }else {
                         layer.msg('请稍后重试');
                     }

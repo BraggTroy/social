@@ -187,7 +187,7 @@
                                         <a href=""><img src="{{ URL::asset('/image/' . $v->user->image['name']) }}"></a>
                                         <div class="rz-head-name">
                                             <li>{{ $v->user['name'] }}</li>
-                                            <li>发布了日志： &nbsp;<a href="" class="rz-tz">{{ $v['title'] }}</a> ·&nbsp;&nbsp;2016-05-05</li>
+                                            <li>发布了日志： &nbsp;<a href="/show/{{$v['id']}}" class="rz-tz">{{ $v['title'] }}</a> ·&nbsp;&nbsp;2016-05-05</li>
                                         </div>
                                     </div>
                                     <div class="rz-content">

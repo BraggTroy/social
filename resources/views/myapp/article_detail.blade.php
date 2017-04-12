@@ -14,7 +14,7 @@
             <div class="left-content">
                 <div class="content-head">
                     <div class="content-head-title">
-                        <h1>一个nodeJs 项目搭建的最佳实践</h1>
+                        <h1>{{ $article['title'] }}</h1>
                     </div>
                     <div class="content-head-label">
                         <span>handlebars</span>
@@ -25,11 +25,13 @@
                 </div>
                 <div class="content-main">
                     <div class="content-main-article">
-                        ff
+                        {!! $article['content'] !!}
                     </div>
-                    <div class="content-main-zz">
-                        <span>文章转载至www.bababa.xmk/44=ee</span>
-                    </div>
+                    @if($article['yc'] == 1)
+                        <div class="content-main-zz">
+                            <span>文章转载至www.bababa.xmk/44=ee</span>
+                        </div>
+                    @endif
                 </div>
 
 
@@ -137,17 +139,17 @@
             <div class="right-content">
                 <div class="right-head">
                     <a href="" class="content_info_avatar">
-                        <img src="{{ URL::asset('image/user') }}">
+                        <img src="{{ URL::asset('/image/upload/'.$article->user->image['name']) }}">
                     </a>
                     <div class="right-head-name">
                         <a href="">
-                            txw
+                            {{$article->user['name']}}
                             <i class="icon-external-link"></i>
                             <span>{作者}</span>
                         </a>
                     </div>
                     <div class="right-head-zhiwei">
-                        <span>百度 php工程死</span>
+                        <span>{{$article->user['zhiwei']}}</span>
                     </div>
                     <div class="right-head-follow">
                         <span class="personal-add-attention">关注</span>
@@ -176,7 +178,7 @@
                         </li>
                     </ul>
                     <div class="submit-time">
-                        <span class="right-main-time"><i class="icon-time"></i> &nbsp;2016-11-12 15:54 &nbsp;发布</span>
+                        <span class="right-main-time"><i class="icon-time"></i> &nbsp;{{date('Y-m-s H:i:s', $article['time'])}} &nbsp;发布</span>
                     </div>
                 </div>
 
