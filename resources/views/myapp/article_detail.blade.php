@@ -29,7 +29,7 @@
                     </div>
                     @if($article['yc'] == 1)
                         <div class="content-main-zz">
-                            <span>文章转载至www.bababa.xmk/44=ee</span>
+                            <span>文章转载至{{ $article['wz'] }}</span>
                         </div>
                     @endif
                 </div>
@@ -46,7 +46,7 @@
                     </header>
 
                     <div class="content_comments">
-                        <div class="content_comment">
+                        <div class="content_comment showrep1">
                             <a class="content_comment_avatar" href="">
                                 <img src="{{ URL::asset('image/user') }}">
                             </a>
@@ -61,7 +61,7 @@
                             <div class="content_comment_ctrl">
                                 <li>
                                     <i class="icon-comment-alt"></i>
-                                    <span>回复</span>
+                                    <span class="replay-comment">回复</span>
                                 </li>
                             </div>
                             <div class="content_comment_detail">
@@ -70,7 +70,7 @@
 
                             {{--回复评论--}}
                             <div class="content_replies on">
-                                <div class="content_reply">
+                                <div class="content_reply showrep2">
                                     <div class="content_reply_user">
                                         <a class="content_reply_user_avatar" href="/aresn">
                                             <img src="{{ URL::asset('/image/user') }}">
@@ -90,7 +90,7 @@
                                     <div class="content_reply_ctrl">
                                         <li>
                                             <i class="icon-comment-alt"></i>
-                                            <span>回复</span>
+                                            <span class="replay-comment">回复</span>
                                         </li>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                     <textarea placeholder="写下你的回复..."></textarea>
                                     <div class="btn btn_inline off">
                                         <i class="glyphicon glyphicon-send"></i>
-                                        <span>发表回复</span>
+                                        <span onclick="subCom({{$article['id']}})">发表回复</span>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                                 <textarea placeholder="写下你的评论..."></textarea>
                                 <div class="btn btn_inline off">
                                     <i class="glyphicon glyphicon-send"></i>
-                                    <span>发表评论</span>
+                                    <span onclick="subCom({{$article['id']}})">发表评论</span>
                                 </div>
                             </div>
                         </div>
@@ -195,5 +195,30 @@
 @endsection
 
 @section('js')
+    <script>
+        $('.showrep1').mouseenter(function(){
+            //鼠标移入
+            $(this).children('.content_comment_ctrl').css('opacity','1');
+        }).mouseleave(function(){
+            //鼠标移出
+            $(this).children('.content_comment_ctrl').css('opacity','0');
+        });
 
+        $('.showrep2').mouseenter(function(){
+            //鼠标移入
+            $(this).children('.content_reply_ctrl').css('opacity','1');
+        }).mouseleave(function(){
+            //鼠标移出
+            $(this).children('.content_reply_ctrl').css('opacity','0');
+        });
+
+        $('.replay-comment').click(function(){
+            $('.content_reply_create').css('display','block');
+        });
+
+        var subCom = function($articleId) {
+
+        }
+
+    </script>
 @endsection

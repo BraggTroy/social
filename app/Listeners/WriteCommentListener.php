@@ -4,6 +4,8 @@ namespace App\Listeners;
 
 use App\Events\WriteComment;
 use App\Events\WriteCommentEvent;
+use App\Jobs\SendEmail;
+use App\Model\UserSetting;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -26,9 +28,12 @@ class WriteCommentListener
      */
     public function handle(WriteCommentEvent $event)
     {
-        // TODO 现获取数据库中的值，判断是否要发送通知邮件
-
-        // TODO 保存评论者的用户名
-        $write = $event->write;
+        $set = UserSetting::getUserSettingById($event->write['userId']);
+        //TODO 判断是否开启通知
+        if ($set['comment']) {
+            //TODO 详细信息
+            $data = [];
+            dispatch(new SendEmail($data));
+        }
     }
 }

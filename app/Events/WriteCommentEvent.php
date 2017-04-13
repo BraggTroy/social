@@ -15,6 +15,7 @@ class WriteCommentEvent extends Event
 {
     use InteractsWithSockets, SerializesModels;
 
+    public $write;
     /**
      * Create a new event instance.
      *

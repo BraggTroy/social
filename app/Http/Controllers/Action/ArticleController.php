@@ -33,4 +33,6 @@
             $user = User::getUserById(session('user'));
             return view('myapp.article_detail',['article' => $article, 'user' => $user]);
         }
+
+
     }

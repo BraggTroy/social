@@ -7,6 +7,7 @@ use App\Http\Controllers\Exception\TMException;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -50,9 +51,10 @@ class Handler extends ExceptionHandler
             $message      = $exception->getMessage();
             $code     = $exception->getCode();
 
+
             return $request->ajax() || $request->wantsJson() ?
-                ErrorHandle::show_ajax($message, $code) :
-                ErrorHandle::show_page($message, $code);
+                Response::json($message,$code) :
+                Response::view('errors.503', ['message' => $message], $code);
         }
         return parent::render($request, $exception);
     }
