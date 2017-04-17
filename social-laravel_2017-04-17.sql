@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: social-laravel
-# Generation Time: 2017-04-13 09:13:47 +0000
+# Generation Time: 2017-04-17 09:56:59 +0000
 # ************************************************************
 
 
@@ -66,7 +66,8 @@ LOCK TABLES `album` WRITE;
 
 INSERT INTO `album` (`id`, `name`, `userId`)
 VALUES
-	(1,'默认相册',5);
+	(1,'默认相册',5),
+	(3,'32',5);
 
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -105,6 +106,22 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table article-extra
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `article-extra`;
+
+CREATE TABLE `article-extra` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `zan` tinyint(4) NOT NULL,
+  `shou` tinyint(4) NOT NULL,
+  `fan` tinyint(4) NOT NULL,
+  `articleId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 # Dump of table comment_article
 # ------------------------------------------------------------
 
@@ -116,10 +133,22 @@ CREATE TABLE `comment_article` (
   `comment` varchar(255) NOT NULL DEFAULT '',
   `time` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `parent` int(11) DEFAULT NULL COMMENT '0 为根评论',
+  `parent` int(11) NOT NULL COMMENT '0 为根评论',
+  `subcom` int(11) NOT NULL COMMENT '回复的那一个',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `comment_article` WRITE;
+/*!40000 ALTER TABLE `comment_article` DISABLE KEYS */;
+
+INSERT INTO `comment_article` (`id`, `articleId`, `comment`, `time`, `userId`, `parent`, `subcom`)
+VALUES
+	(1,5,'fadsfdsa',1491959393,5,0,0),
+	(2,5,'123',1491959394,6,1,1),
+	(3,5,'grgr',1491959394,7,1,2);
+
+/*!40000 ALTER TABLE `comment_article` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table comment_write
@@ -182,9 +211,11 @@ DROP TABLE IF EXISTS `image`;
 
 CREATE TABLE `image` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '存储名',
   `xc` int(11) NOT NULL COMMENT '相册id',
+  `time` int(11) NOT NULL,
+  `oriname` varchar(255) NOT NULL DEFAULT '' COMMENT '原始名',
+  `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

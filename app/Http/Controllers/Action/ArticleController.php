@@ -5,6 +5,7 @@
     use App\Http\Controllers\Exception\TMException;
     use App\Model\Article;
     use App\Model\ArticleWrite_Time;
+    use App\Model\CommentArticle;
     use App\Model\User;
     use Illuminate\Http\Request;
 
@@ -30,9 +31,30 @@
         public function showArticle($id)
         {
             $article = Article::getArticleById($id);
+            $comment = $article->comment()->get();
+//            $comment = $query->where('parent', 0)->orderBy('time', 'desc')->get();
+            $gen = [];
+            $zi = [];
+            foreach ($comment as $v) {
+                if ($v['parent'] == 0) {
+                    $gen[] = $v;
+                }else if($v['parent'] != 0){
+                    $zi[$v['parent']][] = $v;
+                }
+            }
+//            dd($zi);
             $user = User::getUserById(session('user'));
-            return view('myapp.article_detail',['article' => $article, 'user' => $user]);
+            return view('myapp.article_detail',['article' => $article, 'user' => $user, 'gen' => $gen, 'zi' => $zi]);
         }
 
-
+        public function subCom(Request $request)
+        {
+            $data = [];
+            $data['comment'] = $request->input('content');
+            $data['articleId'] = $request->input('articleId');
+            $data['parent'] = $request->input('parent');
+            $data['subcom'] = $request->input('subcom');
+            $data['time'] = time();
+            CommentArticle::store($data);
+        }
     }

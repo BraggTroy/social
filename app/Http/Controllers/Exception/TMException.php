@@ -38,6 +38,9 @@
                 case 5003:
                     $message = '发表文章失败';
                     break;
+                case 5004:
+                    $message = '该相册下还有图片';
+                    break;
             }
             return $message;
         }

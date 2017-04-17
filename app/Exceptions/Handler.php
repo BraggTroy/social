@@ -51,9 +51,8 @@ class Handler extends ExceptionHandler
             $message      = $exception->getMessage();
             $code     = $exception->getCode();
 
-
             return $request->ajax() || $request->wantsJson() ?
-                Response::json($message,$code) :
+                Response::json(['msg'=>$message],$code) :
                 Response::view('errors.503', ['message' => $message], $code);
         }
         return parent::render($request, $exception);

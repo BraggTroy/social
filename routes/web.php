@@ -42,6 +42,14 @@ Route::group(['middleware' => 'myauth'], function () {
 
     Route::get('/article', function(){return view('myapp.article');});
     Route::get('/show/{id}', 'Action\ArticleController@showArticle');
+    Route::post('/article/subCom', 'Action\ArticleController@subCom');
+
+
+    Route::post('/uploadPhoto', 'Upload\imageUpload@uploadPhoto');
+    Route::delete('/delPhoto', 'Upload\imageUpload@deletePhoto');
+    Route::get('/photo/show/{id?}', 'Action\PhotoController@show');
+    Route::post('/album/add', 'Action\PhotoController@addAlbum');
+    Route::post('/album/del', 'Action\PhotoController@delAlbum');
 });
 
 Route::get('/q', function(){return view('myapp.photo');});

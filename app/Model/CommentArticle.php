@@ -8,10 +8,27 @@
         protected $table = 'comment_article';
         public $timestamps = false;
 
-        public $fillable = ['ArticleId', 'comment', 'time', 'userId', 'parent'];
+        public $fillable = ['articleId', 'comment', 'time', 'userId', 'parent', 'subcom'];
 
         public function user()
         {
             return $this->belongsTo('App\Model\User', 'userId', 'id');
+        }
+
+        public function sub()
+        {
+            return $this->belongsTo('App\Model\CommentArticle', 'subcom', 'id');
+        }
+
+        public static function store($arr)
+        {
+            $com = new CommentArticle();
+            $com->articleId = $arr['articleId'];
+            $com->comment = $arr['comment'];
+            $com->time = $arr['time'];
+            $com->userId = session('user');
+            $com->parent = $arr['parent'];
+            $com->subcom = $arr['subcom'];
+            $com->save();
         }
     }

@@ -46,73 +46,77 @@
                     </header>
 
                     <div class="content_comments">
-                        <div class="content_comment showrep1">
-                            <a class="content_comment_avatar" href="">
-                                <img src="{{ URL::asset('image/user') }}">
-                            </a>
-                            <div class="content_comment_user">
-                                <a class="tra_color_bg" href="">momo</a>
-                                <span>TalkingData前端开发</span>
-                            </div>
-                            <div class="content_comment_time">
-                                <i class="iconfont icon-time"></i>
-                                <span>2016-05-10 17:07</span>
-                            </div>
-                            <div class="content_comment_ctrl">
-                                <li>
-                                    <i class="icon-comment-alt"></i>
-                                    <span class="replay-comment">回复</span>
-                                </li>
-                            </div>
-                            <div class="content_comment_detail">
-                                编译之后的物理文件md5值管理，更完美了
-                            </div>
+                        @foreach($gen as $v)
+                            <div class="content_comment showrep1">
+                                <a class="content_comment_avatar" href="">
+                                    <img src="{{ URL::asset('/image/upload/'.$v->user->image['name']) }}">
+                                </a>
+                                <div class="content_comment_user">
+                                    <a class="tra_color_bg" href="">{{ $v->user['name'] }}</a>
+                                    <span>TalkingData前端开发</span>
+                                </div>
+                                <div class="content_comment_time">
+                                    <i class="iconfont icon-time"></i>
+                                    <span>{{ date('Y-m-d H:i', $v['time']) }}</span>
+                                </div>
+                                <div class="content_comment_ctrl">
+                                    <li>
+                                        <i class="icon-comment-alt"></i>
+                                        <span class="replay-comment">回复</span>
+                                    </li>
+                                </div>
+                                <div class="content_comment_detail">
+                                    {{ $v['comment'] }}
+                                </div>
 
-                            {{--回复评论--}}
-                            <div class="content_replies on">
-                                <div class="content_reply showrep2">
-                                    <div class="content_reply_user">
-                                        <a class="content_reply_user_avatar" href="/aresn">
-                                            <img src="{{ URL::asset('/image/user') }}">
-                                        </a>
-                                        <a class="content_reply_user_name tra_color_bg" href="/aresn">Aresn</a>
-                                        <span>回复</span>
-                                        <a class="content_reply_user_avatar" href="">
-                                            <img src="{{ URL::asset('/image/user') }}">
-                                        </a>
-                                        <a class="content_reply_user_name tra_color_bg" href="">momo</a>
-                                    </div>
-                                    <div class="content_reply_detail">是啊</div>
-                                    <div class="content_reply_time">
-                                        <i class="iconfont icon-time"></i>
-                                        <span>2016-05-16 10:39</span>
-                                    </div>
-                                    <div class="content_reply_ctrl">
-                                        <li>
-                                            <i class="icon-comment-alt"></i>
-                                            <span class="replay-comment">回复</span>
-                                        </li>
+                                @foreach($zi[$v['id']] as $z)
+                                {{--回复评论--}}
+                                <div class="content_replies on">
+                                    <div class="content_reply showrep2">
+                                        <div class="content_reply_user">
+                                            <a class="content_reply_user_avatar" href="/aresn">
+                                                <img src="{{ URL::asset('/image/upload/'.$z->user->image['name']) }}">
+                                            </a>
+                                            <a class="content_reply_user_name tra_color_bg" href="/aresn">{{ $z->user['name'] }}</a>
+                                            <span>回复</span>
+                                            <a class="content_reply_user_avatar" href="">
+                                                <img src="{{ URL::asset('/image/upload/'.$z->sub->user->image['name']) }}">
+                                            </a>
+                                            <a class="content_reply_user_name tra_color_bg" href="">{{ $z->sub->user['name'] }}</a>
+                                        </div>
+                                        <div class="content_reply_detail">{{ $z['comment'] }}</div>
+                                        <div class="content_reply_time">
+                                            <i class="iconfont icon-time"></i>
+                                            <span>{{ date('Y-m-d H:i', $z['time']) }}</span>
+                                        </div>
+                                        <div class="content_reply_ctrl">
+                                            <li>
+                                                <i class="icon-comment-alt"></i>
+                                                <span class="replay-comment" onclick="swi({{$z['id']}})">回复</span>
+                                            </li>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {{--回复--}}
-                            <div class="content_reply_create" style="display: none;">
-                                <div class="content_reply_create_avatar">
-                                    <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
-                                </div>
-                                <div class="content_reply_create_user">
-                                    回复<span></span>
-                                </div>
-                                <div class="content_reply_create_fm">
-                                    <textarea placeholder="写下你的回复..."></textarea>
-                                    <div class="btn btn_inline off">
-                                        <i class="glyphicon glyphicon-send"></i>
-                                        <span onclick="subCom({{$article['id']}})">发表回复</span>
+                                {{--回复--}}
+                                <div class="content_reply_create content_reply_create{{$z['id']}}" style="display: none;">
+                                    <div class="content_reply_create_avatar">
+                                        <img src="{{ URL::asset('/image/upload/'.$user->image['name']) }}">
+                                    </div>
+                                    <div class="content_reply_create_user">
+                                        回复 <span>{{ $z->user['name'] }}</span>
+                                    </div>
+                                    <div class="content_reply_create_fm">
+                                        <textarea placeholder="写下你的回复..."></textarea>
+                                        <div class="btn btn_inline off">
+                                            <i class="glyphicon glyphicon-send"></i>
+                                            <span onclick="subCom(this, '{{$article['id']}}', '{{$z['parent']}}', '{{$z['id']}}')">发表回复</span>
+                                        </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
-                        </div>
+                        @endforeach
 
 
 
@@ -128,7 +132,7 @@
                                 <textarea placeholder="写下你的评论..."></textarea>
                                 <div class="btn btn_inline off">
                                     <i class="glyphicon glyphicon-send"></i>
-                                    <span onclick="subCom({{$article['id']}})">发表评论</span>
+                                    <span onclick="subCom(this, '{{$article['id']}}', 0, 0)">发表评论</span>
                                 </div>
                             </div>
                         </div>
@@ -212,12 +216,24 @@
             $(this).children('.content_reply_ctrl').css('opacity','0');
         });
 
-        $('.replay-comment').click(function(){
-            $('.content_reply_create').css('display','block');
-        });
+        var swi = function(id){
+            $('.content_reply_create'+id).css('display','block');
+        };
 
-        var subCom = function($articleId) {
+        var subCom = function(elem, articleId, parent, commentId) {
+            var content = $(elem).parent().prev().val();
+            $.ajax({
+                url: '/article/subCom',
+                type: 'POST',
+                data: {
+                    'articleId': articleId,
+                    'content': content,
+                    'commentId': commentId
+                },
+                success: function(data) {
 
+                }
+            });
         }
 
     </script>
