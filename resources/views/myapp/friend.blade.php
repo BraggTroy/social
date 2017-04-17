@@ -51,69 +51,30 @@
                     <div class="col-sm-9 animated fadeInRight">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="file-box">
-                                    <div class="file">
-                                        <a href="file_manager.html#">
-                                            <span class="corner"></span>
+                                <div class="wrapper wrapper-content animated fadeInRight">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="contact-box">
+                                                <a href="http://www.zi-han.net/theme/hplus/profile.html">
+                                                    <div class="col-sm-4">
+                                                        <div class="text-center">
+                                                            <img alt="image" class="img-circle m-t-xs img-responsive" src="/image/user">
+                                                            <div class="m-t-xs font-bold">CTO</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div class="col-sm-8">
+                                                    <a href="http://www.zi-han.net/theme/hplus/profile.html">
+                                                        <h3><strong>奔波儿灞</strong></h3>
+                                                        <p><i class="fa fa-map-marker"></i> 甘肃·兰州</p>
+                                                    </a>
+                                                    <a href="">修改备注</a> &nbsp;&nbsp;
+                                                    <a href="">移动分组</a>
+                                                </div>
+                                                <div class="clearfix"></div>
 
-                                            <div class="image">
-                                                <img alt="image" class="img-responsive" src="{{ URL::asset('/image/p1.jpg') }}">
                                             </div>
-                                            <div class="file-name">
-                                                Document_2014.doc
-                                                <br/>
-                                                <small>添加时间：2014-10-13</small>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="file-box">
-                                    <div class="file">
-                                        <a href="file_manager.html#">
-                                            <span class="corner"></span>
-
-                                            <div class="image">
-                                                <img alt="image" class="img-responsive" src="{{ URL::asset('/image/p1.jpg') }}">
-                                            </div>
-                                            <div class="file-name">
-                                                Italy street.jpg
-                                                <br/>
-                                                <small>添加时间：2014-10-13</small>
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div class="file-box">
-                                    <div class="file">
-                                        <a href="file_manager.html#">
-                                            <span class="corner"></span>
-
-                                            <div class="image">
-                                                <img alt="image" class="img-responsive" src="{{ URL::asset('/image/p2.jpg') }}">
-                                            </div>
-                                            <div class="file-name">
-                                                My feel.png
-                                                <br/>
-                                                <small>添加时间：2014-10-13</small>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="file-box">
-                                    <div class="file">
-                                        <a href="file_manager.html#">
-                                            <span class="corner"></span>
-
-                                            <div class="image">
-                                                <img alt="image" class="img-responsive" src="{{ URL::asset('/image/p1.jpg') }}">
-                                            </div>
-                                            <div class="file-name">
-                                                Michal Jackson.mp3
-                                                <br/>
-                                                <small>添加时间：2014-10-13</small>
-                                            </div>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

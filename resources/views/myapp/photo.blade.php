@@ -71,7 +71,7 @@
                                         @foreach($xc as $v)
                                             <li class="folder-item-list">
                                                 <a href=""><i class="fa fa-folder"></i> {{$v['name']}}</a>
-                                                <span class="album-del" style="float: right;position: relative;top: -20px;font-size: 10px;color: #dadada;display: none" onclick="delAlbum(this, '{{$v['id']}}')">删除</span>
+                                                <span class="album-del" style="float: right;position: relative;top: -20px;font-size: 10px;color: #dadada;display: none;cursor: pointer" onclick="delAlbum(this, '{{$v['id']}}')">删除</span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -186,7 +186,7 @@
                             'content': val
                         },
                         success: function(data) {
-                            $('.folder-list').append('<li class="folder-item-list"><a href=""><i class="fa fa-folder"></i> '+val+'</a></li><span class="album-del" style="float: right;position: relative;top: -20px;font-size: 10px;color: #dadada;display: none" onclick="delAlbum(this,'+data+')">删除</span>');
+                            $('.folder-list').append('<li class="folder-item-list"><a href=""><i class="fa fa-folder"></i> '+val+'</a></li><span class="album-del" style="float: right;position: relative;top: -20px;font-size: 10px;color: #dadada;display: none;cursor: pointer" onclick="delAlbum(this,'+data+')">删除</span>');
                         }
                     });
                     layer.close(index);
