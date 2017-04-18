@@ -44,7 +44,7 @@
             </div>
 
             <div class="right">
-                <div class="personal-zl" style="display: none">
+                <div class="personal-zl" >
                     <div class="setting-main">
                         <div class="setting-main-head">
                             <h2>基本资料</h2>
@@ -68,6 +68,24 @@
                                     <input type="radio" name="setting-mian-sex" class="setting-mian-sex"> <span class="setting-main-sex-name">男</span>
                                     <input type="radio" name="setting-mian-sex" class="setting-mian-sex"> <span class="setting-main-sex-name">女</span>
                                     <input type="radio" name="setting-mian-sex" class="setting-mian-sex"> <span class="setting-main-sex-name">保密</span>
+                                </div>
+                            </div>
+                            <div class="setting-main-item">
+                                <div class="label">
+                                    手机
+                                </div>
+                                <div class="control">
+                                    <input type="text" class="setting-mian-input">
+                                    <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                </div>
+                            </div>
+                            <div class="setting-main-item">
+                                <div class="label">
+                                    邮箱
+                                </div>
+                                <div class="control">
+                                    <input type="text" class="setting-mian-input">
+                                    <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
                                 </div>
                             </div>
                             <div class="setting-main-item">
@@ -97,7 +115,33 @@
                             <h3>修改你的个性化信息和社会化信息</h3>
                         </div>
                         <div class="setting-main-content">
-
+                            <div class="setting-main-item">
+                                <div class="label">
+                                    家乡
+                                </div>
+                                <div class="control">
+                                    <input type="text" class="setting-mian-input">
+                                    <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                </div>
+                            </div>
+                            <div class="setting-main-item">
+                                <div class="label">
+                                    大学
+                                </div>
+                                <div class="control">
+                                    <input type="text" class="setting-mian-input">
+                                    <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                </div>
+                            </div>
+                            <div class="setting-main-item">
+                                <div class="label">
+                                    现居住地
+                                </div>
+                                <div class="control">
+                                    <input type="text" class="setting-mian-input">
+                                    <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="save-change">
@@ -107,7 +151,7 @@
                 </div>
 
 
-                <div class="email-bell">
+                <div class="email-bell" style="display: none">
                     <div class="setting-main">
                         <div class="setting-main-head">
                             <h2>邮件通知</h2>
