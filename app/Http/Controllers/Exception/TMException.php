@@ -41,6 +41,18 @@
                 case 5004:
                     $message = '该相册下还有图片';
                     break;
+                case 5005:
+                    $message = '创建好友分组失败';
+                    break;
+                case 5006:
+                    $message = '删除好友分组失败';
+                    break;
+                case 5007:
+                    $message = '该分组下还有好友';
+                    break;
+                case 5008:
+                    $message = '修改好友备注失败';
+                    break;
             }
             return $message;
         }

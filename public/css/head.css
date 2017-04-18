@@ -227,3 +227,9 @@ body {
     font-size: 14px;
     color: #b9c1c7;
 }
+
+
+/*layer*/
+.layui-layer-loading0 {
+    margin: 0 auto;
+}

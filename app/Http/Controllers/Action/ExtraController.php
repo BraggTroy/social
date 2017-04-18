@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gokuai
- * Date: 2017/4/17
- * Time: 下午1:53
- */
+    namespace App\Http\Controllers\Action;
+
+    use App\Http\Controllers\Controller;
+
+    class ExtraController extends Controller
+    {
+
+    }

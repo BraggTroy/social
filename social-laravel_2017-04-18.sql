@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: social-laravel
-# Generation Time: 2017-04-17 09:56:59 +0000
+# Generation Time: 2017-04-18 09:48:30 +0000
 # ************************************************************
 
 
@@ -185,22 +185,47 @@ DROP TABLE IF EXISTS `friend`;
 
 CREATE TABLE `friend` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `userFromId` int(11) NOT NULL COMMENT '自己的id',
-  `userToId` int(11) NOT NULL COMMENT '好友的id',
+  `userId` int(11) NOT NULL COMMENT '自己的id',
+  `friendId` int(11) NOT NULL COMMENT '好友的id',
+  `groupId` int(11) DEFAULT NULL COMMENT '分组id',
+  `nickname` varchar(255) DEFAULT NULL COMMENT '好友备注',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `friend` WRITE;
 /*!40000 ALTER TABLE `friend` DISABLE KEYS */;
 
-INSERT INTO `friend` (`id`, `userFromId`, `userToId`)
+INSERT INTO `friend` (`id`, `userId`, `friendId`, `groupId`, `nickname`)
 VALUES
-	(1,5,6),
-	(2,5,7),
-	(3,6,5),
-	(4,7,5);
+	(2,5,7,1,'fd'),
+	(4,7,5,1,'678'),
+	(5,6,5,1,'123'),
+	(6,5,6,1,'请求');
 
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table friend-group
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `friend-group`;
+
+CREATE TABLE `friend-group` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `friend-group` WRITE;
+/*!40000 ALTER TABLE `friend-group` DISABLE KEYS */;
+
+INSERT INTO `friend-group` (`id`, `name`, `userId`)
+VALUES
+	(1,'我的好友',5);
+
+/*!40000 ALTER TABLE `friend-group` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

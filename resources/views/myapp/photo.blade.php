@@ -186,7 +186,7 @@
                             'content': val
                         },
                         success: function(data) {
-                            $('.folder-list').append('<li class="folder-item-list"><a href=""><i class="fa fa-folder"></i> '+val+'</a></li><span class="album-del" style="float: right;position: relative;top: -20px;font-size: 10px;color: #dadada;display: none;cursor: pointer" onclick="delAlbum(this,'+data+')">删除</span>');
+                            $('.folder-list').append('<li class="folder-item-list"><a href=""><i class="fa fa-folder"></i> '+val+'</a><span class="album-del" style="float: right;position: relative;top: -20px;font-size: 10px;color: #dadada;display: none;cursor: pointer" onclick="delAlbum(this,'+data+')">删除</span></li>');
                         }
                     });
                     layer.close(index);
@@ -205,7 +205,7 @@
                     layui.use(['layer'], function() {
                         var layer = layui.layer;
                         layer.msg('删除成功');
-                        $(elem).parents().remove();
+                        $(elem).parent().remove();
                     });
                 },
                 error: function(data){
@@ -216,14 +216,12 @@
                     });
                 }
             });
-        }
+        };
 
 
-        $('.folder-item-list').mouseenter(function(){
-            //鼠标移入
+        $('.folder-list').on('mouseenter','.folder-item-list', function(){
             $(this).find('.album-del').css('display','block');
-        }).mouseleave(function(){
-            //鼠标移出
+        }).on('mouseleave', '.folder-item-list', function(){
             $(this).find('.album-del').css('display','none');
         });
 

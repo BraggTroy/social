@@ -50,6 +50,15 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::get('/photo/show/{id?}', 'Action\PhotoController@show');
     Route::post('/album/add', 'Action\PhotoController@addAlbum');
     Route::post('/album/del', 'Action\PhotoController@delAlbum');
+
+
+    Route::get('/friend/show/{id?}', 'Action\FriendController@showFriend');
+    Route::post('/friendgroup/add', 'Action\FriendController@addGroup');
+    Route::post('/friendgroup/del', 'Action\FriendController@delGroup');
+
+    Route::post('/friend/del', 'Action\FriendController@delFriend');
+    Route::post('/friend/changename', 'Action\FriendController@changeName');
+
 });
 
 Route::get('/q', function(){return view('myapp.photo');});

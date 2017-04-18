@@ -43,9 +43,8 @@
 
         public function delAlbum(Request $request)
         {
-            throw  new \App\Http\Controllers\Exception\TMException('4042');
             $image = Image::getImagesByAlbumId($request->input('id'));
-            if ($image) {
+            if (isset($image[0])) {
                 throw new TMException('5004');
             }
             Album::delAlbum($request->input('id'));
