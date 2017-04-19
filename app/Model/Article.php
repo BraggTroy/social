@@ -53,6 +53,18 @@
             return $article;
         }
 
+        public static function getHomeArticle($userId)
+        {
+            if ($userId == session('user')) {
+                return Article::where('userId', $userId)->get();
+            }
+            else if (in_array(session('user'), Friend::getFriendsByUserId($userId))) {
+                return Article::where('userId', $userId)->where('see','<>', 0)->get();
+            }else {
+                return Article::where('userId', $userId)->where('see', 2)->get();
+            }
+        }
+
         public function getArticlesFriendCanSee(Array $userIds)
         {
             return Article::whereIn('userID', $userIds)->where('see', '1')->get();

@@ -22,12 +22,14 @@ class User extends Authenticatable
 
     }
 
-    public static function addUser(Request $request) {
-        $input['email'] = $request->input('email');
-        $input['password'] = $request->input('password');
-        $input['name'] = explode('@', $input['email'])[0]
-                    . implode('', explode('.', explode('@', $input['email'])[1]));
-        User::create($input);
+    public static function addUser(Request $request)
+    {
+        $user = new User();
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->name = explode('@', $request->input('email'))[0];
+        $user->save();
+        return $user;
     }
 
     public static function findUserByEmail($email)
@@ -46,5 +48,10 @@ class User extends Authenticatable
     public static function getUserById($user_id)
     {
         return User::where('id', $user_id)->first();
+    }
+
+    public function set()
+    {
+        return $this->hasOne('App\Model\UserSetting','userId', 'id');
     }
 }

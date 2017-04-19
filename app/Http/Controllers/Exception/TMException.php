@@ -53,6 +53,21 @@
                 case 5008:
                     $message = '修改好友备注失败';
                     break;
+                case 5009:
+                    $message = '点赞失败';
+                    break;
+                case 50010:
+                    $message = '修改失败';
+                    break;
+                case 50011:
+                    $message = '用户已存在';
+                    break;
+                case 50012:
+                    $message = '密码错误';
+                    break;
+                case 50013:
+                    $message = '用户不存在';
+                    break;
             }
             return $message;
         }

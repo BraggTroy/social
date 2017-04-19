@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ URL::asset('/layui/css/layui.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fontawesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/head.css?v=4') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/head.css?v=4e') }}">
     @yield('css')
 </head>
 <body>
@@ -18,10 +18,10 @@
 
             <div class="head-menu">
                 <ul>
-                    <li><a href=""><i class="icon-home"></i>&nbsp;首页</a></li>
-                    <li><a href=""><i class="icon-picture"></i>&nbsp;相册</a></li>
-                    <li><a href=""><i class="glyphicon glyphicon-user"></i>&nbsp;好友</a></li>
-                    <li><a href=""><i class="icon-book"></i>&nbsp;个人主页</a></li>
+                    <li><a href="/index"><i class="icon-home"></i>&nbsp;首页</a></li>
+                    <li><a href="/photo/show"><i class="icon-picture"></i>&nbsp;相册</a></li>
+                    <li><a href="/friend/show"><i class="glyphicon glyphicon-user"></i>&nbsp;好友</a></li>
+                    <li><a href="/home/show/{{session('user')}}"><i class="icon-book"></i>&nbsp;个人主页</a></li>
                 </ul>
             </div>
 
@@ -41,8 +41,8 @@
                         </strong>
                         <div class="menu menu1" style="display: none">
                             <div class="arrow"></div>
-                            <a href=""><i class="icon-news"></i>文章</a>
-                            <a href=""><i class="icon-cc-code icon_fs_18"></i>最佳实践</a>
+                            <a href="/setting/{{session('user')}}"><i class="icon-news"></i>设置</a>
+                            <a href="/logout"><i class="icon-cc-code icon_fs_18"></i>退出登录</a>
                         </div>
                     </li>
                     <li id="menu2">

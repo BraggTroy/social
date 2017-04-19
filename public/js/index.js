@@ -136,6 +136,7 @@ var submitComment = function(id, name, image) {
 
 var showComment = function(elem){
     $(elem).siblings('div').show();
+    $(elem).siblings('div').children('textarea').focus();
     // $('.comment-input-detial').show();
     $(elem).hide();
 };
@@ -179,7 +180,13 @@ var resize = function(elem, limit){
 };
 
 
-
+var cancelComment = function() {
+    $('.input-show').show();
+    $('.input-show').siblings('div').hide();
+};
+$('.middle').on('blur', '.article', function(){
+    cancelComment();
+});
 
 $('.comment-item').mouseenter(function(){
     //鼠标移入

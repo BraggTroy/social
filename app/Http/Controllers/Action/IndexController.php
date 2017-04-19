@@ -7,8 +7,10 @@
     use App\Model\Article;
     use App\Model\ArticleWrite_Time;
     use App\Model\CommentWrite;
+    use App\Model\Friend;
     use App\Model\ImageWrite;
     use App\Model\User;
+    use App\Model\UserSetting;
     use App\Model\Write;
     use Illuminate\Contracts\View\View;
     use Illuminate\Http\Request;
@@ -87,5 +89,14 @@
             }else {
                 throw new TMException('5002');
             }
+        }
+
+        public function friendRecommend()
+        {
+            $college = UserSetting::getSet(session('user'))['college'];
+            if ($college) {
+
+            }
+
         }
     }

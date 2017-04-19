@@ -5,18 +5,18 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/home.css?v=6') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/home.css?v=64') }}">
 @endsection
 
 @section('content')
     <div class="content">
         <div class="personal-detail">
             <div class="person-img">
-                <img src="{{ URL::asset('/image/user') }}">
-                <a href="" class="personal-add-attention">关注</a>
+                <img src="{{ URL::asset('/image/upload/'.$user->image['name']) }}">
+                <a href="" class="personal-add-attention">添加好友</a>
             </div>
             <div class="personal-name">
-                <h1>txw87378</h1>
+                <h1>{{ $user['name'] }}</h1>
             </div>
             <div class="personal-desc">
                 <span class="pf">1 篇说说</span>
@@ -38,52 +38,57 @@
 
 
         <div class="content-all">
-            <div class="content-list article-content" style="display: none">
-                <div class="rz-item">
-                    <div class="rz-head">
-                        <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
-                        <div class="rz-head-name">
-                            <li>刘鸡蛋</li>
-                            <li>发布了日志： &nbsp;<a href="" class="rz-tz">从入门到放弃</a> ·&nbsp;&nbsp;2016-05-05</li>
+            <div class="article-show">
+                @foreach($article as $v)
+                    <div class="content-list article-content">
+                        <div class="rz-item">
+                            <div class="rz-head">
+                                <a href=""><img src="{{ URL::asset('/image/upload/'.$v->user->image['name']) }}"></a>
+                                <div class="rz-head-name">
+                                    <li>{{$v->user['name']}}</li>
+                                    <li>发布了日志： &nbsp;
+                                        <a href="/show/{{$v['id']}}" class="rz-tz">{{$v['title']}}</a> ·&nbsp;&nbsp;{{date('Y-m-d H:i:s', $v['time'])}}
+                                    </li>
+                                </div>
+                            </div>
+                            <div class="rz-content">
+                            <span>
+                               {!! $v['content'] !!}
+                            </span>
+                            </div>
+                            <div class="rz-footer">
+                                <ul>
+                                    <li>推荐 {{$v['zan']}}</li>
+                                    <li>阅读 {{$v['read']}}</li>
+                                    <li>收藏 {{$v['fav']}}</li>
+                                    <li><a href="/show/{{$v['id']}}"><i class="icon-bookmark-empty"></i>&nbsp; 立即阅读</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="rz-content">
-                        <span>
-                            一：记一次工作中实现移动端手写签名。1：Signature Pad 是一款Jquery签名插件。2：移动端亲自测试书写良好。3：本文涉及Signature Pad的详解甚少，实际运用的朋友请自行百度参考使用文档或点击下方github地址。          一个简单的在线demo：http://szimek.github.io/signature_pad/  精      美
-                        </span>
-                    </div>
-                    <div class="rz-footer">
-                        <ul>
-                            <li>推荐 23</li>
-                            <li>阅读 243</li>
-                            <li>收藏 6</li>
-                            <li><a href=""><i class="icon-bookmark-empty"></i>&nbsp; 立即阅读</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
-            <div class="content-list write-content" style="display: none">
+
+            <div class="content-list write-content">
+                @foreach($write as $v)
                 <div class="article">
                     <div class="article-head">
-                        <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
+                        <a href=""><img src="{{ URL::asset('/image/upload/'.$v->user->image['name']) }}"></a>
                         <div class="article-head-name">
-                            <li>刘鸡蛋</li>
-                            <li>2016-05-05</li>
+                            <li>{{$v->user['name']}}</li>
+                            <li>{{date('Y-m-d H:i', $v['time'])}}</li>
                         </div>
                     </div>
 
                     <div class="article-content">
                         <span>
-                            一：记一次工作中实现移动端手写签名。1：Signature Pad 是一款Jquery签名插件。2：移动端亲自测试书写良好。3：本文涉及Signature Pad的详解甚少，实际运用的朋友请自行百度参考使用文档或点击下方github地址。          一个简单的在线demo：http://szimek.github.io/signature_pad/  精      美
+                            {{$v['content']}}
                         </span>
                         <div class="article-content-image">
-                            {{--一张图片--}}
-                            {{--二张图片--}}
-                            {{--<img src="{{ URL::asset('/image/image.jpg') }}" width="340" height="340">--}}
-                            {{--三张图片--}}
-                            <img src="{{ URL::asset('/image/image.jpg') }}" width="225" height="226">
-
+                            @foreach($v->image as $image)
+                            <img src="{{ URL::asset('/image/upload/'.$image['name']) }}" width="225" height="226">
+                            @endforeach
                         </div>
                     </div>
 
@@ -98,22 +103,40 @@
                         </div>
                         <div class="article-zan-icon">
                             <a href="" class="zan-icon"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                            <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
-                            <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
+                            @foreach($v->wzan as $zan)
+                            <a href="">
+                                <img src="{{ URL::asset('/image/upload/'.$zan->user->image['name']) }}">
+                            </a>
+                            @endforeach
                         </div>
                         <div class="comment">
-                            <div class="comment-item">
-                                <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
-                                <div class="comment-content">
-                                    <ul>
-                                        <li>2016-11-11 15:50<span class="res">回复</span></li>
-                                        <li>今天下雪了记一次工作中实现移动端手写签名。1：Signature Pad 是一款Jquery签名插件。2：移动端亲自测试书写良好。3：本文涉及Signature Pad的详</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @foreach($v->comment as $comment)
+                                @if($comment['parent'] == 0)
+                                    <div class="comment-item">
+                                        <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
+                                        <div class="comment-content">
+                                            <ul>
+                                                <li>{{ $comment->user['name'] }} &nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}')">回复</span></li>
+                                                <li>{{ $comment['comment'] }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="comment-item" style="padding-left: 50px;">
+                                        <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
+                                        <div class="comment-content">
+                                            <ul>
+                                                <li>{{ $comment->user['name'] }} 回复 {{ $comment->reuser['name'] }}{{ $comment->user['name'] }}&nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}')">回复</span></li>
+                                                <li>{{ $comment['content'] }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
 
 
@@ -126,20 +149,18 @@
                     <div class="setting-main-content">
                         <div class="setting-main-item">
                             <div class="label">
-                                用户名
+                                性别
                             </div>
                             <div class="control">
-                                <aside>也可以使用实名</aside>
+                                <aside>{{$user->set['sex'] == 1 ? '男' : ($user->set['sex'] == 0 ? '女' : '保密')}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
                             <div class="label">
-                                性别
+                                年龄
                             </div>
                             <div class="control">
-                                <input type="radio" name="setting-mian-sex" class="setting-mian-sex"> <span class="setting-main-sex-name">男</span>
-                                <input type="radio" name="setting-mian-sex" class="setting-mian-sex"> <span class="setting-main-sex-name">女</span>
-                                <input type="radio" name="setting-mian-sex" class="setting-mian-sex"> <span class="setting-main-sex-name">保密</span>
+                                <aside>{{$user->set['age']}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -147,7 +168,7 @@
                                 手机
                             </div>
                             <div class="control">
-                                <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                <aside>{{$user->set['tel']}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -155,7 +176,7 @@
                                 邮箱
                             </div>
                             <div class="control">
-                                <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                <aside>{{$user->set['email']}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -163,7 +184,7 @@
                                 公司
                             </div>
                             <div class="control">
-                                <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                <aside>{{$user->set['company']}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -171,7 +192,7 @@
                                 职位
                             </div>
                             <div class="control">
-                                <aside>如果是研发，建议填写研发方向，比如：大数据工程师、Android开发工程师。</aside>
+                                <aside>{{$user->set['zw']}}</aside>
                             </div>
                         </div>
                     </div>
@@ -188,7 +209,7 @@
                                 家乡
                             </div>
                             <div class="control">
-                                <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                <aside>{{$user->set['home']}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -196,7 +217,7 @@
                                 大学
                             </div>
                             <div class="control">
-                                <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                <aside>{{$user->set['college']}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -204,7 +225,7 @@
                                 现居住地
                             </div>
                             <div class="control">
-                                <aside>如果公司以独立产品为主，也可填写产品名称，比如：QQ空间、脉脉。</aside>
+                                <aside>{{$user->set['jz']}}</aside>
                             </div>
                         </div>
                     </div>

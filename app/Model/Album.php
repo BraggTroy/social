@@ -22,6 +22,15 @@
             return $album;
         }
 
+        public static function createAlbum($userId)
+        {
+            $album = new Album();
+            $album->name = '我的相册';
+            $album->userId = $userId;
+            $album->save();
+            return $album;
+        }
+
         public static function delAlbum($id)
         {
             return Album::where('id', $id)->delete();

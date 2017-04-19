@@ -79,7 +79,7 @@
 
 .content-all {
     background-color: #eee;
-    height: 1000px;
+    /*height: 1000px;*/
 }
 .content-list {
     width: 93%;
@@ -95,7 +95,7 @@
     border-radius: 4px;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     background-color: white;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
     /*margin-bottom: 15px;*/
 }
 .rz-head {

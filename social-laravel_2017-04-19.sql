@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: social-laravel
-# Generation Time: 2017-04-18 09:48:30 +0000
+# Generation Time: 2017-04-19 09:53:56 +0000
 # ************************************************************
 
 
@@ -67,7 +67,8 @@ LOCK TABLES `album` WRITE;
 INSERT INTO `album` (`id`, `name`, `userId`)
 VALUES
 	(1,'默认相册',5),
-	(3,'32',5);
+	(3,'32',5),
+	(4,'我的相册',13);
 
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -88,19 +89,23 @@ CREATE TABLE `article` (
   `canpl` tinyint(4) NOT NULL,
   `yc` tinyint(4) NOT NULL,
   `wz` varchar(255) NOT NULL,
+  `zan` int(11) NOT NULL COMMENT '赞成',
+  `read` int(11) NOT NULL COMMENT '阅读',
+  `fandui` int(11) NOT NULL COMMENT '反对',
+  `fav` int(11) NOT NULL COMMENT '收藏',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 
-INSERT INTO `article` (`id`, `content`, `title`, `userId`, `time`, `see`, `canpl`, `yc`, `wz`)
+INSERT INTO `article` (`id`, `content`, `title`, `userId`, `time`, `see`, `canpl`, `yc`, `wz`, `zan`, `read`, `fandui`, `fav`)
 VALUES
-	(1,'2','gg发大水',5,2,2,0,0,''),
-	(2,'<p>ffffff</p>','3',5,1491958800,2,0,0,''),
-	(3,'<p>fffffffdsfs</p>','2',5,1491958821,2,0,0,''),
-	(4,'<p>fdsfsdf</p>','1',5,1491958832,2,0,0,''),
-	(5,'<p>发大厦 v 马采什卡 v 科学政策</p>','粉色的镂空干嘛',5,1491959393,2,0,1,'高富帅的高峰时段');
+	(1,'2','gg发大水',5,2,2,0,0,'',0,0,0,0),
+	(2,'<p>ffffff</p>','3',5,1491958800,2,0,0,'',0,0,0,0),
+	(3,'<p>fffffffdsfs</p>','2',5,1491958821,2,0,0,'',0,0,0,0),
+	(4,'<p>fdsfsdf</p>','1',5,1491958832,2,0,0,'',0,0,0,0),
+	(5,'<p>发大厦 v 马采什卡 v 科学政策</p>','粉色的镂空干嘛',5,1491959393,2,0,1,'高富帅的高峰时段',0,0,0,0);
 
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -223,7 +228,8 @@ LOCK TABLES `friend-group` WRITE;
 
 INSERT INTO `friend-group` (`id`, `name`, `userId`)
 VALUES
-	(1,'我的好友',5);
+	(1,'我的好友',5),
+	(2,'我的好友',13);
 
 /*!40000 ALTER TABLE `friend-group` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -326,6 +332,33 @@ CREATE TABLE `mail-password` (
 
 
 
+# Dump of table notify
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `notify`;
+
+CREATE TABLE `notify` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `article` tinyint(4) NOT NULL COMMENT '评论了文章',
+  `comment_a` tinyint(4) NOT NULL COMMENT '回复我的评论',
+  `write` tinyint(11) NOT NULL COMMENT '评论了说说',
+  `friend` tinyint(11) NOT NULL COMMENT '添加好友',
+  `comment_w` tinyint(11) NOT NULL COMMENT '回复说说评论',
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `notify` WRITE;
+/*!40000 ALTER TABLE `notify` DISABLE KEYS */;
+
+INSERT INTO `notify` (`id`, `article`, `comment_a`, `write`, `friend`, `comment_w`, `userId`)
+VALUES
+	(1,0,0,0,0,0,13);
+
+/*!40000 ALTER TABLE `notify` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table user
 # ------------------------------------------------------------
 
@@ -345,9 +378,10 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `name`, `password`, `email`, `zhiwei`)
 VALUES
-	(5,'376522507qqcom','1','376522507@qq.com',NULL),
-	(6,'123qqcom','1','123@qq.com',NULL),
-	(7,'456qqcom','1','456@qq.com',NULL);
+	(5,'376522507qqcom','111111','376522507@qq.com',NULL),
+	(6,'123qqcom','111111','123@qq.com',NULL),
+	(7,'456qqcom','111111','456@qq.com',NULL),
+	(13,'123123','111111','123123@qq.com',NULL);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -372,7 +406,8 @@ INSERT INTO `user-image` (`id`, `userId`, `name`)
 VALUES
 	(1,5,'user'),
 	(2,6,'user'),
-	(3,7,'user');
+	(3,7,'user'),
+	(4,13,'user');
 
 /*!40000 ALTER TABLE `user-image` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -386,9 +421,28 @@ DROP TABLE IF EXISTS `user-setting`;
 CREATE TABLE `user-setting` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
+  `tel` varchar(11) DEFAULT '' COMMENT '手机',
+  `company` varchar(225) DEFAULT NULL COMMENT '公司',
+  `zw` varchar(255) DEFAULT NULL COMMENT '职位',
+  `age` int(11) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `college` varchar(255) DEFAULT NULL COMMENT '大学',
+  `sex` tinyint(4) DEFAULT NULL COMMENT '0女  1男',
+  `home` varchar(255) DEFAULT NULL COMMENT '家乡',
+  `jz` varchar(255) DEFAULT NULL COMMENT '居住地',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `user-setting` WRITE;
+/*!40000 ALTER TABLE `user-setting` DISABLE KEYS */;
+
+INSERT INTO `user-setting` (`id`, `userId`, `tel`, `company`, `zw`, `age`, `email`, `college`, `sex`, `home`, `jz`)
+VALUES
+	(1,5,'13661657075','够快','php工程师',23,'376522507@qq.com','常熟理工学院',1,'江苏','上海'),
+	(2,13,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+/*!40000 ALTER TABLE `user-setting` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table write
@@ -404,18 +458,43 @@ CREATE TABLE `write` (
   `zf` text NOT NULL COMMENT '是否转发  0否 ',
   `see` tinyint(2) NOT NULL COMMENT '0自己可见 ，1好友可见，2所有人可见',
   `hasImg` tinyint(1) NOT NULL COMMENT '0 没有上传图片  1有',
+  `zan` int(11) DEFAULT NULL COMMENT '赞',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `write` WRITE;
 /*!40000 ALTER TABLE `write` DISABLE KEYS */;
 
-INSERT INTO `write` (`id`, `userId`, `content`, `time`, `zf`, `see`, `hasImg`)
+INSERT INTO `write` (`id`, `userId`, `content`, `time`, `zf`, `see`, `hasImg`, `zan`)
 VALUES
-	(1,5,'1',1,'0',2,0),
-	(2,5,'3',3,'0',2,0);
+	(1,5,'1',1,'0',2,0,1),
+	(2,5,'3',3,'0',2,0,1);
 
 /*!40000 ALTER TABLE `write` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table write-zan
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `write-zan`;
+
+CREATE TABLE `write-zan` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `writeId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `write-zan` WRITE;
+/*!40000 ALTER TABLE `write-zan` DISABLE KEYS */;
+
+INSERT INTO `write-zan` (`id`, `writeId`, `userId`)
+VALUES
+	(1,1,6),
+	(2,2,7);
+
+/*!40000 ALTER TABLE `write-zan` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

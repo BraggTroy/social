@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Exception\TMException;
 use App\Model\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -47,10 +48,11 @@ class LoginController extends Controller
         if ($user) {
             if ($user['password'] == trim($request->input('password'))) {
                 \Session::put('user',$user['id']);
-                return Redirect::to('/index');
+//                return Redirect::to('/index');
+                return 0;
             }
-            return Redirect::back()->withInput()->withErrors('密码错误');
+            throw new TMException('50012');
         }
-        return Redirect::back()->withInput()->withErrors('用户不存在');
+        throw new TMException('50013');
     }
 }

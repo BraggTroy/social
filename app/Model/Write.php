@@ -54,6 +54,18 @@
             return $write;
         }
 
+        public static function getHomeWrite($userId)
+        {
+            if ($userId == session('user')) {
+                return Write::where('userId', $userId)->get();
+            }
+            else if (in_array(session('user'), Friend::getFriendsByUserId($userId))) {
+                return Write::where('userId', $userId)->where('see','<>', 0)->get();
+            }else {
+                return Write::where('userId', $userId)->where('see', 2)->get();
+            }
+        }
+
         public function getWritesFriendCanSee(Array $userIds)
         {
             return Write::whereIn('userID', $userIds)->where('see', '1')->get();
@@ -91,5 +103,10 @@
         public function comment()
         {
             return $this->hasMany('App\Model\CommentWrite', 'writeId', 'id');
+        }
+
+        public function wzan()
+        {
+            return $this->hasMany('App\Model\WriteZan', 'writeId', 'id');
         }
     }

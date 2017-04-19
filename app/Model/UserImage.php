@@ -13,9 +13,9 @@
 
         public static function registerUser($user_id)
         {
-            $data = [];
-            $data['name'] = 'user';
-            $data['userId'] = $user_id;
-            return UserImage::create($data);
+            $image = new UserImage();
+            $image->name = 'user';
+            $image->userId = $user_id;
+            return $image->save();
         }
     }

@@ -151,7 +151,7 @@
                 </div>
 
 
-                <div class="email-bell" style="display: none">
+                <div class="email-bell" >
                     <div class="setting-main">
                         <div class="setting-main-head">
                             <h2>邮件通知</h2>
@@ -209,7 +209,7 @@
                         </div>
                 </div>
 
-                <div class="password-reset" style="display: none">
+                <div class="password-reset" >
                     <div class="setting-main">
                         <div class="setting-main-head">
                             <h2>基本资料</h2>
@@ -248,7 +248,7 @@
                     </div>
                 </div>
 
-                <div class="email-verity" style="display: none">
+                <div class="email-verity" >
                     <div class="setting-main">
                         <div class="setting-main-head">
                             <h2>邮箱验证</h2>

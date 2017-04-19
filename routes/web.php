@@ -59,6 +59,11 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::post('/friend/del', 'Action\FriendController@delFriend');
     Route::post('/friend/changename', 'Action\FriendController@changeName');
 
+
+    Route::get('/home/show/{id}', 'Action\HomeController@show');
+
+    Route::get('/setting', 'Action\SettingController@index');
+
 });
 
 Route::get('/q', function(){return view('myapp.photo');});

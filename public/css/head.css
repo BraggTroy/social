@@ -228,6 +228,9 @@ body {
     color: #b9c1c7;
 }
 
+.menu a:hover {
+    background: #dedede;
+}
 
 /*layer*/
 .layui-layer-loading0 {

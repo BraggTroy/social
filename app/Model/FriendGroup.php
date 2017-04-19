@@ -9,6 +9,15 @@
         public $timestamps = false;
         public $fillable = ['name', 'userId'];
 
+        public static function addGroup($userId)
+        {
+            $group = new FriendGroup();
+            $group->name = '我的好友';
+            $group->userId = $userId;
+            $group->save();
+            return $group;
+        }
+
         public static function createGroup($name)
         {
             $group = new FriendGroup();
