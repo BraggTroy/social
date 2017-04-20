@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Http\Controllers\Exception\TMException;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -27,6 +28,7 @@ class User extends Authenticatable
         $user = new User();
         $user->email = $request->input('email');
         $user->password = $request->input('password');
+        $user->state = 0;
         $user->name = explode('@', $request->input('email'))[0];
         $user->save();
         return $user;
@@ -53,5 +55,29 @@ class User extends Authenticatable
     public function set()
     {
         return $this->hasOne('App\Model\UserSetting','userId', 'id');
+    }
+
+    public static function setEmailName($email, $name)
+    {
+        $user = User::find(session('user'));
+        if ($email != $user['email']) {
+            $user->email = $email;
+            //TODO 发送邮件,确认邮箱
+            $user->state = 0;
+        }
+        if ($name != $user['name']) {
+            $user->name = $name;
+        }
+        return $user->save();
+    }
+
+    public static function setPasswd($oldpass, $newpasswd)
+    {
+        $user = User::find(session('user'));
+        if ($user['password'] == $oldpass) {
+            $user->password = $newpasswd;
+            return $user->save();
+        }
+        throw new TMException('50016');
     }
 }

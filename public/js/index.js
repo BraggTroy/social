@@ -95,14 +95,12 @@ var submitWrite = function(){
 
 var submitComment = function(id, name, image) {
     var content = $('.write' + id).val();
-    console.log(image);
     $.ajax({
         type: "POST",
         url: "/comment/write",
         data: {
             'content': content,
-            'id' : id,
-            '_token' : $('#token').val()
+            'id' : id
         },
         beforeSend: function() {
             load();
@@ -118,7 +116,7 @@ var submitComment = function(id, name, image) {
                 data['time']+
                 "<span class='res res"+data['id']+"'>回复</span></li>"+
                 "<li>"+content+"</li></ul></div></div>";
-            $('.comment'+id).append(h);
+            $('.comment').append(h);
         },
         error: function(){
             commonMsg('哎呀，发表失败啦', 5);
@@ -188,10 +186,10 @@ $('.middle').on('blur', '.article', function(){
     cancelComment();
 });
 
-$('.comment-item').mouseenter(function(){
+$('.comment').on('mouseenter', '.comment-item', function(){
     //鼠标移入
     $(this).find('.res').css('display','block');
-}).mouseleave(function(){
+}).on('mouseleave', '.comment-item', function(){
     //鼠标移出
     $(this).find('.res').css('display','none');
 });

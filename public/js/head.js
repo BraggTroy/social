@@ -244,7 +244,27 @@ layui.use('layim', function(layim){
             });
         }
     });
+});
+
+$('.ttt-friend').on('click', function(){
+    $(this).addClass('on');
+    $(this).siblings('div').removeClass('on');
+    $('.nav_notify_list').css('display', 'none');
+    $('.ttt-friend-flow').css('display', 'block');
+});
+
+$('.ttt-msg').on('click', function(){
+    $(this).addClass('on');
+    $(this).siblings('div').removeClass('on');
+    $('.nav_notify_list').css('display', 'none');
+    $('.ttt-msg-flow').css('display', 'block');
+});
 
 
-
+$('.ttt-friend-flow').on('mouseenter', '.ttt-add-friend', function(){
+    //鼠标移入
+    $(this).find('.yyy-fri').css('display','block');
+}).on('mouseleave', '.ttt-add-friend', function(){
+    //鼠标移出
+    $(this).find('.yyy-fri').css('display','none');
 });

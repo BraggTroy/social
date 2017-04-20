@@ -317,6 +317,7 @@
 .comment {
     padding: 5px 15px 5px 10px;
     float: left;
+    width:100%;
 }
 .comment-item {
     /*float: left;*/

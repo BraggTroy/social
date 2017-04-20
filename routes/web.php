@@ -63,6 +63,9 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::get('/home/show/{id}', 'Action\HomeController@show');
 
     Route::get('/setting', 'Action\SettingController@index');
+    Route::post('/set/info', 'Action\SettingController@setInfo');
+    Route::post('/set/pass', 'Action\SettingController@setPasswd');
+    Route::post('/set/notify', 'Action\SettingController@setNotify');
 
 });
 

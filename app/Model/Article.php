@@ -58,11 +58,21 @@
             if ($userId == session('user')) {
                 return Article::where('userId', $userId)->get();
             }
-            else if (in_array(session('user'), Friend::getFriendsByUserId($userId))) {
+            else if (in_array(session('user'), self::zh($userId))) {
                 return Article::where('userId', $userId)->where('see','<>', 0)->get();
             }else {
                 return Article::where('userId', $userId)->where('see', 2)->get();
             }
+        }
+
+        public static function zh($userId)
+        {
+            $arr = [];
+            $friend = Friend::getFriendsByUserId($userId);
+            foreach ($friend as $f) {
+                $arr[] = $f['friendId'];
+            }
+            return $arr;
         }
 
         public function getArticlesFriendCanSee(Array $userIds)

@@ -68,6 +68,18 @@
                 case 50013:
                     $message = '用户不存在';
                     break;
+                case 50014:
+                    $message = '保存失败，请稍后重试';
+                    break;
+                case 50015:
+                    $message = '部分信息保存失败，请稍后重试';
+                    break;
+                case 50016:
+                    $message = '旧密码错误';
+                    break;
+                case 50017:
+                    $message = '修改密码失败';
+                    break;
             }
             return $message;
         }

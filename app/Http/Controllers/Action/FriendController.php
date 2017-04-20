@@ -5,6 +5,7 @@
     use App\Http\Controllers\Exception\TMException;
     use App\Model\Friend;
     use App\Model\FriendGroup;
+    use App\Model\User;
     use Illuminate\Http\Request;
 
     class FriendController extends Controller
@@ -16,8 +17,8 @@
             }else {
                 $friend = $this->getFriendsByGroup($groupId);
             }
-
-            return view('myapp.friend', ['friend'=>$friend]);
+            $user = User::getUserById(session('user'));
+            return view('myapp.friend', ['friend'=>$friend, 'user'=>$user]);
         }
 
         public function getFriendGroup($userId)

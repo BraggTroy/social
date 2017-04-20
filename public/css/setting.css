@@ -2,6 +2,7 @@
     background-color: #eeeeee;
     min-width: 1366px;
     margin-top: 50px;
+    min-height: 700px;
 }
 
 .content {
@@ -86,6 +87,7 @@
     border-bottom: 1px solid #eee;
     padding-left: 15px;
     color: #525558;
+    cursor: pointer;
 }
 .left .left-2ttt .left-2ttt-ul li span {
     display: block;
@@ -106,17 +108,21 @@
     color: #fff;
     background: #0099e5;
 }
-.left .left-2ttt .left-2ttt-ul li:hover {
-
-}
 .left .left-2ttt .left-2ttt-ul li:first-child {
-    color: #0099e5;
     padding-left: -20px;
     border-radius: 4px 4px 0 0;
 }
 .left .left-2ttt .left-2ttt-ul li:last-child {
     border-bottom: none;
     border-radius: 0 0 4px 4px;
+}
+.left .left-2ttt .left-2ttt-ul .check {
+    color: #0099e5;
+    cursor: default;
+}
+.left .left-2ttt .left-2ttt-ul .check:hover {
+    color: #0099e5;
+    background-color: #fff;
 }
 .left .left-2ttt .left-2ttt-ul li arr {
     display: block;
@@ -137,6 +143,7 @@
     float: left;
     width: 48%;
     margin-left: 4%;
+    margin-bottom: 30px;
 }
 .right .setting-main {
     width: 100%;

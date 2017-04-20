@@ -80,12 +80,18 @@
 .content-all {
     background-color: #eee;
     /*height: 1000px;*/
+    padding-bottom: 20px;
 }
 .content-list {
     width: 93%;
     max-width: 1270.37px;
     padding-top: 15px;
     margin: 0 auto;
+}
+
+.content-y {
+    padding-top: 15px;
+    max-width: 1270.37px;
 }
 
 
@@ -169,8 +175,11 @@
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     background-color: white;
     margin-bottom: 18px;
-    width: 60%;
-    margin-left: 10%;
+    width: 70%;
+    margin-left: 25%;
+}
+.article:last-child {
+    margin-bottom: 0;
 }
 .article-head {
     padding: 12px 13px 12px 13px;
@@ -195,7 +204,7 @@
 }
 
 .content-all {
-    margin-bottom: 18px;
+    /*margin-bottom: 18px;*/
 }
 .article-content {
     clear: both;
@@ -279,6 +288,7 @@
 .comment {
     padding: 5px 15px 5px 10px;
     float: left;
+    width:100%;
 }
 .comment-item {
     /*float: left;*/

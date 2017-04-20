@@ -5,6 +5,7 @@
     use App\Http\Controllers\Exception\TMException;
     use App\Model\Album;
     use App\Model\Image;
+    use App\Model\User;
     use Illuminate\Http\Request;
 
     class PhotoController extends Controller
@@ -17,8 +18,8 @@
             }else {
                 $image = $this->getImageByAlbum($albumId);
             }
-
-            return view('myapp.photo', ['image'=>$image]);
+            $user = User::getUserById(session('user'));
+            return view('myapp.photo', ['image'=>$image, 'user'=>$user]);
         }
 
         public function getAlbum($userId)

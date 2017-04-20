@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=433') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=4f33') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fineuploader/fine-uploader-gallery.css') }}">
 @endsection
 
@@ -145,7 +145,7 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="comment-item" style="padding-left: 50px;">
+                                            <div class="comment-item">
                                                 <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
                                                 <div class="comment-content">
                                                     <ul>

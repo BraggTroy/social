@@ -52,7 +52,7 @@
             usort($total, array('App\Http\Controllers\Action\IndexController', 'sortByTime'));
 
             $user = User::getUserById(session('user'));
-            return view('myapp.index', ['data' => $total, 'me' => $user]);
+            return view('myapp.index', ['data' => $total, 'me' => $user, 'user'=>$user]);
         }
 
         public function submitWrite(Request $request)
@@ -93,10 +93,29 @@
 
         public function friendRecommend()
         {
-            $college = UserSetting::getSet(session('user'))['college'];
-            if ($college) {
-
+            $set = UserSetting::getSet(session('user'));
+            $user = [];
+            if ($set['college']) {
+                $this->addSetUser($user, 'college', $set);
             }
+            if ($set['company']) {
+                $this->addSetUser($user, 'company', $set);
+            }
+            if ($set['home']) {
+                $this->addSetUser($user, 'home', $set);
+            }
+            if ($set['jz']) {
+                $this->addSetUser($user, 'jz', $set);
+            }
+        }
 
+        public function addSetUser(&$user, $key, $set)
+        {
+            if ($set[$key]) {
+                $college = UserSetting::getSetByCollege($set['$key']);
+                foreach ($college as $v) {
+                    $user[] = $v->user;
+                }
+            }
         }
     }

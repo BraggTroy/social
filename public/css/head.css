@@ -148,7 +148,7 @@ body {
     position: absolute;
     z-index: 1;
 }
-.head-me .menu a {
+.head-me .mmm a {
     display: block;
     height: 30px;
     line-height: 30px;
@@ -160,16 +160,16 @@ body {
     text-decoration: none;
 }
 
-.head-me .nav_select.menu a:hover {
+.head-me .nav_select.mmm a:hover {
     color: #fff;
     background: #0099e5;
 }
 
 .head-me .menu2 {
-    width: 280px;
+    width: 330px;
 }
 .head-me .menu2 .arrow {
-    left: 130px;
+    left: 160px;
 }
 
 .head-me .menu2 .nav_notify_tab {
@@ -193,7 +193,7 @@ body {
     cursor: pointer;
 }
 
-.head-me .menu2 .on {
+.head-me .nav_notify_tab .on {
     color: #0099e5;
 }
 
@@ -228,7 +228,7 @@ body {
     color: #b9c1c7;
 }
 
-.menu a:hover {
+.mmm a:hover {
     background: #dedede;
 }
 
@@ -236,3 +236,92 @@ body {
 .layui-layer-loading0 {
     margin: 0 auto;
 }
+
+.nav_notify_item {
+    line-height: normal;
+    color: #525558;
+    padding: 5px 10px 4px;
+    border-bottom: 1px solid #f3f3f3;
+    position: relative;
+}
+.nav_notify_item.tip {
+    padding: 0 10px 5px!important;
+    color: #b9c1c7;
+    font-size: 12px;
+}
+.nav_notify_item:after {
+    display: block;
+    clear: both;
+}
+.nav_notify_item:last-child {
+    border-bottom: none;
+}
+.nav_notify_item a.avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+.nav_notify_item a {
+    color: #008E59;
+}
+.nav_notify_item a.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+.nav_notify_item a.name {
+    margin-left: 5px;
+}
+.nav_notify_item span.time {
+    display: inline-block;
+    font-size: 12px;
+    color: #b9c1c7;
+}
+em, i {
+    font-style: normal;
+}
+.nav_notify_item p.user {
+    margin-left: 45px;
+}
+.nav_notify_item span.job {
+    color: #71767a;
+    font-size: 12px;
+}
+.nav_notify_item span.da {
+    color: #afd9ee;
+}
+.nav_notify_item .follow.on {
+    /*color: #0099e5;*/
+}
+.nav_notify_item .follow {
+    display: none;
+    text-align: right;
+    position: absolute;
+    top: 7px;
+    right: 50px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #b9c1c7;
+}
+.nav_notify_item .reject {
+    display: none;
+    text-align: right;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #b9c1c7;
+}
+.nav_notify_item .reject:hover, .nav_notify_item .follow:hover{
+    color: #0099e5;
+}
+
+
+
+a {text-decoration:none;}
+a:link {text-decoration:none;}
+a:active {text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {text-decoration:none;}
