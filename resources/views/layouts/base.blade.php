@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ URL::asset('/layui/css/layui.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fontawesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/head.css?v=4ere0') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/head.css?v=4e5re0') }}">
     @yield('css')
 </head>
 <body>
@@ -65,6 +65,90 @@
                                 {{--</div>--}}
                                 <div class="nav_notify_list follow ttt-friend-flow" >
                                     {{--<div class="nav_notify_list_tip">暂无新消息</div>--}}
+                                    <div class="nav_notify_item ttt-add-friend">
+                                        <a class="avatar" target="_self" href="">
+                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
+                                        </a>
+                                        <a class="name" target="_self" href="">376522507</a>
+                                        <span class="time"> · <em>1分钟前</em></span>
+                                        <p class="user">
+                                            <span class="job">附加消息:</span>
+                                            <span class="da">奋斗史</span>
+                                        </p>
+
+                                        <div class="follow on yyy-fri">添加</div>
+                                        <div class="reject on yyy-fri">拒绝</div>
+                                    </div>
+                                    <div class="nav_notify_item ttt-add-friend">
+                                        <a class="avatar" target="_self" href="">
+                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
+                                        </a>
+                                        <a class="name" target="_self" href="">376522507</a>
+                                        <span class="time"> · <em>1分钟前</em></span>
+                                        <p class="user">
+                                            <span class="job">附加消息:</span>
+                                            <span class="da">奋斗史</span>
+                                        </p>
+
+                                        <div class="follow on yyy-fri">添加</div>
+                                        <div class="reject on yyy-fri">拒绝</div>
+                                    </div>
+                                    <div class="nav_notify_item ttt-add-friend">
+                                        <a class="avatar" target="_self" href="">
+                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
+                                        </a>
+                                        <a class="name" target="_self" href="">376522507</a>
+                                        <span class="time"> · <em>1分钟前</em></span>
+                                        <p class="user">
+                                            <span class="job">附加消息:</span>
+                                            <span class="da">奋斗史</span>
+                                        </p>
+
+                                        <div class="follow on yyy-fri">添加</div>
+                                        <div class="reject on yyy-fri">拒绝</div>
+                                    </div>
+                                    <div class="nav_notify_item ttt-add-friend">
+                                        <a class="avatar" target="_self" href="">
+                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
+                                        </a>
+                                        <a class="name" target="_self" href="">376522507</a>
+                                        <span class="time"> · <em>1分钟前</em></span>
+                                        <p class="user">
+                                            <span class="job">附加消息:</span>
+                                            <span class="da">奋斗史</span>
+                                        </p>
+
+                                        <div class="follow on yyy-fri">添加</div>
+                                        <div class="reject on yyy-fri">拒绝</div>
+                                    </div>
+                                    <div class="nav_notify_item ttt-add-friend">
+                                        <a class="avatar" target="_self" href="">
+                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
+                                        </a>
+                                        <a class="name" target="_self" href="">376522507</a>
+                                        <span class="time"> · <em>1分钟前</em></span>
+                                        <p class="user">
+                                            <span class="job">附加消息:</span>
+                                            <span class="da">奋斗史</span>
+                                        </p>
+
+                                        <div class="follow on yyy-fri">添加</div>
+                                        <div class="reject on yyy-fri">拒绝</div>
+                                    </div>
+                                    <div class="nav_notify_item ttt-add-friend">
+                                        <a class="avatar" target="_self" href="">
+                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
+                                        </a>
+                                        <a class="name" target="_self" href="">376522507</a>
+                                        <span class="time"> · <em>1分钟前</em></span>
+                                        <p class="user">
+                                            <span class="job">附加消息:</span>
+                                            <span class="da">奋斗史</span>
+                                        </p>
+
+                                        <div class="follow on yyy-fri">添加</div>
+                                        <div class="reject on yyy-fri">拒绝</div>
+                                    </div>
                                     <div class="nav_notify_item ttt-add-friend">
                                         <a class="avatar" target="_self" href="">
                                             <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
