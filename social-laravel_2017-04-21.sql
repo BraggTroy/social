@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: social-laravel
-# Generation Time: 2017-04-20 09:44:31 +0000
+# Generation Time: 2017-04-21 09:50:49 +0000
 # ************************************************************
 
 
@@ -126,6 +126,60 @@ CREATE TABLE `article-extra` (
 
 
 
+# Dump of table chat_not_read
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `chat_not_read`;
+
+CREATE TABLE `chat_not_read` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `friendId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `chat_not_read` WRITE;
+/*!40000 ALTER TABLE `chat_not_read` DISABLE KEYS */;
+
+INSERT INTO `chat_not_read` (`id`, `userId`, `friendId`)
+VALUES
+	(3,6,5),
+	(4,5,6),
+	(5,5,6),
+	(6,6,5);
+
+/*!40000 ALTER TABLE `chat_not_read` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table chat_record
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `chat_record`;
+
+CREATE TABLE `chat_record` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `friendId` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL DEFAULT '',
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `chat_record` WRITE;
+/*!40000 ALTER TABLE `chat_record` DISABLE KEYS */;
+
+INSERT INTO `chat_record` (`id`, `userId`, `friendId`, `content`, `time`)
+VALUES
+	(1,5,6,'1231231231',1492753298),
+	(2,6,5,'fasfdsa',1492753337),
+	(3,6,5,'fadsfadsvv555',1492753425),
+	(4,5,6,'fasfads',1492753435);
+
+/*!40000 ALTER TABLE `chat_record` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table comment_article
 # ------------------------------------------------------------
 
@@ -191,8 +245,8 @@ CREATE TABLE `friend` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL COMMENT '自己的id',
   `friendId` int(11) NOT NULL COMMENT '好友的id',
-  `groupId` int(11) DEFAULT NULL COMMENT '分组id',
-  `nickname` varchar(255) DEFAULT NULL COMMENT '好友备注',
+  `groupId` int(11) NOT NULL COMMENT '分组id',
+  `nickname` varchar(255) NOT NULL DEFAULT '' COMMENT '好友备注',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -202,11 +256,51 @@ LOCK TABLES `friend` WRITE;
 INSERT INTO `friend` (`id`, `userId`, `friendId`, `groupId`, `nickname`)
 VALUES
 	(2,5,7,1,'fd'),
-	(4,7,5,1,'678'),
-	(5,6,5,1,'123'),
+	(4,7,5,4,'678'),
+	(5,6,5,3,'123'),
 	(6,5,6,1,'请求');
 
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table friend_request
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `friend_request`;
+
+CREATE TABLE `friend_request` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `friendId` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL COMMENT '0等待 1同意  2拒绝',
+  `time` int(11) NOT NULL,
+  `actTime` int(11) DEFAULT NULL COMMENT '操作时间',
+  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '附加消息',
+  `read` tinyint(4) NOT NULL COMMENT '0未读  1已读',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `friend_request` WRITE;
+/*!40000 ALTER TABLE `friend_request` DISABLE KEYS */;
+
+INSERT INTO `friend_request` (`id`, `userId`, `friendId`, `status`, `time`, `actTime`, `remark`, `read`)
+VALUES
+	(1,6,5,2,1492753298,NULL,'gfds',1),
+	(2,5,7,2,1492753298,1492753298,'dd',1),
+	(3,6,5,2,1492753298,NULL,'gfds',1),
+	(4,5,7,2,1492753298,1492753298,'dd',1),
+	(5,6,5,2,1492753298,NULL,'gfds',1),
+	(6,5,7,2,1492753298,1492753298,'dd',1),
+	(7,6,5,2,1492753298,NULL,'gfds',1),
+	(8,5,7,2,1492753298,1492753298,'dd',1),
+	(9,6,5,2,1492753298,NULL,'gfds',1),
+	(10,5,7,2,1492753298,1492753298,'dd',1),
+	(11,6,5,2,1492753298,NULL,'gfds',1),
+	(12,5,7,2,1492753298,1492753298,'dd',1),
+	(13,6,5,2,1492753298,NULL,'gfds',1);
+
+/*!40000 ALTER TABLE `friend_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -228,7 +322,9 @@ LOCK TABLES `friend-group` WRITE;
 INSERT INTO `friend-group` (`id`, `name`, `userId`)
 VALUES
 	(1,'我的好友',5),
-	(2,'我的好友',13);
+	(2,'我的好友',13),
+	(3,'我的好友',6),
+	(4,'我的好友',7);
 
 /*!40000 ALTER TABLE `friend-group` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -369,18 +465,20 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
   `state` tinyint(4) NOT NULL COMMENT '邮箱验证',
+  `online` varchar(30) NOT NULL DEFAULT '' COMMENT 'online在线  hide隐身',
+  `sign` varchar(255) DEFAULT '' COMMENT '签名',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `state`)
+INSERT INTO `user` (`id`, `name`, `password`, `email`, `state`, `online`, `sign`)
 VALUES
-	(5,'376522507','111111','376522507@qq.com',1),
-	(6,'123','111111','123@qq.com',1),
-	(7,'456','111111','456@qq.com',1),
-	(13,'123123','111111','123123@qq.com',1);
+	(5,'376522507','111111','376522507@qq.com',1,'online','发生的发生'),
+	(6,'123','111111','123@qq.com',1,'online','他惹他玩儿'),
+	(7,'456','111111','456@qq.com',1,'online','不过辅导班地方'),
+	(13,'123123','111111','123123@qq.com',1,'online','好热好热');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

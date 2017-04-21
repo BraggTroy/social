@@ -240,7 +240,7 @@ body {
 .nav_notify_item {
     line-height: normal;
     color: #525558;
-    padding: 5px 10px 4px;
+    padding: 5px 10px 15px;
     border-bottom: 1px solid #f3f3f3;
     position: relative;
 }

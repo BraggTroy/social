@@ -42,7 +42,6 @@
                     $zi[$v['parent']][] = $v;
                 }
             }
-//            dd($zi);
             $user = User::getUserById(session('user'));
             return view('myapp.article_detail',['article' => $article, 'user' => $user, 'gen' => $gen, 'zi' => $zi]);
         }

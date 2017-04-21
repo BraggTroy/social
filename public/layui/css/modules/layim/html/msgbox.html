@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>消息盒子</title>
 
-<link rel="stylesheet" href="http://local.res.layui.com/layui/src/css/layui.css">
+<link rel="stylesheet" href="/layui/css/layui.css">
 <style>
 .layim-msgbox{margin: 15px;}
 .layim-msgbox li{position: relative; margin-bottom: 10px; padding: 0 130px 10px 60px; padding-bottom: 10px; line-height: 22px; border-bottom: 1px dotted #e2e2e2;}
@@ -27,10 +27,10 @@
 
 <ul class="layim-msgbox" id="LAY_view"></ul>
 
-<div style="margin: 0 15px;">
-  <blockquote class="layui-elem-quote">注意：这些都是模拟数据，实际使用时，需将其中的模拟接口改为你的项目真实接口。
-  <br>该模版文件所在目录（相对于layui.js）：/css/modules/layim/html/msgbox.html</blockquote>
-</div>
+<!--<div style="margin: 0 15px;display: none">-->
+  <!--<blockquote class="layui-elem-quote">注意：这些都是模拟数据，实际使用时，需将其中的模拟接口改为你的项目真实接口。-->
+  <!--<br>该模版文件所在目录（相对于layui.js）：/css/modules/layim/html/msgbox.html</blockquote>-->
+<!--</div>-->
 
 <textarea title="消息模版" id="LAY_tpl" style="display:none;">
 {{# layui.each(d.data, function(index, item){
@@ -47,10 +47,20 @@
         {{ item.content }} 
         <span>{{ item.remark ? '附言: '+item.remark : '' }}</span>
       </p>
-      <p class="layim-msgbox-btn">
-        <button class="layui-btn layui-btn-small" data-type="agree">同意</button>
-        <button class="layui-btn layui-btn-small layui-btn-primary" data-type="refuse">拒绝</button>
-      </p>
+      {{# if(item.status == 2){ }}
+        <p class="layim-msgbox-btn">
+              <em>已拒绝</em>
+        </p>
+      {{# } else if(item.status == 1){ }}
+        <p class="layim-msgbox-btn">
+            已同意
+        </p>
+      {{# }else{ }}
+        <p class="layim-msgbox-btn">
+          <button class="layui-btn layui-btn-small" data-type="agree">同意</button>
+          <button class="layui-btn layui-btn-small layui-btn-primary" data-type="refuse">拒绝</button>
+        </p>
+      {{# } }}
     </li>
   {{# } else { }}
     <li class="layim-msgbox-system">
@@ -65,7 +75,7 @@
 -->
 
 
-<script src="http://local.res.layui.com/layui/src/layui.js"></script>
+<script src="/layui/layui.js"></script>
 <script>
 layui.use(['layim', 'flow'], function(){
   var layim = layui.layim
@@ -80,10 +90,11 @@ layui.use(['layim', 'flow'], function(){
   var renderMsg = function(page, callback){
     
     //实际部署时，请将下述 getmsg.json 改为你的接口地址
-    
-    $.post('getmsg.json', {
+
+    $.post('/getmsg.json', {
       page: page || 1
     }, function(res){
+        res = eval("("+res+")");
       if(res.code != 0){
         return layer.msg(res.msg);
       }
@@ -108,17 +119,28 @@ layui.use(['layim', 'flow'], function(){
           data: data
           ,page: page
         });
-        next(html, page < pages);
+        var ids = [];
+        if (page == 1 && data[0]['read'] == 0) {
+            layui.each(data, function(index, item){
+                ids[ids.length] = item.id;
+            });
+            if (ids.length > 0) {
+                var id = ids.join(',');
+                $.post('/message/read', {
+                    type: 1,
+                    ids: id
+                });
+            }
+        }
+
+        next(html);
       });
     }
   });
 
   //打开页面即把消息标记为已读
-  /*
-  $.post('/message/read', {
-    type: 1
-  });
-  */
+
+
 
   //操作
   var active = {
@@ -188,6 +210,7 @@ layui.use(['layim', 'flow'], function(){
         $.post('/im/refuseFriend', {
           uid: uid //对方用户ID
         }, function(res){
+            res = eval("("+res+")");
           if(res.code != 0){
             return layer.msg(res.msg);
           }

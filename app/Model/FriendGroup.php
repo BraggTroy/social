@@ -37,4 +37,9 @@
             return FriendGroup::where('id', $groupId)->delete();
         }
 
+        public function friend()
+        {
+            return $this->hasMany('App\Model\Friend','groupId', 'id');
+        }
+
     }
