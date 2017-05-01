@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: social-laravel
-# Generation Time: 2017-04-21 09:50:49 +0000
+# Generation Time: 2017-05-01 09:30:57 +0000
 # ************************************************************
 
 
@@ -146,7 +146,12 @@ VALUES
 	(3,6,5),
 	(4,5,6),
 	(5,5,6),
-	(6,6,5);
+	(6,6,5),
+	(7,5,6),
+	(8,5,6),
+	(9,6,5),
+	(10,5,6),
+	(11,6,5);
 
 /*!40000 ALTER TABLE `chat_not_read` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -174,7 +179,12 @@ VALUES
 	(1,5,6,'1231231231',1492753298),
 	(2,6,5,'fasfdsa',1492753337),
 	(3,6,5,'fadsfadsvv555',1492753425),
-	(4,5,6,'fasfads',1492753435);
+	(4,5,6,'fasfads',1492753435),
+	(5,6,5,'kkk',1492867132),
+	(6,6,5,'8888',1492867143),
+	(7,5,6,'mini6tfgjj',1492867151),
+	(8,6,5,'nini',1492867176),
+	(9,5,6,'nk',1492867227);
 
 /*!40000 ALTER TABLE `chat_record` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -345,6 +355,15 @@ CREATE TABLE `image` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `image` WRITE;
+/*!40000 ALTER TABLE `image` DISABLE KEYS */;
+
+INSERT INTO `image` (`id`, `name`, `xc`, `time`, `oriname`, `userId`)
+VALUES
+	(1,'2017-04-22-21-21-03-58fb58bfbcef6.jpg',1,1492867263,'a4.jpg',5);
+
+/*!40000 ALTER TABLE `image` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table image-article
@@ -475,7 +494,7 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `name`, `password`, `email`, `state`, `online`, `sign`)
 VALUES
-	(5,'376522507','111111','376522507@qq.com',1,'online','发生的发生'),
+	(5,'白加嘿呀嘿','111111','376522507@qq.com',1,'online','发生的发生'),
 	(6,'123','111111','123@qq.com',1,'online','他惹他玩儿'),
 	(7,'456','111111','456@qq.com',1,'online','不过辅导班地方'),
 	(13,'123123','111111','123123@qq.com',1,'online','好热好热');

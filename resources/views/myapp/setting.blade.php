@@ -56,7 +56,7 @@
                                     用户名 *
                                 </div>
                                 <div class="control">
-                                    <input type="text" class="setting-mian-input name" value="{{$user['name']}}">
+                                    <input type="text" class="setting-mian-input name-t" value="{{$user['name']}}">
                                     <aside>也可以使用实名</aside>
                                 </div>
                             </div>
@@ -337,7 +337,7 @@
 
         var changeUserInfo = function(){
             var data = {
-              'name': $('.name').val(),
+              'name': $('.name-t').val(),
               'email': $('.email').val(),
               'zw': $('.zw').val(),
               'home': $('.home').val(),
@@ -348,6 +348,7 @@
               'sex': $('input:radio[name="setting-mian-sex"]:checked').val()
             };
             ajax('/set/info', data);
+//            console.log(data);
         };
 
         var changePass = function(){
