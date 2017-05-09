@@ -53,10 +53,10 @@
             <div class="form-group">
                 <input type="password"  name="repassword" class="repassword form-control" placeholder="请再次输入密码" required="">
             </div>
-            <div class="form-group">
-                <input type="password" name="yzm" class="form-control" placeholder="请输入验证码" style="width: 60%;display: inline;float: left">
-                <img src="{{ URL::asset('/image/user') }}">
-            </div>
+            {{--<div class="form-group">--}}
+                {{--<input type="password" name="yzm" class="form-control" placeholder="请输入验证码" style="width: 60%;display: inline;float: left">--}}
+                {{--<img src="{{ URL::asset('/image/user') }}">--}}
+            {{--</div>--}}
             <button class="btn btn-primary block full-width m-b" onclick="register()">注 册</button>
 
             <p class="text-muted text-center"><small>已经有账户了？</small><a href="http://www.zi-han.net/theme/hplus/login.html">点此登录</a>

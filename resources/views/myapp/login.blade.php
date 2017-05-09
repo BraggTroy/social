@@ -62,7 +62,7 @@
                 <a href="http://www.zi-han.net/theme/hplus/login.html#">
                     <small>忘记密码了？</small>
                 </a> |
-                <a href="http://www.zi-han.net/theme/hplus/register.html">注册一个新账号</a>
+                <a href="/register">注册一个新账号</a>
             </p>
 
         {{--</form>--}}

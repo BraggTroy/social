@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=4f33') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=4f3443') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fineuploader/fine-uploader-gallery.css') }}">
 @endsection
 
@@ -157,11 +157,11 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                <div class="comment-input comment-input{{$v['id']}}">
+                                <div class="comment-input comment-input{{$v['id']}}" onblur="cancelComment(this)">
                                     <img src="{{ URL::asset('/image/upload/' . $me->image['name']) }}">
                                     <span type="text" class="input-show input-show{{$v['id']}}" onclick="showComment(this)">写下你的评论 ...</span>
                                     <div class="comment-input-detial comment-input-detial{{$v['id']}}" style="display: none">
-                                        <textarea class="write write{{$v['id']}}"></textarea>
+                                        <textarea class="write write{{$v['id']}}" ></textarea>
                                         <div class="f-bottom">
                                             <span href=""><i class=""></i></span>
                                             <span href="">@</span>
@@ -179,11 +179,11 @@
                                         <a href=""><img src="{{ URL::asset('/image/' . $v->user->image['name']) }}"></a>
                                         <div class="rz-head-name">
                                             <li>{{ $v->user['name'] }}</li>
-                                            <li>发布了日志： &nbsp;<a href="/show/{{$v['id']}}" class="rz-tz">{{ $v['title'] }}</a> ·&nbsp;&nbsp;2016-05-05</li>
+                                            <li>发布了日志： &nbsp;<a href="/show/{{$v['id']}}" class="rz-tz">{{ $v['title'] }}</a> ·&nbsp;&nbsp;{{date('Y-m-d H:i:s')}}</li>
                                         </div>
                                     </div>
                                     <div class="rz-content">
-                                        <span>{{ $v['content'] }}</span>
+                                        <span>{!! $v['content'] !!}</span>
                                     </div>
                                     <div class="rz-footer">
                                         <ul>
@@ -225,10 +225,12 @@
                         </ul>
                     </div>
                     <div class="friend-list">
-                        <div class="friend-item">
-                            <a href=""><img src="{{ URL::asset('/image/user') }}"></a>
-                            <a href="" class="friend-list-name">你很溜</a>
-                        </div>
+                        @foreach($tj as $v)
+                            <div class="friend-item">
+                                <a href="/home/show/{{$v['id']}}"><img src="{{ URL::asset('/image/upload/'.$v['image']) }}"></a>
+                                <a href="/home/show/{{$v['id']}}" class="friend-list-name">{{$v['name']}}</a>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="">
 
@@ -242,5 +244,5 @@
 @section('js')
     <script src="{{ URL::asset('/fineuploader/jquery.fine-uploader.js') }}"></script>
     <script src="{{ URL::asset('/js/uploader.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js?v=39em1') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=5em1') }}"></script>
 @endsection

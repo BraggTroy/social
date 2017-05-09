@@ -18,4 +18,9 @@
             $image->userId = $user_id;
             return $image->save();
         }
+
+        public static function findById($userid)
+        {
+            return UserImage::where('userId' , $userid)->first();
+        }
     }

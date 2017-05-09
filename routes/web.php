@@ -19,6 +19,10 @@ use App\Model\User;
 Route::get('/login', function(){
     return view('myapp.login');
 });
+Route::get('/logout', function(){
+    \Session::put('user',null);
+    return view('myapp.login');
+});
 Route::get('/register', function(){
     return view('myapp.register');
 });

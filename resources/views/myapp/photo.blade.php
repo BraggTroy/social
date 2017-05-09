@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="content">
+        <div class="content" style="min-height: 800px">
             <div class="wrapper wrapper-content">
                 <div class="row">
                     <div class="col-sm-3">
@@ -60,9 +60,6 @@
                                 <div class="file-manager">
                                     <h5>显示：</h5>
                                     <a href="file_manager.html#" class="file-control active">所有</a>
-                                    <a href="file_manager.html#" class="file-control">文档</a>
-                                    <a href="file_manager.html#" class="file-control">视频</a>
-                                    <a href="file_manager.html#" class="file-control">图片</a>
                                     <div class="hr-line-dashed"></div>
                                     <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">上传文件</button>
                                     <div class="hr-line-dashed"></div>

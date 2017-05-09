@@ -52,7 +52,9 @@
             usort($total, array('App\Http\Controllers\Action\IndexController', 'sortByTime'));
 
             $user = User::getUserById(session('user'));
-            return view('myapp.index', ['data' => $total, 'me' => $user, 'user'=>$user]);
+
+            $tj = User::choiceRand();
+            return view('myapp.index', ['data' => $total, 'me' => $user, 'user'=>$user, 'tj'=>$tj]);
         }
 
         public function submitWrite(Request $request)

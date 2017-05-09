@@ -139,6 +139,10 @@ var showComment = function(elem){
     $(elem).hide();
 };
 
+var hideComment = function(elem) {
+
+};
+
 //layer弹出框
 var commonMsg = function(str, i) {
     layui.use(['layer'], function(){
@@ -178,13 +182,14 @@ var resize = function(elem, limit){
 };
 
 
-var cancelComment = function() {
-    $('.input-show').show();
-    $('.input-show').siblings('div').hide();
+var cancelComment = function(elem) {
+    console.log(444);
+        $('.input-show').show();
+        $('.input-show').siblings('div').hide();
 };
-$('.middle').on('blur', '.article', function(){
-    cancelComment();
-});
+// $('.middle').on('blur', '.article', function(){
+//     cancelComment();
+// });
 
 $('.comment').on('mouseenter', '.comment-item', function(){
     //鼠标移入

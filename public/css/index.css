@@ -539,6 +539,7 @@
     width: 70px;
     float: left;
     margin: 2px;
+    margin-left: 20px;
 }
 .friend-item img {
     height: 70px;

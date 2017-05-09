@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="content-all">
-        <div class="content">
+        <div class="content" style="min-height: 800px">
             <div class="wrapper wrapper-content">
                 <div class="row">
                     <div class="col-sm-3">

@@ -13007,3 +13007,163 @@ Stack trace:
 2017-04-22 21:18:41 pid:4337 Workerman[start.php] start in DEBUG mode
 2017-04-22 22:41:34 pid:4337 Workerman[start.php] Stopping ...
 2017-04-22 22:41:34 pid:4337 Workerman[start.php] has been stopped
+2017-05-01 09:56:10 pid:2347 Workerman[start.php] start in DEBUG mode
+2017-05-03 13:52:45 pid:2239 Workerman[start.php] start in DEBUG mode
+2017-05-03 13:52:54 pid:2240 PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php:1696
+Stack trace:
+#0 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1696): PDO->__construct('mysql:dbname=so...', 'root', '123456', Array)
+#1 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1683): GatewayWorker\Lib\DbConnection->connect()
+#2 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/Db.php(48): GatewayWorker\Lib\DbConnection->__construct('127.0.0.1', 3306, 'root', '123456', 'social-laravel')
+#3 /home/vagrant/php/social/GatewayWorker/Applications/YourApp/Events.php(51): GatewayWorker\Lib\Db::instance('db1')
+#4 [internal function]: Events::onMessage('7f0000010b54000...', '{"mine":{"id":"...')
+#5 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(361): call_user_func('Events::onMessa...', '7f0000010b54000...', '{"mine":{"id":"...')
+#6 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(433): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#8 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #46)
+#9 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Events/Select.php(250): call_user_func_array(Array, Array)
+#10 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1470): Workerman\Events\Select->loop()
+#11 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(175): Workerman\Worker->run()
+#12 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(898): GatewayWorker\BusinessWorker->run()
+#13 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(864): Workerman\Worker::forkOneWorker(Object(GatewayWorker\BusinessWorker))
+#14 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(420): Workerman\Worker::forkWorkers()
+#15 /home/vagrant/php/social/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2017-05-03 13:52:54 pid:2240 WORKER EXIT UNEXPECTED 
+2017-05-03 13:52:54 pid:2239 worker[YourAppBusinessWorker:2240] exit with status 64000
+2017-05-03 13:52:59 pid:2249 PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php:1696
+Stack trace:
+#0 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1696): PDO->__construct('mysql:dbname=so...', 'root', '123456', Array)
+#1 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1683): GatewayWorker\Lib\DbConnection->connect()
+#2 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/Db.php(48): GatewayWorker\Lib\DbConnection->__construct('127.0.0.1', 3306, 'root', '123456', 'social-laravel')
+#3 /home/vagrant/php/social/GatewayWorker/Applications/YourApp/Events.php(51): GatewayWorker\Lib\Db::instance('db1')
+#4 [internal function]: Events::onMessage('7f0000010b55000...', '{"mine":{"id":"...')
+#5 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(361): call_user_func('Events::onMessa...', '7f0000010b55000...', '{"mine":{"id":"...')
+#6 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(433): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#8 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #46)
+#9 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Events/Select.php(250): call_user_func_array(Array, Array)
+#10 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1470): Workerman\Events\Select->loop()
+#11 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(175): Workerman\Worker->run()
+#12 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(898): GatewayWorker\BusinessWorker->run()
+#13 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(864): Workerman\Worker::forkOneWorker(Object(GatewayWorker\BusinessWorker))
+#14 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1016): Workerman\Worker::forkWorkers()
+#15 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(423): Workerman\Worker::monitorWorkers()
+#16 /home/vagrant/php/social/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#17 {main}
+2017-05-03 13:52:59 pid:2249 WORKER EXIT UNEXPECTED 
+2017-05-03 13:52:59 pid:2239 worker[YourAppBusinessWorker:2249] exit with status 64000
+2017-05-03 13:53:05 pid:2251 PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php:1696
+Stack trace:
+#0 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1696): PDO->__construct('mysql:dbname=so...', 'root', '123456', Array)
+#1 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1683): GatewayWorker\Lib\DbConnection->connect()
+#2 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/Db.php(48): GatewayWorker\Lib\DbConnection->__construct('127.0.0.1', 3306, 'root', '123456', 'social-laravel')
+#3 /home/vagrant/php/social/GatewayWorker/Applications/YourApp/Events.php(51): GatewayWorker\Lib\Db::instance('db1')
+#4 [internal function]: Events::onMessage('7f0000010b55000...', '{"mine":{"usern...')
+#5 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(361): call_user_func('Events::onMessa...', '7f0000010b55000...', '{"mine":{"usern...')
+#6 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(433): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#8 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #47)
+#9 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Events/Select.php(250): call_user_func_array(Array, Array)
+#10 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1470): Workerman\Events\Select->loop()
+#11 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(175): Workerman\Worker->run()
+#12 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(898): GatewayWorker\BusinessWorker->run()
+#13 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(864): Workerman\Worker::forkOneWorker(Object(GatewayWorker\BusinessWorker))
+#14 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1016): Workerman\Worker::forkWorkers()
+#15 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(423): Workerman\Worker::monitorWorkers()
+#16 /home/vagrant/php/social/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#17 {main}
+2017-05-03 13:53:05 pid:2251 WORKER EXIT UNEXPECTED 
+2017-05-03 13:53:05 pid:2239 worker[YourAppBusinessWorker:2251] exit with status 64000
+2017-05-03 13:53:25 pid:2241 PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php:1696
+Stack trace:
+#0 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1696): PDO->__construct('mysql:dbname=so...', 'root', '123456', Array)
+#1 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1683): GatewayWorker\Lib\DbConnection->connect()
+#2 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/Db.php(48): GatewayWorker\Lib\DbConnection->__construct('127.0.0.1', 3306, 'root', '123456', 'social-laravel')
+#3 /home/vagrant/php/social/GatewayWorker/Applications/YourApp/Events.php(51): GatewayWorker\Lib\Db::instance('db1')
+#4 [internal function]: Events::onMessage('7f0000010b54000...', '{"mine":{"id":"...')
+#5 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(361): call_user_func('Events::onMessa...', '7f0000010b54000...', '{"mine":{"id":"...')
+#6 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(433): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#8 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #46)
+#9 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Events/Select.php(250): call_user_func_array(Array, Array)
+#10 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1470): Workerman\Events\Select->loop()
+#11 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(175): Workerman\Worker->run()
+#12 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(898): GatewayWorker\BusinessWorker->run()
+#13 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(864): Workerman\Worker::forkOneWorker(Object(GatewayWorker\BusinessWorker))
+#14 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(420): Workerman\Worker::forkWorkers()
+#15 /home/vagrant/php/social/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2017-05-03 13:53:25 pid:2241 WORKER EXIT UNEXPECTED 
+2017-05-03 13:53:25 pid:2239 worker[YourAppBusinessWorker:2241] exit with status 64000
+2017-05-03 13:53:36 pid:2252 PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php:1696
+Stack trace:
+#0 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1696): PDO->__construct('mysql:dbname=so...', 'root', '123456', Array)
+#1 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1683): GatewayWorker\Lib\DbConnection->connect()
+#2 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/Db.php(48): GatewayWorker\Lib\DbConnection->__construct('127.0.0.1', 3306, 'root', '123456', 'social-laravel')
+#3 /home/vagrant/php/social/GatewayWorker/Applications/YourApp/Events.php(51): GatewayWorker\Lib\Db::instance('db1')
+#4 [internal function]: Events::onMessage('7f0000010b54000...', '{"mine":{"id":"...')
+#5 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(361): call_user_func('Events::onMessa...', '7f0000010b54000...', '{"mine":{"id":"...')
+#6 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(433): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#8 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #49)
+#9 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Events/Select.php(250): call_user_func_array(Array, Array)
+#10 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1470): Workerman\Events\Select->loop()
+#11 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(175): Workerman\Worker->run()
+#12 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(898): GatewayWorker\BusinessWorker->run()
+#13 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(864): Workerman\Worker::forkOneWorker(Object(GatewayWorker\BusinessWorker))
+#14 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1016): Workerman\Worker::forkWorkers()
+#15 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(423): Workerman\Worker::monitorWorkers()
+#16 /home/vagrant/php/social/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#17 {main}
+2017-05-03 13:53:36 pid:2252 WORKER EXIT UNEXPECTED 
+2017-05-03 13:53:36 pid:2239 worker[YourAppBusinessWorker:2252] exit with status 64000
+2017-05-03 13:53:54 pid:2243 PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php:1696
+Stack trace:
+#0 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1696): PDO->__construct('mysql:dbname=so...', 'root', '123456', Array)
+#1 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1683): GatewayWorker\Lib\DbConnection->connect()
+#2 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/Db.php(48): GatewayWorker\Lib\DbConnection->__construct('127.0.0.1', 3306, 'root', '123456', 'social-laravel')
+#3 /home/vagrant/php/social/GatewayWorker/Applications/YourApp/Events.php(51): GatewayWorker\Lib\Db::instance('db1')
+#4 [internal function]: Events::onMessage('7f0000010b54000...', '{"mine":{"id":"...')
+#5 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(361): call_user_func('Events::onMessa...', '7f0000010b54000...', '{"mine":{"id":"...')
+#6 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(433): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#8 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #46)
+#9 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Events/Select.php(250): call_user_func_array(Array, Array)
+#10 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1470): Workerman\Events\Select->loop()
+#11 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(175): Workerman\Worker->run()
+#12 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(898): GatewayWorker\BusinessWorker->run()
+#13 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(864): Workerman\Worker::forkOneWorker(Object(GatewayWorker\BusinessWorker))
+#14 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(420): Workerman\Worker::forkWorkers()
+#15 /home/vagrant/php/social/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2017-05-03 13:53:54 pid:2243 WORKER EXIT UNEXPECTED 
+2017-05-03 13:53:54 pid:2239 worker[YourAppBusinessWorker:2243] exit with status 64000
+2017-05-03 13:54:18 pid:2242 PDOException: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost' in /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php:1696
+Stack trace:
+#0 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1696): PDO->__construct('mysql:dbname=so...', 'root', '123456', Array)
+#1 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/DbConnection.php(1683): GatewayWorker\Lib\DbConnection->connect()
+#2 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/Lib/Db.php(48): GatewayWorker\Lib\DbConnection->__construct('127.0.0.1', 3306, 'root', '123456', 'social-laravel')
+#3 /home/vagrant/php/social/GatewayWorker/Applications/YourApp/Events.php(51): GatewayWorker\Lib\Db::instance('db1')
+#4 [internal function]: Events::onMessage('7f0000010b54000...', '{"mine":{"id":"...')
+#5 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(361): call_user_func('Events::onMessa...', '7f0000010b54000...', '{"mine":{"id":"...')
+#6 [internal function]: GatewayWorker\BusinessWorker->onGatewayMessage(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#7 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(433): call_user_func(Array, Object(Workerman\Connection\AsyncTcpConnection), Array)
+#8 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #46)
+#9 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Events/Select.php(250): call_user_func_array(Array, Array)
+#10 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(1470): Workerman\Events\Select->loop()
+#11 /home/vagrant/php/social/GatewayWorker/vendor/workerman/gateway-worker/src/BusinessWorker.php(175): Workerman\Worker->run()
+#12 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(898): GatewayWorker\BusinessWorker->run()
+#13 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(864): Workerman\Worker::forkOneWorker(Object(GatewayWorker\BusinessWorker))
+#14 /home/vagrant/php/social/GatewayWorker/vendor/workerman/workerman/Worker.php(420): Workerman\Worker::forkWorkers()
+#15 /home/vagrant/php/social/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#16 {main}
+2017-05-03 13:54:18 pid:2242 WORKER EXIT UNEXPECTED 
+2017-05-03 13:54:18 pid:2239 worker[YourAppBusinessWorker:2242] exit with status 64000
+2017-05-03 13:56:10 pid:2239 Workerman[start.php] Stopping ...
+2017-05-03 13:56:10 pid:2239 Workerman[start.php] has been stopped
+2017-05-03 13:56:12 pid:2266 Workerman[start.php] start in DEBUG mode
+2017-05-03 14:47:43 pid:2266 Workerman[start.php] Stopping ...
+2017-05-03 14:47:43 pid:2266 Workerman[start.php] has been stopped
+2017-05-04 11:07:47 pid:2171 Workerman[start.php] start in DEBUG mode
+2017-05-04 12:34:07 pid:2171 Workerman[start.php] Stopping ...
+2017-05-04 12:34:07 pid:2171 Workerman[start.php] has been stopped

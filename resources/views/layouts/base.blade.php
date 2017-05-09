@@ -12,7 +12,7 @@
 <body>
     <div id="head">
         <div class="head-content">
-            <a href="">
+            <a href="/index">
                 <img src="{{ URL::asset('/image/icon.png') }}">
             </a>
 
@@ -133,7 +133,7 @@
     <script src="{{ URL::asset('/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
-    <script src="{{ URL::asset('/js/head.js?v=4dkf') }}"></script>
+    <script src="{{ URL::asset('/js/head.js?v=4dk7f') }}"></script>
     @yield('js')
 </body>
 </html>

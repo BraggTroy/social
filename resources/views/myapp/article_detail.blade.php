@@ -16,12 +16,12 @@
                     <div class="content-head-title">
                         <h1>{{ $article['title'] }}</h1>
                     </div>
-                    <div class="content-head-label">
-                        <span>handlebars</span>
-                    </div>
-                    <div class="content-head-write">
-                        <a href=""><i class="icon-file-alt"></i> 提交文章</a>
-                    </div>
+                    {{--<div class="content-head-label">--}}
+                        {{--<span>handlebars</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="content-head-write">--}}
+                        {{--<a href=""><i class="icon-file-alt"></i> 提交文章</a>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="content-main">
                     <div class="content-main-article">

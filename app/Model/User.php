@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Http\Controllers\Exception\TMException;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,6 +30,7 @@ class User extends Authenticatable
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->state = 0;
+        $user->online = 'offline';
         $user->name = explode('@', $request->input('email'))[0];
         $user->save();
         return $user;
@@ -39,7 +41,7 @@ class User extends Authenticatable
         $where = [
             'email' => $email
         ];
-        return User::where($where)->first();
+        return User::where('email', $email)->first();
     }
 
     public function image()
@@ -79,5 +81,16 @@ class User extends Authenticatable
             return $user->save();
         }
         throw new TMException('50016');
+    }
+
+    public static function choiceRand()
+    {
+        $sql = 'SELECT * FROM User B JOIN (SELECT CEIL(MAX(ID)*RAND()) AS ID FROM User) AS m ON B.ID >= m.ID LIMIT 6';
+        $res =  DB::select($sql);
+        foreach ($res as &$v) {
+            $v = json_decode(json_encode($v), True);
+            $v['image'] = UserImage::findById($v['id'])['name'];
+        }
+        return $res;
     }
 }

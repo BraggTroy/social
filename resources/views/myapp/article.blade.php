@@ -105,7 +105,6 @@
             var yc = $('input:radio[name="yuanchuang"]:checked').val();
             var pl = $('input:radio[name="canp"]:checked').val();
             var see = $('input:radio[name="see"]:checked').val();
-
             $.ajax({
                 type: 'POST',
                 url: '/submit/article',
