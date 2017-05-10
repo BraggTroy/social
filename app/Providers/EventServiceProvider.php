@@ -14,10 +14,16 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\WriteCommentEvent' => [
-            'App\Listeners\WriteCommentListener',
+            'App\Listeners\WriteCommentListener'
         ],
         'App\Events\ArticleCommentEvent' => [
-            'App\Listeners\ArticleCommentListener',
+            'App\Listeners\ArticleCommentListener'
+        ],
+        'App\Events\VisitEvent' => [
+            'App\Listeners\VisitListener'
+        ],
+        'App\Events\ArticleReadEvent' => [
+            'App\Listeners\ArticleReadListener'
         ],
     ];
 

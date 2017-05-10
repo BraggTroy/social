@@ -133,7 +133,7 @@
     <script src="{{ URL::asset('/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
-    <script src="{{ URL::asset('/js/head.js?v=4dk7f') }}"></script>
+    <script src="{{ URL::asset('/js/head.js?v=4dffk7f') }}"></script>
     @yield('js')
 </body>
 </html>

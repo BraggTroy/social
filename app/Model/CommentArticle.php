@@ -30,5 +30,6 @@
             $com->parent = $arr['parent'];
             $com->subcom = $arr['subcom'];
             $com->save();
+            return $com;
         }
     }

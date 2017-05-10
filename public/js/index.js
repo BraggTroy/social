@@ -100,7 +100,8 @@ var submitComment = function(id, name, image) {
         url: "/comment/write",
         data: {
             'content': content,
-            'id' : id
+            'id' : id,
+            'parent': 0
         },
         beforeSend: function() {
             load();
@@ -112,9 +113,9 @@ var submitComment = function(id, name, image) {
                 '<a href=""><img src="/image/upload/'+image+'"></a>'+
                 '<div class="comment-content">'+
                 '<ul>'+
-                "<li>"+ name + ' 回复 ' +
+                "<li>"+ name + ' ' +
                 data['time']+
-                "<span class='res res"+data['id']+"'>回复</span></li>"+
+                "<span class='res res"+data['id']+"' onclick='reComment("+id+","+data['id']+")'>回复</span></li>"+
                 "<li>"+content+"</li></ul></div></div>";
             $('.comment').append(h);
         },
@@ -200,7 +201,90 @@ $('.comment').on('mouseenter', '.comment-item', function(){
 });
 
 
-var reComment = function(wid, cid){
-    console.log(wid, cid);
+var reComment = function(wid, cid, name, image){
+    $('.input-show'+wid).hide();
+    $('.comment-input-detial'+wid).hide();
+    $('.comment-re-input-detial'+wid).remove();
+    $('.comment-input'+wid).append(
+        "<div class='comment-input-detial comment-re-input-detial"+wid+"'>" +
+        "<textarea class='write rewrite"+wid+"' ></textarea>" +
+        "<div class='f-bottom'>" +
+        "<span><i class=''></i></span>" +
+        "<span class='cancle-write' onclick='cancelReWrite("+wid+")'>取消</span>" +
+        "<a href=\"javascript:submitReComment("+wid+","+cid+",'"+name+"','"+image+"')\" class='submit' ><i class='glyphicon glyphicon-send'></i>&nbsp;发布</a></div></div>"
+    );
 };
+
+var cancelReWrite = function(id){
+    $('.comment-re-input-detial' + id).remove();
+    $('.input-show'+id).show();
+};
+
+var submitReComment = function(wid, cid, name, image){
+    var content = $('.rewrite' + wid).val();
+    $.ajax({
+        url: "/comment/write",
+        type: "POST",
+        data: {
+            'content': content,
+            'id' : wid,
+            'parent': cid
+        },
+        beforeSend: function() {
+            load();
+        },
+        success: function(data){
+            commonMsg('发表成功', 6);
+            data = eval("("+data+")");
+            var rp = '';
+            if (data['reuser']) {
+                rp = ' 回复 ' + data['reuser'] + ' ';
+            }
+            var h = '<div class="comment-item">'+
+                '<a href=""><img src="/image/upload/'+image+'"></a>'+
+                '<div class="comment-content">'+
+                '<ul>'+
+                "<li>"+ name + rp +
+                data['time']+
+                "<span class='res res"+data['id']+"' onclick='reComment("+wid+","+data['id']+")'>回复</span></li>"+
+                "<li>"+content+"</li></ul></div></div>";
+            $('.comment').append(h);
+        },
+        error: function(){
+            commonMsg('哎呀，发表失败啦', 5);
+        },
+        complete: function() {
+            $('.comment-re-input-detial'+wid).remove();
+            $('.input-show'+wid).show();
+            //关闭加载层
+            layer.closeAll('loading');
+        }
+    });
+};
+
+var dianzan = function(writeId,userId,imgname){
+
+    $.ajax({
+        url: '/write/zan',
+        type: "POST",
+        data: {
+            'writeId' : writeId
+        },
+        success: function(data) {
+            if (data == 1 ) {
+                $('#tttz'+writeId).html('<i style="color: red" class="glyphicon glyphicon-thumbs-up"></i>&nbsp;取消赞');
+                $('.imagezan'+writeId).append("<a id='imgzan"+userId+"' href='/home/show/"+userId+"'><img src='/image/upload/"+imgname+"'></a>");
+            }else {
+                $('#tttz'+writeId).html('<i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;点赞');
+                $('.imagezan'+writeId+' #imgzan'+userId).remove();
+            }
+        }
+    });
+};
+
+var cancelWrite = function(id) {
+    $('.input-show'+id).show();
+    $('.comment-input-detial'+id).hide();
+};
+
 

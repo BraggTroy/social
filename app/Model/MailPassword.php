@@ -10,13 +10,12 @@
 
         public $fillable = ['email', 'state', 'content', 'time'];
 
-        public static function storeMailPassword($arr)
+        public static function storeMailPassword($email, $state, $time)
         {
             $mailpass = new MailPassword();
-            $mailpass->email = $arr['email'];
-            $mailpass->state = $arr['state'];
-            $mailpass->content = $arr['content'];
-            $mailpass->time = $arr['time'];
+            $mailpass->email = $email;
+            $mailpass->state = $state;
+            $mailpass->time = $time;
             $mailpass->save();
         }
 

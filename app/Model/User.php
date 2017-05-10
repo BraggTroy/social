@@ -93,4 +93,9 @@ class User extends Authenticatable
         }
         return $res;
     }
+
+    public function azf()
+    {
+        return $this->hasOne('App\Model\ArticleZF', 'userId', 'id');
+    }
 }

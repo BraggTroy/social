@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Model\MailPassword;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailer;
 use Illuminate\Queue\SerializesModels;
@@ -30,11 +31,12 @@ class SendEmail implements ShouldQueue
      */
     public function handle(Mailer $mailer)
     {
-        $mailer->send('mail.mail', $this->data, function ($message) {
-            $message->setBody($this->data['body']);
-            $message->to($this->data['mail']);
-            $message->subject($this->data['title']);
+        $to = $this->data['mail'];
+        $title = $this->data['title'];
+        $mailer->send('mail.mail', ['content'=>$this->data['body']], function ($message) use($to,$title) {
+            $message->to($to)->subject($title);
         });
         // TODO  添加数据库
+        MailPassword::storeMailPassword($this->data['mail'], 0, $this->data['time']);
     }
 }

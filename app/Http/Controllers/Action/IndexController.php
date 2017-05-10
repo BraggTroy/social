@@ -12,6 +12,7 @@
     use App\Model\User;
     use App\Model\UserSetting;
     use App\Model\Write;
+    use App\Model\WriteZan;
     use Illuminate\Contracts\View\View;
     use Illuminate\Http\Request;
     use League\Flysystem\Exception;
@@ -41,6 +42,16 @@
             $writes = Write::getWritesByIds($writeId);
             $articles = Article::getArticlesByIds($articleId);
 
+            foreach ($writes as &$v) {
+                foreach ($v['wzan'] as $z) {
+                    if ($z['state'] == 0 && $z['userId'] == session('user')) {
+                        $v['iszandq'] = 1;
+                        break;
+                    }
+                }
+                $v['iszandq'] = isset($v['iszandq']) ? 1 : 0;
+            }
+
             $total = [];
             foreach ($writes as &$v) {
                 $total[] = $v;
@@ -50,7 +61,7 @@
             }
             //自定义排序
             usort($total, array('App\Http\Controllers\Action\IndexController', 'sortByTime'));
-
+//return $total;
             $user = User::getUserById(session('user'));
 
             $tj = User::choiceRand();
@@ -74,9 +85,11 @@
         protected function sortByTime($a, $b)
         {
             if ($a['time'] > $b['time']) {
-                return 1;
+                return -1;
             }elseif($a['time'] == $b['time']) {
-                return $a['id'] > $b['id'] ? 1 : -1;
+                return $a['id'] > $b['id'] ? -1 : 1;
+            }else {
+                return 1;
             }
         }
 
@@ -84,10 +97,11 @@
         {
             $id = $request->input('id');
             $content = $request->input('content');
+            $parent = $request->input('parent');
             $time = time();
-            $commentId = CommentWrite::saveComment($id, $content, $time);
-            if ($commentId) {
-                return json_encode(['code'=>'200', 'time'=>date('Y-m-d H:i', $time), 'id'=>$commentId]);
+            $comment = CommentWrite::saveComment($id, $content, $time, $parent);
+            if ($comment) {
+                return json_encode(['code'=>'200', 'time'=>date('Y-m-d H:i', $time), 'id'=>$comment['id'], 'reuser'=>isset($comment->recom->user['name']) ? $comment->recom->user['name'] : 0]);
             }else {
                 throw new TMException('5002');
             }
@@ -118,6 +132,25 @@
                 foreach ($college as $v) {
                     $user[] = $v->user;
                 }
+            }
+        }
+
+        public function zan(Request $request)
+        {
+            $writeId = $request->input('writeId');
+            if ($zan = WriteZan::getZanByUser($writeId)) {
+                if ($zan['state'] == 0) {
+                    $zan->state = 1;
+                    $zan->save();
+                    echo 0;
+                }else {
+                    $zan->state = 0;
+                    $zan->save();
+                    echo 1;
+                }
+            }else {
+                WriteZan::add($writeId, time());
+                echo 1;
             }
         }
     }

@@ -25,7 +25,7 @@ $('.head-me').children('ul').children('li').children('strong').click(function() 
 layui.use('layim', function(layim){
 
     // websocket
-    var ws = new WebSocket('ws://192.168.200.200:8282');
+    var ws = new WebSocket('ws://127.0.0.1:8282');
     // 链接成功时
     ws.onopen = function(){
         var uid = $('#userId').val();

@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=4f3443') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/index.css?v=44ecccd3') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fineuploader/fine-uploader-gallery.css') }}">
 @endsection
 
@@ -87,7 +87,7 @@
                     @if (isset($v['zf']))
                         <div class="article">
                             <div class="article-head">
-                                <a href=""><img src="{{ URL::asset('/image/'.$v->user->image['name']) }}"></a>
+                                <a href=""><img src="{{ URL::asset('/image/upload/'.$v->user->image['name']) }}"></a>
                                 <div class="article-head-name">
                                     <li>{{ $v->user['name'] }}</li>
                                     <li>{{ date('Y-m-d H:i:s', $v['time']) }}</li>
@@ -110,7 +110,9 @@
                                     {{--三张图片--}}
                                     {{--@elseif (count($v->image) > 2)--}}
                                         @foreach($v->image as $image)
+                                            @if($image['name'])
                                             <img src="{{ URL::asset('/image/upload/' . $image['name']) }}" width="225" height="226">
+                                            @endif
                                         @endforeach
                                     {{--@endif--}}
                                 </div>
@@ -120,16 +122,25 @@
                                 <div class="article-action">
                                     <ul>
                                         <li><span><i class="icon-comment-alt"></i>&nbsp;评论</span></li>
-                                        <li><span><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;点赞</span></li>
+
+                                        @if($v['iszandq'] == 1)
+                                            <li><span id="tttz{{$v['id']}}" onclick="dianzan('{{$v['id']}}','{{session('user')}}', '{{$user->image['name']}}')"><i style="color:red" class="glyphicon glyphicon-thumbs-up"></i>&nbsp;取消赞</span></li>
+                                        @else
+                                            <li><span id="tttz{{$v['id']}}" onclick="dianzan('{{$v['id']}}','{{session('user')}}', '{{$user->image['name']}}')"><i class="glyphicon glyphicon-thumbs-up"></i> 赞</span></li>
+                                        @endif
+
+
                                         <li><span><i class="icon-share"></i>&nbsp;转发</span></li>
                                     </ul>
                                 </div>
-                                <div class="article-zan-icon">
-                                    <a href="" class="zan-icon"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                                <div class="article-zan-icon imagezan{{$v['id']}}">
+                                    <a class="zan-icon"><i class="glyphicon glyphicon-thumbs-up"></i></a>
                                     @foreach($v->wzan as $zan)
-                                        <a href="">
-                                            <img src="{{ URL::asset('/image/upload/'.$zan->user->image['name']) }}">
-                                        </a>
+                                        @if($zan['state'] == 0)
+                                            <a id="imgzan{{$zan->user['id']}}" href="/home/show/{{$zan->user['id']}}">
+                                                <img src="{{ URL::asset('/image/upload/'.$zan->user->image['name']) }}">
+                                            </a>
+                                        @endif
                                     @endforeach
                                 </div>
                                 <div class="comment comment{{$v['id']}}">
@@ -139,7 +150,7 @@
                                                 <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
                                                 <div class="comment-content">
                                                     <ul>
-                                                        <li>{{ $comment->user['name'] }} &nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}')">回复</span></li>
+                                                        <li>{{ $comment->user['name'] }} &nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}','{{$me['name']}}', '{{$me->image['name']}}')">回复</span></li>
                                                         <li>{{ $comment['comment'] }}</li>
                                                     </ul>
                                                 </div>
@@ -149,8 +160,8 @@
                                                 <a href=""><img src="{{ URL::asset('/image/upload/' . $comment->user->image['name']) }}"></a>
                                                 <div class="comment-content">
                                                     <ul>
-                                                        <li>{{ $comment->user['name'] }} 回复 {{ $comment->reuser['name'] }}{{ $comment->user['name'] }}&nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}')">回复</span></li>
-                                                        <li>{{ $comment['content'] }}</li>
+                                                        <li>{{ $comment->user['name'] }} 回复 {{ $comment->recom->user['name'] }}&nbsp;{{ date('Y-m-d H:i', $comment['time']) }}<span class="res res{{$comment['id']}}" onclick="reComment('{{$v['id']}}','{{$comment['id']}}','{{$me['name']}}', '{{$me->image['name']}}')">回复</span></li>
+                                                        <li>{{ $comment['comment'] }}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -164,7 +175,7 @@
                                         <textarea class="write write{{$v['id']}}" ></textarea>
                                         <div class="f-bottom">
                                             <span href=""><i class=""></i></span>
-                                            <span href="">@</span>
+                                            <span class="cancle-write" onclick="cancelWrite({{ $v['id'] }})">取消</span>
                                             <a href="javascript:submitComment('{{ $v['id'] }}', '{{$me['name']}}', '{{$me->image['name']}}')" class="submit" ><i class="glyphicon glyphicon-send"></i>&nbsp;发布</a>
                                         </div>
                                     </div>
@@ -176,10 +187,10 @@
                             <div class="content-list">
                                 <div class="rz-item">
                                     <div class="rz-head">
-                                        <a href=""><img src="{{ URL::asset('/image/' . $v->user->image['name']) }}"></a>
+                                        <a href=""><img src="{{ URL::asset('/image/upload/' . $v->user->image['name']) }}"></a>
                                         <div class="rz-head-name">
                                             <li>{{ $v->user['name'] }}</li>
-                                            <li>发布了日志： &nbsp;<a href="/show/{{$v['id']}}" class="rz-tz">{{ $v['title'] }}</a> ·&nbsp;&nbsp;{{date('Y-m-d H:i:s')}}</li>
+                                            <li>发布了日志： &nbsp;<a href="/show/{{$v['id']}}" class="rz-tz">{{ $v['title'] }}</a> ·&nbsp;&nbsp;{{date('Y-m-d H:i:s', $v['time'])}}</li>
                                         </div>
                                     </div>
                                     <div class="rz-content">
@@ -187,10 +198,10 @@
                                     </div>
                                     <div class="rz-footer">
                                         <ul>
-                                            <li>推荐 23</li>
-                                            <li>阅读 243</li>
-                                            <li>收藏 6</li>
-                                            <li><a href=""><i class="icon-bookmark-empty"></i>&nbsp; 立即阅读</a></li>
+                                            <li>推荐 {{$v['zan']}}</li>
+                                            <li>阅读 {{$v['read']}}</li>
+                                            <li>收藏 {{$v['fav']}}</li>
+                                            <li><a href="/show/{{$v['id']}}"><i class="icon-bookmark-empty"></i>&nbsp; 立即阅读</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -220,7 +231,7 @@
                     <div class="see-title">
                         <ul>
                             <li><a href="javascript:void(0)">可能认识的人</a></li>
-                            <li><a href="javascript:void(0)">我看过谁</a></li>
+                            {{--<li><a href="javascript:void(0)">我看过谁</a></li>--}}
                             <li><a href="javascript:void(0)">最近访客</a></li>
                         </ul>
                     </div>
@@ -244,5 +255,5 @@
 @section('js')
     <script src="{{ URL::asset('/fineuploader/jquery.fine-uploader.js') }}"></script>
     <script src="{{ URL::asset('/js/uploader.js') }}"></script>
-    <script src="{{ URL::asset('/js/index.js?v=5em1') }}"></script>
+    <script src="{{ URL::asset('/js/index.js?v=5ecccm1') }}"></script>
 @endsection

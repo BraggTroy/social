@@ -13167,3 +13167,6 @@ Stack trace:
 2017-05-04 11:07:47 pid:2171 Workerman[start.php] start in DEBUG mode
 2017-05-04 12:34:07 pid:2171 Workerman[start.php] Stopping ...
 2017-05-04 12:34:07 pid:2171 Workerman[start.php] has been stopped
+2017-05-10 09:36:13 pid:8509 Workerman[start.php] start in DEBUG mode
+2017-05-10 18:02:21 pid:8509 Workerman[start.php] Stopping ...
+2017-05-10 18:02:21 pid:8509 Workerman[start.php] has been stopped

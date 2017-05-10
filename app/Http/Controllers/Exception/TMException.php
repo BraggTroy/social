@@ -80,6 +80,9 @@
                 case 50017:
                     $message = '修改密码失败';
                     break;
+                case 50018:
+                    $message = '该邮箱还未注册';
+                    break;
             }
             return $message;
         }

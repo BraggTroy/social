@@ -1,16 +1,19 @@
 <?php
     namespace App\Http\Controllers\Action;
 
+    use App\Events\VisitEvent;
     use App\Http\Controllers\Controller;
     use App\Model\Article;
     use App\Model\Friend;
     use App\Model\User;
     use App\Model\Write;
+    use Event;
 
     class HomeController extends Controller
     {
         public function show($userId)
         {
+            Event::fire(new VisitEvent($userId));
             $article = Article::getHomeArticle($userId);
             $write = Write::getHomeWrite($userId);
             $user = User::getUserById($userId);

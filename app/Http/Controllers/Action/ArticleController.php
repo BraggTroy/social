@@ -1,10 +1,12 @@
 <?php
     namespace App\Http\Controllers\Action;
 
+    use App\Events\ArticleReadEvent;
     use App\Http\Controllers\Controller;
     use App\Http\Controllers\Exception\TMException;
     use App\Model\Article;
     use App\Model\ArticleWrite_Time;
+    use App\Model\ArticleZF;
     use App\Model\CommentArticle;
     use App\Model\User;
     use Illuminate\Http\Request;
@@ -30,6 +32,7 @@
 
         public function showArticle($id)
         {
+            \Event::fire(new ArticleReadEvent($id));
             $article = Article::getArticleById($id);
             $comment = $article->comment()->get();
 //            $comment = $query->where('parent', 0)->orderBy('time', 'desc')->get();
@@ -43,6 +46,7 @@
                 }
             }
             $user = User::getUserById(session('user'));
+//            dd($zi);
             return view('myapp.article_detail',['article' => $article, 'user' => $user, 'gen' => $gen, 'zi' => $zi]);
         }
 
@@ -52,8 +56,61 @@
             $data['comment'] = $request->input('content');
             $data['articleId'] = $request->input('articleId');
             $data['parent'] = $request->input('parent');
-            $data['subcom'] = $request->input('subcom');
+            $data['subcom'] = $request->input('commentId');
             $data['time'] = time();
-            CommentArticle::store($data);
+            $com = CommentArticle::store($data);
+            return json_encode(['time'=>date('Y-m-d H:i:s', $com['time']), 'id'=>$com['id']]);
+        }
+
+        public function zan(Request $request)
+        {
+            $articleId = $request->input('articleId');
+            $azf = ArticleZF::getByUserId($articleId);
+            if ($azf) {
+                if ($azf['z'] == 1) {
+                    return 0;
+                }else {
+                    $azf->z = 1;
+                    $azf->f = 0;
+                    $azf->save();
+                    $art = Article::getArticleById($articleId);
+                    $art->fandui = $art['fandui'] - 1;
+                    $art->zan = $art['zan'] + 1;
+                    $art->save();
+                    return 2;
+                }
+            }else {
+                ArticleZF::addOne(1, 0, $articleId);
+                $art = Article::getArticleById($articleId);
+                $art->zan = $art['zan'] + 1;
+                $art->save();
+                return 1;
+            }
+        }
+
+        public function fandui(Request $request)
+        {
+            $articleId = $request->input('articleId');
+            $azf = ArticleZF::getByUserId($articleId);
+            if ($azf) {
+                if ($azf['f'] == 1) {
+                    return 0;
+                }else {
+                    $azf->f = 1;
+                    $azf->z = 0;
+                    $azf->save();
+                    $art = Article::getArticleById($articleId);
+                    $art->fandui = $art['fandui'] + 1;
+                    $art->zan = $art['zan'] - 1;
+                    $art->save();
+                    return 2;
+                }
+            }else {
+                ArticleZF::addOne(0, 1, $articleId);
+                $art = Article::getArticleById($articleId);
+                $art->fandui = $art['fandui'] + 1;
+                $art->save();
+                return 1;
+            }
         }
     }

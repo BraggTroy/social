@@ -15,9 +15,9 @@
             return $this->belongsTo('App\Model\User', 'userId', 'id');
         }
 
-        public function reuser()
+        public function recom()
         {
-            return $this->belongsTo('App\Model\User', 'parent', 'id');
+            return $this->belongsTo('App\Model\CommentWrite', 'parent', 'id');
         }
 
 
@@ -30,7 +30,7 @@
             $data->time = $time;
             $data->writeId = $id;
             $data->save();
-            return $data['id'];
+            return $data;
         }
 
         public static function getCommentByWriteId($id)

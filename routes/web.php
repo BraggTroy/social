@@ -52,6 +52,10 @@ Route::group(['middleware' => 'myauth'], function () {
     });
     Route::get('/show/{id}', 'Action\ArticleController@showArticle');
     Route::post('/article/subCom', 'Action\ArticleController@subCom');
+    Route::post('/article/zan', 'Action\ArticleController@zan');
+    Route::post('/article/fan', 'Action\ArticleController@fandui');
+
+    Route::post('/write/zan', 'Action\IndexController@zan');
 
 
     Route::post('/uploadPhoto', 'Upload\imageUpload@uploadPhoto');
@@ -83,8 +87,7 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::post('/message/read','Action\ChatController@readRequest');
 });
 
-
-Route::get('/qw', function(){
-    throw  new \App\Http\Controllers\Exception\TMException('4042');
+Route::get('/passwd/forget', function(){
+    return view('myapp.forgetpasswd');
 });
-
+Route::post('/passwd/forget', 'Auth\ForgotPasswordController@sendMail');

@@ -44,26 +44,22 @@
                 <h3 style="color:red;">{{ $error }}</h3>
             @endforeach
         @else
-                <h3>欢迎使用 TalkingMore</h3>
+            <h3></h3>
         @endif
+        <h1 style="margin-top: 50px;"></h1>
+        <div class="form-group">
+            <input type="email" name="email" class="email form-control" placeholder="请输入注册邮箱" value="{{ old('name') }}" required>
+        </div>
 
-        {{--<form class="m-t" role="form" action="/login" method="post">--}}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="form-group">
-                <input type="email" name="email" class="email form-control" placeholder="邮箱" value="{{ old('name') }}" required>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" class="password form-control" placeholder="密码" required>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b" onclick="login()">登 录</button>
+        <button type="submit" style="margin-top: 20px;margin-bottom: 20px" class="btn btn-primary block full-width m-b" onclick="login()">找回密码</button>
 
 
-            <p class="text-muted text-center">
-                <a href="/passwd/forget">
-                    <small>忘记密码了？</small>
-                </a> |
-                <a href="/register">注册一个新账号</a>
-            </p>
+        <p class="text-muted text-center">
+            <a href="/login">
+                <small>登录  </small>
+            </a> |
+            <a href="/register">注册一个新账号</a>
+        </p>
 
         {{--</form>--}}
     </div>
@@ -81,25 +77,17 @@
             });
             return;
         }
-        if ($('.password').val().length < 6){
-            layui.use(['layer'], function(){
-                var layer = layui.layer;
-                layer.msg('密码长度必须大于6位')
-            });
-            return;
-        }
         $.ajax({
             type: 'POST',
-            url: '/login',
+            url: '/passwd/forget',
             data: {
-                'email' : $('.email').val(),
-                'password' : $('.password').val()
+                'email' : $('.email').val()
             },
             beforeSend: function() {
                 load();
             },
             success: function(){
-                    window.location.href = '/index';
+                layer.alert('发送成功，请及时查收');
             },
             error: function(data) {
                 data = eval('(' + data.responseText + ')');
@@ -108,6 +96,10 @@
                     layer.closeAll('loading');
                     layer.alert(data['msg']);
                 });
+            },
+            complete: function() {
+                //关闭加载层
+                layer.closeAll('loading');
             }
         });
     };
