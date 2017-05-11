@@ -21,4 +21,9 @@ class Visit extends Model
         $visit->visitId = session('user');
         $visit->save();
     }
+
+    public static function getVisitByUserId($userId)
+    {
+        return Visit::where('userId', $userId)->orderBy('id', 'desc')->limit(6)->get();
+    }
 }

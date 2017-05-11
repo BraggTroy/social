@@ -54,10 +54,10 @@ class Handler extends ExceptionHandler
             return $request->ajax() || $request->wantsJson() ?
                 Response::json(['msg'=>$message],$code) :
                 Response::view('errors.503', ['message' => $message], $code);
-        }else {
-            return $request->ajax() || $request->wantsJson() ?
-                Response::json(['msg'=>'未知错误'],500) :
-                Response::view('errors.503', ['message' => '未知错误'], 500);
+//        }else {
+//            return $request->ajax() || $request->wantsJson() ?
+//                Response::json(['msg'=>'未知错误'],500) :
+//                Response::view('errors.503', ['message' => '未知错误'], 500);
         }
         return parent::render($request, $exception);
     }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\MailPassword;
+use App\Model\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -27,6 +30,20 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('repass');
+    }
+
+    public function resetPass(Request $request)
+    {
+        $pass = $request->input('pass');
+        $mail = $request->input('mail');
+        $user = User::findUserByEmail($mail);
+        $user->password = $pass;
+        $user->save();
+
+        $ma = MailPassword::getByEmail($mail);
+        $ma->state = 1;
+        $ma->save();
+
     }
 }

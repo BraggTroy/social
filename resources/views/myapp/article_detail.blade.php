@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    title
+    文章详情
 @endsection
 
 @section('css')
@@ -203,8 +203,8 @@
 
                 <div class="right-action">
                     <ul>
-                        <li id="tttz"><span @if(isset($user->azf['z']) && $user->azf['z']==1) style="color: red;" @endif onclick="ttz({{$article['id']}})"><i class="icon-angle-up"></i> 赞成</span></li>
-                        <li id="tttf"><span @if(isset($user->azf['f']) && $user->azf['f']==1) style="color: red;" @endif onclick="ttf({{$article['id']}})"><i class="icon-angle-down"></i> 反对</span></li>
+                        <li id="tttz"><span @if(isset($azf['z']) && $azf['z']==1) style="color: red;" @endif onclick="ttz({{$article['id']}})"><i class="icon-angle-up"></i> 赞成</span></li>
+                        <li id="tttf"><span @if(isset($azf['f']) && $azf['f']==1) style="color: red;" @endif onclick="ttf({{$article['id']}})"><i class="icon-angle-down"></i> 反对</span></li>
                         <li><span><i class="icon-heart-empty"></i> 收藏</span></li>
                     </ul>
                 </div>

@@ -61,7 +61,7 @@
                                                 <div class="col-sm-8">
                                                     <i style="position: absolute;right: 13px;top: -8px;cursor: pointer;display: none" class="icon-trash delfriend" onclick="delFriend(this, '{{$v['userId']}}','{{$v['friendId']}}')"></i>
                                                     <a href="">
-                                                        <h3><strong class="t-user-name">{{$v['nickname']}}</strong></h3>
+                                                        <h3><strong class="t-user-name">{{$v['nickname']?:$v->user['name']}}</strong></h3>
                                                     </a>
                                                         {{--<p><i class="fa fa-map-marker"></i> 甘肃·兰州</p>--}}
                                                     <p>分组：{{$v->group['name']}}</p>

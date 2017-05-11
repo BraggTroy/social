@@ -21,10 +21,10 @@
             $notify->save();
         }
 
-        public static function changeNotify($article, $write, $comment_a, $comment_w, $friend)
+        public static function changeNotify($care, $write, $comment_a, $comment_w, $friend)
         {
             $notify = Notify::where('userId', session('user'))->first();
-            $notify->article_z = $article;
+            $notify->care_f = $care;
             $notify->write_z = $write;
             $notify->comment_a = $comment_a;
             $notify->comment_w = $comment_w;

@@ -56,6 +56,7 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::post('/article/fan', 'Action\ArticleController@fandui');
 
     Route::post('/write/zan', 'Action\IndexController@zan');
+    Route::get('/write/sf/{writeId}', 'Action\IndexController@sf');
 
 
     Route::post('/uploadPhoto', 'Upload\imageUpload@uploadPhoto');
@@ -71,7 +72,11 @@ Route::group(['middleware' => 'myauth'], function () {
 
     Route::post('/friend/del', 'Action\FriendController@delFriend');
     Route::post('/friend/changename', 'Action\FriendController@changeName');
+    Route::post('/friend/send', 'Action\FriendController@addFriend');
+    Route::post('/friend/agree', 'Action\FriendController@agreeFriend');
+    Route::post('/friend/refuse', 'Action\FriendController@refuseFriend');
 
+    Route::post('/log/scan', 'Action\SocialLogController@scanLog');
 
     Route::get('/home/show/{id}', 'Action\HomeController@show');
 
@@ -91,3 +96,7 @@ Route::get('/passwd/forget', function(){
     return view('myapp.forgetpasswd');
 });
 Route::post('/passwd/forget', 'Auth\ForgotPasswordController@sendMail');
+Route::post('/passwd/reset', 'Auth\ResetPasswordController@resetPass');
+Route::get('/passwd/reset', ['middleware'=>'repass', function(){
+    return view('myapp.resetpass');
+}]);

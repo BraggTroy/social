@@ -94,8 +94,13 @@ class User extends Authenticatable
         return $res;
     }
 
-    public function azf()
+//    public function azf()
+//    {
+//        return $this->hasOne('App\Model\ArticleZF', 'userId', 'id');
+//    }
+
+    public function notify()
     {
-        return $this->hasOne('App\Model\ArticleZF', 'userId', 'id');
+        return $this->hasOne('App\Model\Notify', 'userId', 'id');
     }
 }

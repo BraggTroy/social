@@ -29,6 +29,9 @@
                 case 4042:
                     $message = '发表文章失败';
                     break;
+                case 4043:
+                    $message = '该链接已失效';
+                    break;
                 case 5001:
                     $message = '注册失败，请稍后重试';
                     break;
@@ -82,6 +85,9 @@
                     break;
                 case 50018:
                     $message = '该邮箱还未注册';
+                    break;
+                case 50019:
+                    $message = '发送失败，请稍后重试';
                     break;
             }
             return $message;

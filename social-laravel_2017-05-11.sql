@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: social-laravel
-# Generation Time: 2017-05-10 10:01:57 +0000
+# Generation Time: 2017-05-11 10:02:05 +0000
 # ************************************************************
 
 
@@ -105,7 +105,7 @@ LOCK TABLES `article` WRITE;
 
 INSERT INTO `article` (`id`, `content`, `title`, `userId`, `time`, `see`, `canpl`, `yc`, `wz`, `zan`, `read`, `fandui`, `fav`)
 VALUES
-	(6,'<p style=\"margin-left: auto;\"><strong>input失去焦点和获得焦点</strong>&nbsp;<br>鼠标在搜索框中点击的时候里面的文字就消失了。&nbsp;<br>我们在做网站的时候经常会用到搜索框的获得焦点和失去焦点的事件，因为懒，每次都去写非常的烦，于是就一劳永逸，遇到类似情况就来调用一下就OK 了 。</p><p style=\"margin-left: auto;\">相关js代码如下：</p><p>12345678910111213141516171819202122232425262728293031323334353637</p><p>input失去焦点和获得焦点jquery焦点事件插件，<br><strong style=\"color: rgb(255, 0, 0);\">鼠标在搜索框中点击的时候里面的文字就消失了</strong>。</p><p style=\"margin-left: auto;\">　　<strong>jquery获取和失去焦点事件</strong>&nbsp;</p><p>1234567891011121314</p>','juqey焦点',5,1493728553,2,0,0,'',0,5,0,0),
+	(6,'<p style=\"margin-left: auto;\"><strong>input失去焦点和获得焦点</strong>&nbsp;<br>鼠标在搜索框中点击的时候里面的文字就消失了。&nbsp;<br>我们在做网站的时候经常会用到搜索框的获得焦点和失去焦点的事件，因为懒，每次都去写非常的烦，于是就一劳永逸，遇到类似情况就来调用一下就OK 了 。</p><p style=\"margin-left: auto;\">相关js代码如下：</p><p>12345678910111213141516171819202122232425262728293031323334353637</p><p>input失去焦点和获得焦点jquery焦点事件插件，<br><strong style=\"color: rgb(255, 0, 0);\">鼠标在搜索框中点击的时候里面的文字就消失了</strong>。</p><p style=\"margin-left: auto;\">　　<strong>jquery获取和失去焦点事件</strong>&nbsp;</p><p>1234567891011121314</p>','juqey焦点',5,1493728553,2,0,0,'',1,20,0,0),
 	(8,'<p><span style=\"font-size: 14px;\">&nbsp; &nbsp; 《人生三部曲》是高尔基著名</span><a href=\"http://baike.so.com/doc/2461402-2601676.html\" target=\"_blank\">自传体小说</a><span style=\"font-size: 14px;\">三部曲中的第三部，也是高尔基《人生三部曲》之一。其余两部为《童年》、《在人间》。作者描写了他青年时代的生活经历。从这个被真实记述下来的过程中，我们可以看出青少年时代的高尔基对</span><a href=\"http://baike.so.com/doc/3416870-3596296.html\" target=\"_blank\">小市民</a><span style=\"font-size: 14px;\">习气的</span><a href=\"http://baike.so.com/doc/455712-482551.html\" target=\"_blank\">深恶痛绝</a><span style=\"font-size: 14px;\">，对自由的热烈追求，对美好生活的强烈向往，在生活底层与劳苦大众的直接接触，深入社会，接受革命者思想影响和如饥似渴地从书籍中汲取知识养料使他得以成长，从生活底层攀上文化高峰的重要条件。</span><br></p>','读高尔基书有感',6,1493899628,2,0,0,'',1,97,0,1);
 
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
@@ -148,7 +148,8 @@ LOCK TABLES `article-zf` WRITE;
 
 INSERT INTO `article-zf` (`id`, `userId`, `z`, `f`, `time`, `articleId`)
 VALUES
-	(2,5,1,0,1494403102,8);
+	(2,5,1,0,1494403102,8),
+	(4,5,1,0,1494472394,6);
 
 /*!40000 ALTER TABLE `article-zf` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -245,7 +246,9 @@ LOCK TABLES `comment_article` WRITE;
 
 INSERT INTO `comment_article` (`id`, `articleId`, `comment`, `time`, `userId`, `parent`, `subcom`)
 VALUES
-	(36,8,'fdas',1494400003,5,0,0);
+	(36,8,'fdas',1494400003,5,0,0),
+	(37,6,'冯绍峰官方',1494472002,5,0,0),
+	(38,6,'1',1494472067,5,37,37);
 
 /*!40000 ALTER TABLE `comment_article` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -274,7 +277,8 @@ VALUES
 	(4,3,'图片真不错',1493732654,6,0),
 	(5,3,'写的不错',1493732723,7,0),
 	(6,3,'美女好看',1494383021,5,0),
-	(15,4,'还是remove()好用',1494390572,5,0);
+	(15,4,'还是remove()好用',1494390572,5,0),
+	(20,4,'r',1494494102,5,0);
 
 /*!40000 ALTER TABLE `comment_write` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -302,7 +306,9 @@ VALUES
 	(2,5,7,1,'fd'),
 	(4,7,5,4,'678'),
 	(5,6,5,3,'123'),
-	(6,5,6,1,'请求');
+	(6,5,6,1,'请求'),
+	(9,5,23,1,''),
+	(10,23,5,9,'');
 
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -320,7 +326,7 @@ CREATE TABLE `friend_request` (
   `status` tinyint(4) NOT NULL COMMENT '0等待 1同意  2拒绝',
   `time` int(11) NOT NULL,
   `actTime` int(11) DEFAULT NULL COMMENT '操作时间',
-  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '附加消息',
+  `remark` varchar(255) DEFAULT '' COMMENT '附加消息',
   `read` tinyint(4) NOT NULL COMMENT '0未读  1已读',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -330,19 +336,9 @@ LOCK TABLES `friend_request` WRITE;
 
 INSERT INTO `friend_request` (`id`, `userId`, `friendId`, `status`, `time`, `actTime`, `remark`, `read`)
 VALUES
-	(1,6,5,2,1492753298,NULL,'gfds',1),
+	(1,23,5,1,1492753298,1494489457,'gfds',1),
 	(2,5,7,2,1492753298,1492753298,'dd',1),
-	(3,6,5,2,1492753298,NULL,'gfds',1),
-	(4,5,7,2,1492753298,1492753298,'dd',1),
-	(5,6,5,2,1492753298,NULL,'gfds',1),
-	(6,5,7,2,1492753298,1492753298,'dd',1),
-	(7,6,5,2,1492753298,NULL,'gfds',1),
-	(8,5,7,2,1492753298,1492753298,'dd',1),
-	(9,6,5,2,1492753298,NULL,'gfds',1),
-	(10,5,7,2,1492753298,1492753298,'dd',1),
-	(11,6,5,2,1492753298,NULL,'gfds',1),
-	(12,5,7,2,1492753298,1492753298,'dd',1),
-	(13,6,5,2,1492753298,NULL,'gfds',1);
+	(15,5,22,0,1494475574,NULL,'fr',0);
 
 /*!40000 ALTER TABLE `friend_request` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -457,6 +453,35 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table log
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `log`;
+
+CREATE TABLE `log` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `acterId` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL DEFAULT '',
+  `time` int(11) NOT NULL,
+  `lianjie` varchar(500) NOT NULL DEFAULT '',
+  `status` tinyint(4) NOT NULL COMMENT '0唯独1已读',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `log` WRITE;
+/*!40000 ALTER TABLE `log` DISABLE KEYS */;
+
+INSERT INTO `log` (`id`, `userId`, `acterId`, `content`, `time`, `lianjie`, `status`)
+VALUES
+	(1,5,6,'123',0,'',0),
+	(2,5,23,'456',0,'',0),
+	(4,6,5,'评论了你的说说',1494494102,'',0);
+
+/*!40000 ALTER TABLE `log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table mail
 # ------------------------------------------------------------
 
@@ -480,11 +505,20 @@ DROP TABLE IF EXISTS `mail-password`;
 CREATE TABLE `mail-password` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(225) NOT NULL DEFAULT '',
-  `state` tinyint(4) NOT NULL,
+  `state` tinyint(4) NOT NULL COMMENT '0未激活1已激活2已失效',
   `time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `mail-password` WRITE;
+/*!40000 ALTER TABLE `mail-password` DISABLE KEYS */;
+
+INSERT INTO `mail-password` (`id`, `email`, `state`, `time`)
+VALUES
+	(14,'376522507@qq.com',1,1494469160);
+
+/*!40000 ALTER TABLE `mail-password` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table notify
@@ -494,7 +528,7 @@ DROP TABLE IF EXISTS `notify`;
 
 CREATE TABLE `notify` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `article_z` tinyint(4) NOT NULL COMMENT '评论了文章',
+  `care_f` tinyint(4) NOT NULL COMMENT '评论了文章',
   `comment_a` tinyint(4) NOT NULL COMMENT '回复我的评论',
   `write_z` tinyint(11) NOT NULL COMMENT '评论了说说',
   `friend` tinyint(11) NOT NULL COMMENT '添加好友',
@@ -506,9 +540,9 @@ CREATE TABLE `notify` (
 LOCK TABLES `notify` WRITE;
 /*!40000 ALTER TABLE `notify` DISABLE KEYS */;
 
-INSERT INTO `notify` (`id`, `article_z`, `comment_a`, `write_z`, `friend`, `comment_w`, `userId`)
+INSERT INTO `notify` (`id`, `care_f`, `comment_a`, `write_z`, `friend`, `comment_w`, `userId`)
 VALUES
-	(1,0,0,1,1,0,5),
+	(1,1,0,1,1,1,5),
 	(2,0,0,0,0,0,19),
 	(3,0,0,0,0,0,20),
 	(4,0,0,0,0,0,21),
@@ -643,7 +677,28 @@ VALUES
 	(2,5,5),
 	(3,5,5),
 	(4,5,5),
-	(5,5,5);
+	(5,5,5),
+	(6,22,5),
+	(7,22,5),
+	(8,22,5),
+	(9,22,5),
+	(10,22,5),
+	(11,22,5),
+	(12,22,5),
+	(13,22,5),
+	(14,22,5),
+	(15,22,5),
+	(16,22,5),
+	(17,5,5),
+	(18,5,5),
+	(19,22,5),
+	(20,22,5),
+	(21,7,5),
+	(22,7,5),
+	(23,22,5),
+	(24,22,5),
+	(25,22,5),
+	(26,5,5);
 
 /*!40000 ALTER TABLE `visit` ENABLE KEYS */;
 UNLOCK TABLES;

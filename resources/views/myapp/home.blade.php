@@ -12,15 +12,15 @@
     <div class="content">
         <div class="personal-detail">
             <div class="person-img">
-                <img src="{{ URL::asset('/image/upload/'.$user->image['name']) }}">
-                @if($user['id'] != session('user') && !$isFriend)
-                    <a href="javascript:addFriend({{$user['id']}})" class="personal-add-attention">添加好友</a>
-                @elseif($isFriend)
-                    <a href="javascript:addFriend({{$user['id']}})" class="personal-add-attention">删除好友</a>
+                <img src="{{ URL::asset('/image/upload/'.$user2->image['name']) }}">
+                @if($user2['id'] != session('user') && !$isFriend)
+                    <a href="javascript:addFriend({{$user2['id']}})" class="personal-add-attention">添加好友</a>
+                {{--@elseif($user['id'] != session('user') && $isFriend)--}}
+                    {{--<a href="javascript:addFriend({{$user['id']}})" class="personal-add-attention">删除好友</a>--}}
                 @endif
             </div>
             <div class="personal-name">
-                <h1>{{ $user['name'] }}</h1>
+                <h1>{{ $user2['name'] }}</h1>
             </div>
             <div class="personal-desc">
                 <span class="pf">1 篇说说</span>
@@ -139,14 +139,14 @@
                             @endforeach
                         </div>
                         <div class="comment-input comment-input{{$v['id']}}">
-                            <img src="{{ URL::asset('/image/upload/' . $user->image['name']) }}">
+                            <img src="{{ URL::asset('/image/upload/' . $user2->image['name']) }}">
                             <span type="text" class="input-show input-show{{$v['id']}}" onclick="showComment(this)">写下你的评论 ...</span>
                             <div class="comment-input-detial comment-input-detial{{$v['id']}}" style="display: none">
                                 <textarea class="write write{{$v['id']}}"></textarea>
                                 <div class="f-bottom">
                                     <span href=""><i class=""></i></span>
                                     <span href="">@</span>
-                                    <a href="javascript:submitComment('{{ $v['id'] }}', '{{$user['name']}}', '{{$user->image['name']}}')" class="submit" ><i class="glyphicon glyphicon-send"></i>&nbsp;发布</a>
+                                    <a href="javascript:submitComment('{{ $v['id'] }}', '{{$user2['name']}}', '{{$user2->image['name']}}')" class="submit" ><i class="glyphicon glyphicon-send"></i>&nbsp;发布</a>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +168,7 @@
                                 性别
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['sex'] == 1 ? '男' : ($user->set['sex'] == 0 ? '女' : '保密')}}</aside>
+                                <aside>{{$user2->set['sex'] == 1 ? '男' : ($user2->set['sex'] == 0 ? '女' : '保密')}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -176,7 +176,7 @@
                                 年龄
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['age'] ? $user->set['age'] : '.'}}</aside>
+                                <aside>{{$user2->set['age'] ? $user2->set['age'] : '.'}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -184,7 +184,7 @@
                                 手机
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['tel'] ? $user->set['tel'] : '.'}}</aside>
+                                <aside>{{$user2->set['tel'] ? $user2->set['tel'] : '.'}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -192,7 +192,7 @@
                                 邮箱
                             </div>
                             <div class="control">
-                                <aside>{{$user['email'] ? $user['email'] : '.'}}</aside>
+                                <aside>{{$user2['email'] ? $user2['email'] : '.'}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -200,7 +200,7 @@
                                 公司
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['company'] ? $user->set['company'] : '.'}}</aside>
+                                <aside>{{$user2->set['company'] ? $user2->set['company'] : '.'}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -208,7 +208,7 @@
                                 职位
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['zw'] ? $user->set['zw'] : '.'}}</aside>
+                                <aside>{{$user2->set['zw'] ? $user2->set['zw'] : '.'}}</aside>
                             </div>
                         </div>
                     </div>
@@ -225,7 +225,7 @@
                                 家乡
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['home'] ? $user->set['home'] : '.'}}</aside>
+                                <aside>{{$user2->set['home'] ? $user2->set['home'] : '.'}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -233,7 +233,7 @@
                                 大学
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['college'] ? $user->set['college'] : '.'}}</aside>
+                                <aside>{{$user2->set['college'] ? $user2->set['college'] : '.'}}</aside>
                             </div>
                         </div>
                         <div class="setting-main-item">
@@ -241,7 +241,7 @@
                                 现居住地
                             </div>
                             <div class="control">
-                                <aside>{{$user->set['jz'] ? $user->set['jz'] : '.'}}</aside>
+                                <aside>{{$user2->set['jz'] ? $user2->set['jz'] : '.'}}</aside>
                             </div>
                         </div>
                     </div>
@@ -359,5 +359,26 @@
             // $('.comment-input-detial').show();
             $(elem).hide();
         };
+
+        var addFriend = function(id){
+            layer.prompt({title: '请输入附加消息'}, function(val, index){
+                $.ajax({
+                    url: '/friend/send',
+                    type: 'POST',
+                    data: {
+                        'friendId' : id,
+                        'remark': val
+                    },
+                    success: function(){
+                        commonMsg('好友请求已发送', 6);
+                    },
+                    error: function(data) {
+                        data = eval('(' + data.responseText + ')');
+                        layer.msg(data['msg']);
+                    }
+                });
+                layer.close(index);
+            });
+        }
     </script>
 @endsection

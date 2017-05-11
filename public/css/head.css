@@ -215,9 +215,8 @@ body {
 
 
 .head-me .menu2 .nav_notify_list {
-    padding: 10px 0;
+    padding: 5px 0;
 }
-
 .head-me .menu2 .nav_notify_list_tip {
     width: 100%;
     text-align: center;
@@ -240,7 +239,7 @@ body {
 .nav_notify_item {
     line-height: normal;
     color: #525558;
-    padding: 5px 10px 15px;
+    padding: 7px 10px 5px;
     border-bottom: 1px solid #f3f3f3;
     position: relative;
 }

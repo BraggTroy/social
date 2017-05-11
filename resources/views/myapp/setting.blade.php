@@ -169,7 +169,7 @@
                             </div>
                             <div class="setting-main-item line">
                                 <div class="desc">
-                                    有人赞了我的说说
+                                    有人转载了我的说说
                                 </div>
                                 <div class="com_checkbox">
                                     <input type="checkbox" id="is_receive_mail_reply" class="cbx hidden write_z" name="cbx" <?php if($notify['write_z']){ ?>checked<?php } ?>>
@@ -187,10 +187,10 @@
                             </div>
                             <div class="setting-main-item line">
                                 <div class="desc">
-                                    有点赞了我的文章
+                                    特别关心的人发布了文章或说说
                                 </div>
                                 <div class="com_checkbox">
-                                    <input type="checkbox" id="is_receive_mail_recommend" class="cbx hidden article_z" name="cbx" <?php if($notify['article_z']){ ?>checked<?php } ?>>
+                                    <input type="checkbox" id="is_receive_mail_recommend" class="cbx hidden care_f" name="cbx" <?php if($notify['care_f']){ ?>checked<?php } ?>>
                                     <label for="is_receive_mail_recommend" class="lbl"><after></after></label>
                                 </div>
                             </div>
@@ -374,7 +374,7 @@
             var data = {
                 'comment_a': $('.comment_a').prop('checked')?1:0,
                 'comment_w': $('.comment_w').prop('checked')?1:0,
-                'article_z': $('.article_z').prop('checked')?1:0,
+                'care_f': $('.care_f').prop('checked')?1:0,
                 'write_z': $('.write_z').prop('checked')?1:0,
                 'friend': $('.friend').prop('checked')?1:0
             };

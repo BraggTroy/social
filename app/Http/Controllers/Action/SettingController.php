@@ -21,12 +21,12 @@
 
         public function setNotify(Request $request)
         {
-            $article = $this->inputGet('article_z');
+            $care = $this->inputGet('care_f');
             $write = $this->inputGet('write_z');
             $comment_a = $this->inputGet('comment_a');
             $comment_w = $this->inputGet('comment_w');
             $friend = $this->inputGet('friend');
-            if(!Notify::changeNotify($article, $write, $comment_a, $comment_w, $friend)){
+            if(!Notify::changeNotify($care, $write, $comment_a, $comment_w, $friend)){
                 throw new TMException('50010');
             }
         }

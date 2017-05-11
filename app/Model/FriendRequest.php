@@ -20,6 +20,7 @@
             $request->remark = $remark;
             $request->read = 0;
             $request->save();
+            return $request;
         }
 
         public static function updateRequest($userId, $friendId, $status, $time)
@@ -32,12 +33,26 @@
 
         public static function getRequestByFriendId($friendId)
         {
-            return FriendRequest::where('friendId', $friendId)->get();
+            $res =  FriendRequest::where('friendId', $friendId)->orWhere(function($query) use($friendId){
+                $query->where('userId', $friendId)->where('status','<>',0);
+            })->orderBy('id', 'desc')->paginate(5);
+
+            $ids = [];
+            foreach ($res as $v) {
+                $ids[] = $v['id'];
+            }
+            self::msgRead($ids);
+            return $res;
         }
 
         public static function getRequestByUserId($userId)
         {
-            return FriendRequest::where('userId', $userId)->get();
+            return FriendRequest::where('userId', $userId)->paginate(1);
+        }
+
+        public static function getByUFId($friendId)
+        {
+            return FriendRequest::where('userId', session('user'))->where('friendId', $friendId)->orderBy('id', 'desc')->first();
         }
 
         public static function refuseFriend($uid)

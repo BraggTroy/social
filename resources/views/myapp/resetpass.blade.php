@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>密码找回</title>
+    <title>重置密码</title>
 
     <link rel="shortcut icon" href="http://www.zi-han.net/theme/hplus/favicon.ico">
     <link rel="stylesheet" href="{{ URL::asset('/layui/css/layui.css') }}">
@@ -48,10 +48,12 @@
         @endif
         <h1 style="margin-top: 50px;"></h1>
         <div class="form-group">
-            <input type="email" name="email" class="email form-control" placeholder="请输入注册邮箱" value="{{ old('name') }}" required>
+            <input type="password" name="password" class="password p1 form-control" placeholder="请输入新密码" required>
         </div>
-
-        <button type="submit" style="margin-top: 20px;margin-bottom: 20px" class="btn btn-primary block full-width m-b" onclick="login()">找回密码</button>
+        <div class="form-group">
+            <input type="password" name="password" class="password p2 form-control" placeholder="请再次输入密码" required>
+        </div>
+        <button type="submit" style="margin-top: 20px;margin-bottom: 20px" class="btn btn-primary block full-width m-b" onclick="login()">重置</button>
 
 
         <p class="text-muted text-center">
@@ -69,25 +71,38 @@
 <script src="{{ URL::asset('/layui/layui.js') }}"></script>
 <script>
     var login = function() {
-        var emailpattern = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/;
-        if (!emailpattern.test($('.email').val())) {
+        if ($('.p1').val().length < 6){
             layui.use(['layer'], function(){
                 var layer = layui.layer;
-                layer.msg('邮箱格式错误')
+                layer.msg('密码长度必须大于6位')
+            });
+            return;
+        }
+        if ($('.p1').val() != $('.p2').val()){
+            layui.use(['layer'], function(){
+                var layer = layui.layer;
+                layer.msg('两次密码不一样')
             });
             return;
         }
         $.ajax({
             type: 'POST',
-            url: '/passwd/forget',
+            url: document.URL,
             data: {
-                'email' : $('.email').val()
+                'pass' : $('.p2').val(),
             },
             beforeSend: function() {
                 load();
             },
             success: function(){
-                layer.alert('发送成功，请及时查收');
+                layui.use(['layer'], function(){
+                    var layer = layui.layer;
+                    layer.closeAll('loading');
+                    layer.msg('修改密码成功，即将跳转到登陆页');
+                    setTimeout(function(){
+                        window.location.href = '/login';
+                    },3000);
+                });
             },
             error: function(data) {
                 data = eval('(' + data.responseText + ')');

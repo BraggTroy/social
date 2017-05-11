@@ -36,7 +36,5 @@ class SendEmail implements ShouldQueue
         $mailer->send('mail.mail', ['content'=>$this->data['body']], function ($message) use($to,$title) {
             $message->to($to)->subject($title);
         });
-        // TODO  添加数据库
-        MailPassword::storeMailPassword($this->data['mail'], 0, $this->data['time']);
     }
 }

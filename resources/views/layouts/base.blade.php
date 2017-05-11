@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ URL::asset('/layui/css/layui.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/fontawesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/head.css?v=4e5rfe0') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/head.css?v=4eee5r') }}">
     @yield('css')
 </head>
 <body>
@@ -49,21 +49,38 @@
                         <strong><i class="icon-bell"></i>&nbsp;&nbsp;通知</strong>
                         <div class="menu menu2" style="display: none">
                             <div class="arrow"></div>
-                            <div class="nav_notify_tab">
-                                <div class="item on ttt-friend">
-                                        <i class="icon-user"></i>
-                                        <span class="">好友</span>
-                                </div>
-                                <div class="item ttt-msg">
-                                        <i class="icon-comment"></i>
-                                        <span>信息</span>
-                                </div>
-                            </div>
+                            {{--<div class="nav_notify_tab">--}}
+                                {{--<div class="item on ttt-friend">--}}
+                                        {{--<i class="icon-user"></i>--}}
+                                        {{--<span class="">好友</span>--}}
+                                {{--</div>--}}
+                                {{--<div class="item ttt-msg">--}}
+                                        {{--<i class="icon-comment"></i>--}}
+                                        {{--<span>信息</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="nav_notify_list_out">
                                 {{--<div class="load">--}}
                                     {{--<img src="{{URL::asset('/image/loading_google.gif')}}">--}}
                                 {{--</div>--}}
-                                <div class="nav_notify_list follow ttt-friend-flow" >
+                                {{--<div class="nav_notify_list follow ttt-friend-flow" >--}}
+                                    {{--<div class="nav_notify_list_tip">暂无新消息</div>--}}
+                                    {{--<div class="nav_notify_item ttt-add-friend">--}}
+                                        {{--<a class="avatar" target="_self" href="">--}}
+                                            {{--<img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">--}}
+                                        {{--</a>--}}
+                                        {{--<a class="name" target="_self" href="">376522507</a>--}}
+                                        {{--<span class="time"> · <em>1分钟前</em></span>--}}
+                                        {{--<p class="user">--}}
+                                            {{--<span class="job"></span>--}}
+                                            {{--<span class="da">dd</span>--}}
+                                        {{--</p>--}}
+    {{----}}
+                                        {{--<div class="follow on yyy-fri">添加</div>--}}
+                                        {{--<div class="reject on yyy-fri">拒绝</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                <div class="nav_notify_list vote ttt-msg-flow" id="lay_de1">
                                     {{--<div class="nav_notify_list_tip">暂无新消息</div>--}}
                                     <div class="nav_notify_item ttt-add-friend">
                                         <a class="avatar" target="_self" href="">
@@ -73,43 +90,9 @@
                                         <span class="time"> · <em>1分钟前</em></span>
                                         <p class="user">
                                             <span class="job"></span>
-                                            <span class="da"></span>
+                                            <span class="da">评论了你的文章</span>
                                         </p>
-
-                                        <div class="follow on yyy-fri">添加</div>
-                                        <div class="reject on yyy-fri">拒绝</div>
                                     </div>
-                                    <div class="nav_notify_item ttt-add-friend">
-                                        <a class="avatar" target="_self" href="">
-                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
-                                        </a>
-                                        <a class="name" target="_self" href="">376522507</a>
-                                        <span class="time"> · <em>1分钟前</em></span>
-                                        <p class="user">
-                                            <span class="job"></span>
-                                            <span class="da"></span>
-                                        </p>
-
-                                        <div class="follow on yyy-fri">添加</div>
-                                        <div class="reject on yyy-fri">拒绝</div>
-                                    </div>
-                                    <div class="nav_notify_item ttt-add-friend">
-                                        <a class="avatar" target="_self" href="">
-                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
-                                        </a>
-                                        <a class="name" target="_self" href="">376522507</a>
-                                        <span class="time"> · <em>1分钟前</em></span>
-                                        <p class="user">
-                                            <span class="job"></span>
-                                            <span class="da"></span>
-                                        </p>
-
-                                        <div class="follow on yyy-fri">添加</div>
-                                        <div class="reject on yyy-fri">拒绝</div>
-                                    </div>
-                                </div>
-                                <div class="nav_notify_list vote ttt-msg-flow" style="display: none;">
-                                    <div class="nav_notify_list_tip">暂无新消息</div>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +116,40 @@
     <script src="{{ URL::asset('/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
-    <script src="{{ URL::asset('/js/head.js?v=4dffk7f') }}"></script>
+    <script src="{{ URL::asset('/js/head.js?v=4dffk7eef') }}"></script>
+    <script>
+        layui.use('flow', function() {
+            var flow = layui.flow;
+
+            flow.load({
+                elem: '#lay_de1' //流加载容器
+                , done: function (page, next) { //执行下一页的回调
+                    $.post('/log/scan', {
+                        page: page || 1
+                    }, function(res){
+                        res = eval("("+res+")");
+                        var lis = [];
+                        layui.each(res.data, function(index, item){
+                            lis[index] = '<div class="nav_notify_item ttt-add-friend"><a class="avatar" target="_self" href=""><img src="/image/upload/'+item['image']+'"></a><a class="name" target="_self" href="">'+item['name']+'</a><span class="time"> · <em>'+item['time']+'</em></span><p class="user"><span class="job"></span><span class="da">'+item['content']+'</span></p></div>'
+                        });
+                        next(lis.join(''), page < res.pages);
+                    });
+                }
+            });
+        });
+
+        layui.use('layer', function() {
+            var layer = layui.layer;
+            layer.open({
+                type: 2,
+                title: '说说',
+                area: ['800px', '630px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '/write/sf/4'
+            });
+        });
+    </script>
     @yield('js')
 </body>
 </html>

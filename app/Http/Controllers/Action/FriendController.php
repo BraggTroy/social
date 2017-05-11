@@ -5,6 +5,7 @@
     use App\Http\Controllers\Exception\TMException;
     use App\Model\Friend;
     use App\Model\FriendGroup;
+    use App\Model\FriendRequest;
     use App\Model\User;
     use Illuminate\Http\Request;
 
@@ -82,6 +83,49 @@
             if(!Friend::changeNameById($id, $name)){
                 throw new TMException('5008');
             }
+        }
+
+        public function addFriend(Request $request)
+        {
+            $friendId = $request->input('friendId');
+            $remark = $request->input('remark');
+            $fr = FriendRequest::getByUFId($friendId);
+            if ($fr) {
+                if ($fr['status'] == 0) {
+                    $fr->time = time();
+                    $fr->remark = $remark;
+                    $fr->save();
+                }else {
+                    if(!FriendRequest::addRequest(session('user'), $friendId, time(), $remark)){
+                        throw new TMException('50019');
+                    }
+                }
+            }else {
+                if(!FriendRequest::addRequest(session('user'), $friendId, time(), $remark)){
+                    throw new TMException('50019');
+                }
+            }
+        }
+
+        public function agreeFriend(Request $request)
+        {
+            $fid = $request->input('uid');
+            $group = $request->input('group');
+            $arr = [];
+            $arr['friendId'] = $fid;
+            $arr['groupId-b'] = $group;
+            $arr['groupId-f'] = FriendGroup::getDefault($fid)['id'];
+            $arr['nickname-b'] = '';
+            $arr['nickname-f'] = '';
+            Friend::addFriend($arr);
+            FriendRequest::updateRequest($fid, session('user'), 1, time());
+        }
+
+        public function refuseFriend(Request $request)
+        {
+            $fid = $request->input('uid');
+            $user = session('user');
+            FriendRequest::updateRequest($fid, $user, 2, time());
         }
 
     }

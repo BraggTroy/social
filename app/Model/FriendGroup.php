@@ -42,4 +42,9 @@
             return $this->hasMany('App\Model\Friend','groupId', 'id');
         }
 
+        public static function getDefault($id)
+        {
+            return FriendGroup::where('userId', $id)->first();
+        }
+
     }

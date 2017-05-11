@@ -4,6 +4,7 @@
     use App\Events\ArticleReadEvent;
     use App\Http\Controllers\Controller;
     use App\Http\Controllers\Exception\TMException;
+    use App\Jobs\SendEmail;
     use App\Model\Article;
     use App\Model\ArticleWrite_Time;
     use App\Model\ArticleZF;
@@ -46,8 +47,9 @@
                 }
             }
             $user = User::getUserById(session('user'));
+            $azf = ArticleZF::getByUserId($id);
 //            dd($zi);
-            return view('myapp.article_detail',['article' => $article, 'user' => $user, 'gen' => $gen, 'zi' => $zi]);
+            return view('myapp.article_detail',['article' => $article, 'user' => $user, 'gen' => $gen, 'zi' => $zi, 'azf'=>$azf]);
         }
 
         public function subCom(Request $request)
@@ -59,6 +61,19 @@
             $data['subcom'] = $request->input('commentId');
             $data['time'] = time();
             $com = CommentArticle::store($data);
+
+            $article = Article::getArticleById($data['articleId']);
+            if ($article->user->notify['comment_a'] == 1) {
+                $user = User::getUserById(session('user'));
+                $d = [];
+                $d['mail'] = $article->user['email'];
+                $d['title'] = '你发布的文章有新评论了';
+                $d['body'] = $user['name'] . ' 评论了你的文章，快去看看吧。http://social.cn/show/'.$data['articleId'];
+                $this->dispatch(new SendEmail($d));
+            }
+
+
+
             return json_encode(['time'=>date('Y-m-d H:i:s', $com['time']), 'id'=>$com['id']]);
         }
 

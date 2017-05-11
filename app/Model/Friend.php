@@ -37,15 +37,15 @@
         {
             $friend = new Friend();
             $friend->userId = session('user');
-            $friend->firendId = $arr['friendId'];
-            $friend->groupId = $arr['groupId'];
-            $friend->nickname = $arr['nickname'];
+            $friend->friendId = $arr['friendId'];
+            $friend->groupId = $arr['groupId-b'];
+            $friend->nickname = $arr['nickname-b'];
             $friend->save();
             $friend1 = new Friend();
             $friend1->userId = $arr['friendId'];
-            $friend1->firendId = session('user');
-            $friend1->groupId = $arr['groupId'];
-            $friend1->nickname = $arr['nickname'];
+            $friend1->friendId = session('user');
+            $friend1->groupId = $arr['groupId-f'];
+            $friend1->nickname = $arr['nickname-f'];
             $friend1->save();
             return $friend;
         }

@@ -100,6 +100,11 @@
             return Write::whereIn('id', $write_ids)->get();
         }
 
+        public static function getWriteById($write_id)
+        {
+            return Write::where('id', $write_id)->first();
+        }
+
         public function image()
         {
             return $this->hasMany('App\Model\ImageWrite', 'writeId', 'id');
