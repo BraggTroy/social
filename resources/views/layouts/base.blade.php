@@ -82,17 +82,18 @@
                                 {{--</div>--}}
                                 <div class="nav_notify_list vote ttt-msg-flow" id="lay_de1">
                                     {{--<div class="nav_notify_list_tip">暂无新消息</div>--}}
-                                    <div class="nav_notify_item ttt-add-friend">
-                                        <a class="avatar" target="_self" href="">
-                                            <img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">
-                                        </a>
-                                        <a class="name" target="_self" href="">376522507</a>
-                                        <span class="time"> · <em>1分钟前</em></span>
-                                        <p class="user">
-                                            <span class="job"></span>
-                                            <span class="da">评论了你的文章</span>
-                                        </p>
-                                    </div>
+                                    {{--<div class="nav_notify_item ttt-add-friend">--}}
+                                        {{--<a class="avatar" target="_self" href="">--}}
+                                            {{--<img src="https://o5wwk8baw.qnssl.com/static/image/avatar_default/avatar">--}}
+                                        {{--</a>--}}
+                                        {{--<a class="name" target="_self" href="">376522507</a>--}}
+                                        {{--<span class="time"> · <em>1分钟前</em></span>--}}
+                                        {{--<p class="user" style="margin-top: 3px">--}}
+                                            {{--<span class="job"></span>--}}
+                                            {{--<span class="da">评论了你的文章</span>--}}
+                                            {{--<span class="head-see" onclick="" style="cursor:pointer;float: right;font-size: 10px;display: none">查看</span>--}}
+                                        {{--</p>--}}
+                                    {{--</div>--}}
                                 </div>
                             </div>
                         </div>
@@ -116,7 +117,7 @@
     <script src="{{ URL::asset('/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/layui/layui.js') }}"></script>
-    <script src="{{ URL::asset('/js/head.js?v=4dffk7eef') }}"></script>
+    <script src="{{ URL::asset('/js/head.js?v=4ee44f') }}"></script>
     <script>
         layui.use('flow', function() {
             var flow = layui.flow;
@@ -130,7 +131,7 @@
                         res = eval("("+res+")");
                         var lis = [];
                         layui.each(res.data, function(index, item){
-                            lis[index] = '<div class="nav_notify_item ttt-add-friend"><a class="avatar" target="_self" href=""><img src="/image/upload/'+item['image']+'"></a><a class="name" target="_self" href="">'+item['name']+'</a><span class="time"> · <em>'+item['time']+'</em></span><p class="user"><span class="job"></span><span class="da">'+item['content']+'</span></p></div>'
+                            lis[index] = '<div class="nav_notify_item ttt-add-friend"><a class="avatar" target="_self" href=""><img src="/image/upload/'+item['image']+'"></a><a class="name" target="_self" href="">'+item['name']+'</a><span class="time"> · <em>'+item['time']+'</em></span><p class="user"><span class="job"></span><span class="da">'+item['content']+'</span><span class="head-see" onclick="showWrite(\''+item['lianjie']+'\')" style="cursor:pointer;float: right;font-size: 10px;display: none">查看</span></p></div>'
                         });
                         next(lis.join(''), page < res.pages);
                     });
@@ -138,17 +139,33 @@
             });
         });
 
-        layui.use('layer', function() {
-            var layer = layui.layer;
-            layer.open({
-                type: 2,
-                title: '说说',
-                area: ['800px', '630px'],
-                fixed: false, //不固定
-                maxmin: true,
-                content: '/write/sf/4'
-            });
+        $('#lay_de1').on('mouseenter', '.ttt-add-friend', function(){
+            //鼠标移入
+            $(this).find('.head-see').css('display','block');
+        }).on('mouseleave', '.ttt-add-friend', function(){
+            //鼠标移出
+            $(this).find('.head-see').css('display','none');
         });
+
+        var showWrite = function(lianjie){
+            var f = lianjie.indexOf("/show");
+            if (f == 0) {
+                window.location.href = lianjie;
+            }else {
+                layui.use('layer', function() {
+                    var layer = layui.layer;
+                    layer.open({
+                        type: 2,
+                        title: '说说',
+                        area: ['800px', '500px'],
+                        fixed: false, //不固定
+                        maxmin: true,
+                        content: lianjie
+                    });
+                });
+            }
+
+        };
     </script>
     @yield('js')
 </body>

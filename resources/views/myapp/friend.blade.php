@@ -193,7 +193,7 @@
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
-                area: ['420px', 'auto'], //宽高
+                area: ['420px', '200px'], //宽高
                 content: '<center><?php
                     $f = new \App\Http\Controllers\Action\FriendController();
                     $group = $f->getGroupByUser(session('user'));
@@ -201,7 +201,8 @@
                     echo $group[0]['name'];
                     echo '<span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
                     foreach ($group as $v){
-                        echo '<li><a href="#" value="'.$v['id'].'">'.$v['name'].'</a></li>';
+                        echo '<li><a href="javascript:sel('.$v['id'].','.$v['name'].')"  value="'.$v['id'].'">'.$v['name'].'</a></li>';
+
                     }
                     echo '</ul></div>';
                 ?></center>',
@@ -209,6 +210,12 @@
             }, function() {
 
             });
+        };
+
+        var sel = function(elem,id,name){
+            console.log(elem);
+            $('.dropdown-toggle').attr('value', id);
+            $('.dropdown-toggle').html(name+'<span class="caret"></span>');
         };
 
         var delFriend = function(elem, $uid, $fid){

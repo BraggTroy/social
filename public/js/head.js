@@ -25,7 +25,7 @@ $('.head-me').children('ul').children('li').children('strong').click(function() 
 layui.use('layim', function(layim){
 
     // websocket
-    var ws = new WebSocket('ws://127.0.0.1:8282');
+    var ws = new WebSocket('ws://192.168.200.200:8282');
     // 链接成功时
     ws.onopen = function(){
         var uid = $('#userId').val();
@@ -86,7 +86,7 @@ layui.use('layim', function(layim){
         //,isfriend: false //是否开启好友
         ,isgroup: false //是否开启群组
         //,min: true //是否始终最小化主面板，默认false
-        // ,notice: true //是否开启桌面消息提醒，默认false
+        ,notice: true //是否开启桌面消息提醒，默认false
         //,voice: false //声音提醒，默认开启，声音文件为：default.wav
 
         ,msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.html?v=3e12' //消息盒子页面地址，若不开启，剔除该项即可

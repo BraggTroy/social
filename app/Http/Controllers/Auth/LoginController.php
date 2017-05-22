@@ -46,6 +46,9 @@ class LoginController extends Controller
     {
         $user = User::findUserByEmail($request->input('email'));
         if ($user) {
+            if ($user['statee'] == 1) {
+                throw new TMException('50020');
+            }
             if ($user['password'] == trim($request->input('password'))) {
                 \Session::put('user',$user['id']);
 //                return Redirect::to('/index');

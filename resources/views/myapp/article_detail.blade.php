@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/article_detail.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/article_detail.css?v=4') }}">
 @endsection
 
 @section('content')

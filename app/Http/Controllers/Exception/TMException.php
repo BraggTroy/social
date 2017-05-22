@@ -89,6 +89,9 @@
                 case 50019:
                     $message = '发送失败，请稍后重试';
                     break;
+                case 50020:
+                    $message = '该用户已经被禁用';
+                    break;
             }
             return $message;
         }

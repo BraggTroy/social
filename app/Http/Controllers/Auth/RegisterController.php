@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Exception\TMException;
+use App\Jobs\SendEmail;
 use App\Model\Album;
 use App\Model\FriendGroup;
 use App\Model\Notify;
@@ -58,6 +59,12 @@ class RegisterController extends Controller
             FriendGroup::addGroup($user['id']);
             Album::createAlbum($user['id']);
             UserSetting::addSet($user['id']);
+
+            $d = [];
+            $d['mail'] = $user['email'];
+            $d['title'] = '点击激活';
+            $d['body'] = 'http://social.cn/jihuo/'.$user['id'];
+            $this->dispatch(new SendEmail($d));
         }
 
     }

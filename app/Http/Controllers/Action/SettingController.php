@@ -3,10 +3,12 @@
 
     use App\Http\Controllers\Controller;
     use App\Http\Controllers\Exception\TMException;
+    use App\Jobs\SendEmail;
     use App\Model\Notify;
     use App\Model\User;
     use App\Model\UserSetting;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Response;
 
     class SettingController extends Controller
     {
@@ -68,5 +70,24 @@
             if(!User::setPasswd($old, $new)){
                 throw new TMException('50017');
             }
+        }
+
+        public function jihuo($id)
+        {
+            $user = User::find($id);
+            $user->state = 1;
+            $user->save();
+            return Response::view('errors.503', ['message' => '账号已激活'], 200);
+        }
+
+        public function send(Request $request)
+        {
+            $id = $request->input('id');
+            $user = User::find($id);
+            $d = [];
+            $d['mail'] = $user['email'];
+            $d['title'] = '点击激活';
+            $d['body'] = 'http://social.cn/jihuo/'.$user['id'];
+            $this->dispatch(new SendEmail($d));
         }
     }

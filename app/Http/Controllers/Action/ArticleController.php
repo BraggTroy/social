@@ -9,6 +9,7 @@
     use App\Model\ArticleWrite_Time;
     use App\Model\ArticleZF;
     use App\Model\CommentArticle;
+    use App\Model\SocialLog;
     use App\Model\User;
     use Illuminate\Http\Request;
 
@@ -62,6 +63,16 @@
             $data['time'] = time();
             $com = CommentArticle::store($data);
 
+            
+            if ($data['parent']) {
+                $user = User::getUserById(session('user'));
+                $d = [];
+                $d['mail'] = CommentArticle::find($data['parent'])->user['email'];
+                $d['title'] = '有人回复了你的评论';
+                $d['body'] = $user['name'] . ' 回复了你的评论，快去看看吧';
+                $this->dispatch(new SendEmail($d));
+            }
+
             $article = Article::getArticleById($data['articleId']);
             if ($article->user->notify['comment_a'] == 1) {
                 $user = User::getUserById(session('user'));
@@ -71,8 +82,7 @@
                 $d['body'] = $user['name'] . ' 评论了你的文章，快去看看吧。http://social.cn/show/'.$data['articleId'];
                 $this->dispatch(new SendEmail($d));
             }
-
-
+            SocialLog::addLog($article->user['id'], '评论了你的文章', '/show/'.$data['articleId']);
 
             return json_encode(['time'=>date('Y-m-d H:i:s', $com['time']), 'id'=>$com['id']]);
         }
@@ -80,6 +90,7 @@
         public function zan(Request $request)
         {
             $articleId = $request->input('articleId');
+            $article = Article::getArticleById($articleId);
             $azf = ArticleZF::getByUserId($articleId);
             if ($azf) {
                 if ($azf['z'] == 1) {
@@ -92,6 +103,7 @@
                     $art->fandui = $art['fandui'] - 1;
                     $art->zan = $art['zan'] + 1;
                     $art->save();
+                    SocialLog::addLog($article->user['id'], '点赞了你的文章', '/show/'.$articleId);
                     return 2;
                 }
             }else {
@@ -99,6 +111,7 @@
                 $art = Article::getArticleById($articleId);
                 $art->zan = $art['zan'] + 1;
                 $art->save();
+                SocialLog::addLog($article->user['id'], '点赞了你的文章', '/show/'.$articleId);
                 return 1;
             }
         }
@@ -106,6 +119,7 @@
         public function fandui(Request $request)
         {
             $articleId = $request->input('articleId');
+            $article = Article::getArticleById($articleId);
             $azf = ArticleZF::getByUserId($articleId);
             if ($azf) {
                 if ($azf['f'] == 1) {
@@ -118,6 +132,7 @@
                     $art->fandui = $art['fandui'] + 1;
                     $art->zan = $art['zan'] - 1;
                     $art->save();
+                    SocialLog::addLog($article->user['id'], '反对了你的文章', '/show/'.$articleId);
                     return 2;
                 }
             }else {
@@ -125,6 +140,7 @@
                 $art = Article::getArticleById($articleId);
                 $art->fandui = $art['fandui'] + 1;
                 $art->save();
+                SocialLog::addLog($article->user['id'], '反对了你的文章', '/show/'.$articleId);
                 return 1;
             }
         }

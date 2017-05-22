@@ -14,7 +14,7 @@ class Db
      * @var array
      */
     public static $db1 = array(
-        'host'    => '127.0.0.1',
+        'host'    => '10.12.146.75',
         'port'    => 3306,
         'user'    => 'root',
         'password' => '123456',

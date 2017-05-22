@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'myauth' => \App\Http\Middleware\MyAuth::class,
+        'admin' => \App\Http\Middleware\admin::class,
         'repass' => \App\Http\Middleware\ResetPass::class,
     ];
 }

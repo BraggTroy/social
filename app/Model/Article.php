@@ -24,6 +24,13 @@
             return Article::create($input);
         }
 
+        public static function fj($id)
+        {
+            $article = Article::find($id);
+            $article->state = $article['state'] == 0 ? 1 : 0;
+            $article->save();
+        }
+
         public function getShowArticleByUserId($userId)
         {
             $article = [];
@@ -120,5 +127,11 @@
         public function comment()
         {
             return $this->hasMany('App\Model\CommentArticle', 'articleId', 'id');
+        }
+
+
+        public static function adminGet()
+        {
+            return Article::orderBy('id', 'desc')->get();
         }
     }

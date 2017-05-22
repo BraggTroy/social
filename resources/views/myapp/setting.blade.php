@@ -21,7 +21,7 @@
                         <div class="left-1-userleft">
                             <div class="left-1-userImg">
                                 <img src="{{ URL::asset('/image/upload/'.$user->image['name']) }}">
-                                <i class="icon-camera left-1-userImg-change"></i>
+                                <i class="icon-camera left-1-userImg-change" style="cursor: pointer"></i>
                             </div>
                         </div>
                         <div class="left-1-name">
@@ -38,7 +38,7 @@
                         <li class="check" vvv="personal-zl"><i class="icon-laptop"></i> &nbsp;&nbsp;个人资料 <arr></arr></li>
                         <li vvv="email-bell"><i class="icon-bell"></i> &nbsp;&nbsp;邮件通知 <arr></arr></li>
                         <li vvv="password-reset"><i class="icon-lemon"></i> &nbsp;&nbsp;密码 <arr></arr></li>
-                        <li vvv="email-verity"><i class="icon-envelope-alt"></i> &nbsp;&nbsp;邮箱验证 <span>未验证</span><arr></arr></li>
+                        <li vvv="email-verity"><i class="icon-envelope-alt"></i> &nbsp;&nbsp;邮箱验证 @if($user['state'] == 0)<span>未验证</span>@endif<arr></arr></li>
                     </ul>
                 </div>
             </div>
@@ -261,8 +261,12 @@
                                     当前邮箱状态
                                 </div>
                                 <div class="control">
+                                    @if($user['state'] == 0)
                                     <span class="line no">未验证</span>
-                                    <span class="btn remail">重发邮件</span>
+                                    <span class="btn remail" onclick="sendemail({{session('user')}})">重发邮件</span>
+                                    @else
+                                        <span class="line no" style="color: #34bf49;">已验证</span>
+                                    @endif
                                     <aside>我们已向您的邮箱<span>{{$user['email']}}</span>发送了验证邮件，请通过邮件里的链接来进行验证。如果没有收到，可以稍后查收或到<span>垃圾箱</span>垃圾箱查看或重新发送邮件。 </aside>
                                 </div>
                             </div>
@@ -326,6 +330,22 @@
                     load();
                 }
             });
+        };
+
+        var sendemail = function(id){
+              $.ajax({
+                 url:'/email/send',
+                  type: 'post',
+                  data: {
+                     'id': id
+                  },
+                  success: function(){
+                      layui.use(['layer'], function(){
+                          var layer = layui.layer;
+                          layer.alert('发送成功，请及时查收');
+                      });
+                  }
+              });
         };
 
         var load = function() {

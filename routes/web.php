@@ -56,6 +56,7 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::post('/article/fan', 'Action\ArticleController@fandui');
 
     Route::post('/write/zan', 'Action\IndexController@zan');
+//    Route::get('/write/sf/{writeId}', 'Action\IndexController@sf');
     Route::get('/write/sf/{writeId}', 'Action\IndexController@sf');
 
 
@@ -90,7 +91,11 @@ Route::group(['middleware' => 'myauth'], function () {
     Route::post('/getmsg.json','Action\ChatController@getMsgBox');
     Route::post('/im/refuseFriend','Action\ChatController@refuseFriendRequest');
     Route::post('/message/read','Action\ChatController@readRequest');
+
+    Route::post('/email/send', 'Action\SettingController@send');
 });
+
+Route::get('/jihuo/{id}', 'Action\SettingController@jihuo');
 
 Route::get('/passwd/forget', function(){
     return view('myapp.forgetpasswd');
@@ -100,3 +105,26 @@ Route::post('/passwd/reset', 'Auth\ResetPasswordController@resetPass');
 Route::get('/passwd/reset', ['middleware'=>'repass', function(){
     return view('myapp.resetpass');
 }]);
+
+
+/**************后台*********************/
+Route::get('/admin/login', function(){return view('admin.login');});
+Route::post('/admin/login', 'Action\AdminController@login');
+
+Route::group(['middleware'=>['admin']], function(){
+    Route::get('/admin/index', 'Action\AdminController@index');
+    Route::get('/admin/book', 'Action\AdminController@book');
+    Route::get('/admin/column', 'Action\AdminController@column');
+    Route::get('/admin/list', 'Action\AdminController@list');
+    Route::get('/admin/cate', 'Action\AdminController@cate');
+    Route::get('/admin/logout', function(){\Session::put('user',null);return view('admin.login');});
+
+    Route::get('/admin/write/show/{writeId}', 'Action\AdminController@writeShow');
+    Route::get('/admin/article/show/{writeId}', 'Action\AdminController@showArticle');
+
+    Route::post('/image/fj', 'Action\AdminController@imageFj');
+    Route::post('/user/fj', 'Action\AdminController@userFj');
+    Route::post('/write/fj', 'Action\AdminController@writeFj');
+    Route::post('/article/fj', 'Action\AdminController@articleFj');
+
+});

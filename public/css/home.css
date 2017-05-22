@@ -19,7 +19,10 @@
     letter-spacing: 2px;
     font-size: 30px;
     color: #525558;
-    margin-top: -7px;
+    margin-top: -6px;
+}
+.personal-desc {
+    margin-top: 15px;
 }
 .personal-desc span{
     color: #b9c1c7;

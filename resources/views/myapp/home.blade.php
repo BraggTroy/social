@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('/css/home.css?v=6e4f') }}">
+    <link rel="stylesheet" href="{{ URL::asset('/css/home.css?v=6e4rf') }}">
 @endsection
 
 @section('content')
@@ -15,8 +15,8 @@
                 <img src="{{ URL::asset('/image/upload/'.$user2->image['name']) }}">
                 @if($user2['id'] != session('user') && !$isFriend)
                     <a href="javascript:addFriend({{$user2['id']}})" class="personal-add-attention">添加好友</a>
-                {{--@elseif($user['id'] != session('user') && $isFriend)--}}
-                    {{--<a href="javascript:addFriend({{$user['id']}})" class="personal-add-attention">删除好友</a>--}}
+                @elseif( $isFriend)
+                    <a  class="personal-add-attention">已是好友</a>
                 @endif
             </div>
             <div class="personal-name">

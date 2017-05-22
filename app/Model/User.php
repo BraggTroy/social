@@ -19,6 +19,13 @@ class User extends Authenticatable
 
     protected $fillable = ['name', 'email', 'password'];
 
+    public static function fj($id)
+    {
+        $user = User::find($id);
+        $user->statee = $user['statee'] == 1 ? 0 : 1;
+        $user->save();
+    }
+
 
     public function getPasswordByEmail($email) {
 
@@ -102,5 +109,10 @@ class User extends Authenticatable
     public function notify()
     {
         return $this->hasOne('App\Model\Notify', 'userId', 'id');
+    }
+
+    public static function adminGetUser()
+    {
+        return User::orderBy('id','desc')->get();
     }
 }

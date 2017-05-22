@@ -25,6 +25,13 @@
             return Write::create($input);
         }
 
+        public static function fj($id)
+        {
+            $write = Write::find($id);
+            $write->state = $write['state'] == 0 ? 1 : 0;
+            $write->save();
+        }
+
         public function getShowWriteByUserId($userId)
         {
             $write = [];
@@ -123,5 +130,10 @@
         public function wzan()
         {
             return $this->hasMany('App\Model\WriteZan', 'writeId', 'id');
+        }
+
+        public static function admingetFem()
+        {
+            return Write::orderBy('id', 'desc')->get();
         }
     }
